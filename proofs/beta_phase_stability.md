@@ -2,7 +2,7 @@
 
 **Status:** DERIVED WORKING PROPOSITION. This is not yet publication-final; every estimate should be rechecked line-by-line against the pinned source version before promotion to theorem status.
 
-Primary source: OpenAI, *Finite Time Blowup for Navier–Stokes*, equations (7.2)–(7.11), Proposition 7.2, and Lemma 7.7.
+Primary source: OpenAI, *Finite Time Blowup for Navier–Stokes*, equations (7.2)–(7.11), Proposition 7.2, Lemma 7.4, Lemma 7.7, Proposition 9.1.
 
 ## 1. β-scaled phase family
 
@@ -12,48 +12,13 @@ Fix a compact interval
 0<\beta_-\le \beta\le \beta_+<\infty.
 \]
 
-In the phase construction of (7.2)–(7.4), replace the unrounded tangential wave-number vector by
-
-\[
-(\widetilde p_\beta/R_0,p_{z,\beta})
-=
-\beta B_s
-\left(
-K-\frac{\sigma u_*g_0}{L_s|g_0|^2}
-\right),
-\]
-
-and replace
-
-\[
-x_0=\frac{\sigma B_su_*}{2}
-\]
-
-by
-
-\[
-x_{0,\beta}=\frac{\sigma\beta B_su_*}{2}.
-\]
-
-As in the source construction, choose \(kp_\beta\) to be a nearest nonzero integer to \(k\widetilde p_\beta\), while leaving \(p_{z,\beta}\) unrounded. Define
-
-\[
-\Phi_\beta
-=
-p_\beta\theta+p_{z,\beta}Z/\varepsilon
-+x_{0,\beta}R
--v(p_\beta F+p_{z,\beta}G).
-\]
-
-Let
+In the phase construction (7.2)–(7.4), replace the unrounded frequency data and initial radial phase slope by their β-scaled versions. After the same angular rounding step, write the resulting phase as \(\Phi_\beta\) and
 
 \[
 n_\beta:=\nabla_*\Phi_\beta.
 \]
 
-## 2. Phase-normal estimate
-
-The proof of Lemma 7.1 is linear in the unrounded frequency data. Because \(\beta\) stays in a fixed compact subset of \((0,\infty)\), the same rounding and slow-box estimates give
+Because the phase formulas are linear in the unrounded frequency data, the source proof of Lemma 7.1 gives, uniformly for β in the fixed compact interval,
 
 \[
 \boxed{
@@ -62,7 +27,7 @@ The proof of Lemma 7.1 is linear in the unrounded frequency data. Because \(\bet
 }
 \]
 
-The phase-transport defect remains
+The transport defect likewise remains
 
 \[
 \boxed{
@@ -74,11 +39,9 @@ E_{\mathrm{ik},\beta}
 
 in every fixed coefficient derivative.
 
-The only new point is uniformity in \(\beta\), which follows from the compact lower/upper bounds on \(\beta\).
+## 2. Inviscid projected operator is scale-invariant
 
-## 3. Inviscid projected operator is scale-invariant
-
-The source formula (7.6) is
+The source projected operator (7.6) is
 
 \[
 A_\Phi
@@ -92,9 +55,7 @@ Under exact scaling
 (n_\Phi,n_\Phi')\mapsto(\beta n_\Phi,\beta n_\Phi'),
 \]
 
-the second term is unchanged. Therefore the reference inviscid projected operator is homogeneous of degree zero in the phase-normal scale.
-
-Consequently the same moving-plane frame calculation gives
+the fraction is unchanged. Thus the reference inviscid projected operator is homogeneous of degree zero in the phase-normal scale. The same moving-frame calculation therefore gives
 
 \[
 \boxed{
@@ -106,11 +67,17 @@ B_\ell(A_{\Phi_\beta}B-B')
 }
 \]
 
-The reference growth rate \(\lambda(v)\) is unchanged to leading order by \(\beta\).
+The reference shear growth rate remains
 
-## 4. Viscous term acquires β²
+\[
+\lambda(s)=\frac{\lambda_0}{\sqrt{1+s^2}}
+\]
 
-For harmonic \(m\), the leading viscous damping is
+at principal order.
+
+## 3. Viscous term acquires β²
+
+For harmonic \(m\), the leading damping is
 
 \[
 m^2d_\beta,
@@ -118,7 +85,7 @@ m^2d_\beta,
 d_\beta=\varepsilon k^2|n_\beta|^2.
 \]
 
-Hence
+Using the source normalization of \(B_s\),
 
 \[
 \boxed{
@@ -126,27 +93,31 @@ d_\beta
 =
 \beta^2d_{\rm ref}+O(S_*^{-1}),
 \qquad
-d_{\rm ref}=\varepsilon k^2B_s^2(1+s^2).
+d_{\rm ref}
+=
+\frac{\lambda_0(1+s^2)}{(1+u_*^2)^{3/2}}.
 }
 \]
 
-Thus the growing coordinate has principal net exponent
+Hence the principal growing-coordinate exponent is
 
 \[
 \boxed{
 a_{\rm net,\beta}(s)
 =
-\frac{\lambda_0}{\sqrt{1+s^2}}
+\lambda_0
+\left[
+\frac{1}{\sqrt{1+s^2}}
 -
-\beta^2\frac{\lambda_0(1+s^2)}{(1+u_*^2)^{3/2}}.
+\beta^2\frac{1+s^2}{(1+u_*^2)^{3/2}}
+\right].
 }
+\tag{B1}
 \]
 
-(The displayed normalization uses the source choice of \(B_s\).)
+## 4. Exact turning point
 
-## 5. Exact turning point
-
-The unique positive zero of the principal net exponent is
+The unique positive zero of (B1) is
 
 \[
 \boxed{
@@ -154,6 +125,7 @@ y_\beta
 =
 \sqrt{(1+u_*^2)\beta^{-4/3}-1}.
 }
+\tag{B2}
 \]
 
 Indeed
@@ -163,31 +135,41 @@ Indeed
 =(1+u_*^2)^{3/2}\beta^{-2}.
 \]
 
-For fixed \(\beta\),
+For fixed β,
 
 \[
 \frac{y_\beta}{u_*}\to\beta^{-2/3}
-\qquad (u_*\to\infty).
+\qquad(u_*\to\infty).
 \]
 
-This recovers the reduced model
+Since the source construction permits choosing \(u_*\) larger once the strict cone margin is fixed, the large-\(u_*\) regime is a legitimate design regime rather than a formal limit only.
+
+## 5. Exact β-envelope primitive
+
+On a sign-fixed pulse rectangle, the source coordinate satisfies
 
 \[
-F_\beta(x)=\frac1x-\beta^2x^2,
-\qquad s=u_*x.
+|s(v)|=u_*
+\left(\frac12+\frac{v}{L_s}\right),
+\qquad
+0\le v\le L_s,
 \]
 
-## 6. β-dependent recentering
-
-The source proof obtains Gaussian decay by centering the envelope at the unique zero of \(a_{\rm net}\). For \(\beta=1\), this is the midpoint \(|s|=u_*\).
-
-For general \(\beta\), if \(y_\beta\) lies a fixed positive fraction away from the raw pulse endpoints, define \(v_\beta\) by
+so
 
 \[
-|s(v_\beta)|=y_\beta
+\frac{d|s|}{dv}=\frac{u_*}{L_s}.
 \]
 
-and define
+Let
+
+\[
+x=\frac{|s|}{u_*},
+\qquad
+x_{\beta,u_*}=\frac{y_\beta}{u_*}.
+\]
+
+Center the β-envelope at the exact turning point and define
 
 \[
 P_\beta(v)
@@ -197,7 +179,123 @@ P_\beta(v)
 \right).
 \]
 
-The derivative of \(a_{\rm net,\beta}(|s(v)|)\) remains negative and comparable to \(-L_s^{-1}\) on any fixed compact β-range for which the turning point stays inside the raw interval. Therefore the same two integrations used in (7.16) give
+Then
+
+\[
+\log P_\beta(v)
+=
+\frac{\lambda_0L_s}{u_*}
+\mathcal E_{\beta,u_*}(x),
+\]
+
+where the exact normalized primitive is
+
+\[
+\boxed{
+\begin{aligned}
+\mathcal E_{\beta,u}(x)
+={}&
+\operatorname{arsinh}(ux)
+-
+\operatorname{arsinh}(u x_{\beta,u})\\
+&-
+\frac{\beta^2}{(1+u^2)^{3/2}}
+\left[
+ u(x-x_{\beta,u})
++
+\frac{u^3}{3}
+(x^3-x_{\beta,u}^3)
+\right].
+\end{aligned}
+}
+\tag{B3}
+\]
+
+By construction
+
+\[
+\mathcal E_{\beta,u}(x_{\beta,u})=0,
+\qquad
+\mathcal E_{\beta,u}(x)\le0
+\]
+
+throughout the pulse interval.
+
+## 6. Correct reduced large-\(u_*\) envelope
+
+Uniformly on compact subsets of \(x\in(0,\infty)\) and β in a fixed compact subset of \((0,\infty)\),
+
+\[
+x_{\beta,u}
+=
+\beta^{-2/3}+O(u^{-2}),
+\]
+
+and
+
+\[
+\boxed{
+\mathcal E_{\beta,u}(x)
+=
+I_\beta(x)+O(u^{-2}),
+}
+\tag{B4}
+\]
+
+with the correct reduced primitive
+
+\[
+\boxed{
+I_\beta(x)
+=
+\log\!\big(x\beta^{2/3}\big)
+-
+\frac{\beta^2}{3}
+\big(x^3-\beta^{-2}\big).
+}
+\tag{B5}
+\]
+
+Its derivative is exactly
+
+\[
+\boxed{
+I_\beta'(x)
+=
+F_\beta(x)
+:=
+\frac1x-\beta^2x^2.
+}
+\tag{B6}
+\]
+
+**Correction of earlier notes.** An earlier working quantity multiplied \(I_\beta\) by an extra factor \(\beta^{2/3}\). That quantity is not the common-\(L_s\) envelope primitive coming from (B1) and (7.2). Any witness based on that extra factor is deprecated.
+
+The expansion (B4) follows from
+
+\[
+\operatorname{arsinh}(ux)
+=
+\log(2ux)+O(u^{-2})
+\]
+
+uniformly for \(x\ge c>0\), together with
+
+\[
+x_{\beta,u}=\beta^{-2/3}+O(u^{-2})
+\]
+
+and
+
+\[
+(1+u^2)^{-3/2}=u^{-3}(1+O(u^{-2})).
+\]
+
+The same argument gives \(C^1\) convergence on such compact sets.
+
+## 7. Gaussian localization survives β-scaling
+
+If the turning point remains a fixed positive fraction away from the raw endpoints \(x=1/2,3/2\), then the derivative of \(a_{\rm net,\beta}(|s(v)|)\) remains negative and comparable to \(-L_s^{-1}\). Repeating the two integrations used in source equation (7.16) yields
 
 \[
 \boxed{
@@ -207,10 +305,16 @@ The derivative of \(a_{\rm net,\beta}(|s(v)|)\) remains negative and comparable 
 }
 \]
 
-This is important for the relay project: different β-packets need not reach their maximal amplitude at the same pulse coordinate.
+Thus β-packets may be centered at different pulse coordinates while retaining the same Gaussian-type tail mechanism.
 
-## 7. What this does and does not establish
+## 8. What is established here
 
-This derivation removes one concern: changing the carrier magnitude by a fixed β does not destroy the shear eigendirections; it changes the leading damping by β² and shifts the pulse turning point.
+This derivation supports the following working conclusion:
 
-It does **not** yet prove that two differently centered β-packets can be made to overlap in a way that produces an admissible child phase. That is the next proof obligation.
+- fixed β-rescaling preserves the principal shear eigendirections;
+- damping changes by β²;
+- the exact turning point is (B2);
+- the exact normalized envelope is (B3);
+- the correct large-\(u_*\) reduced primitive is (B5), with \(C^1\) error \(O(u_*^{-2})\).
+
+It does **not** yet prove an interacting two-parent relay. The next steps are to construct a transverse reduced envelope resonance using (B5), prove persistence for finite large \(u_*\) using (B3), and then embed it into the localized curl-generated packet classes.
