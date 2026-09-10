@@ -1,108 +1,154 @@
-# Note 08 — zero-force correction program after stable sum-sideband inversion
+# Note 08 — zero-force correction program after low-mode audit
 
-The corrected v0.4 relay has now passed one more local test: the unwanted sum harmonic
+The corrected v0.4 relay has a strongly damped unwanted sum harmonic
 
 \[
-\beta_+=17/8
+\beta_+=17/8,
 \]
 
-has an exact finite-`u_*` damping gap on the full resonance bracket, and its scalar moving-frame coefficient equation has a bounded forward inverse. See `proofs/sum_sideband_local_inverse.md`.
+with a bounded local forward inverse. That remains valid; see `proofs/sum_sideband_local_inverse.md`.
 
-This changes the remaining local problem from
-
-> can the unwanted sideband be damped?
-
-into
-
-> can all correction-generated terms be solved simultaneously with zero external force?
-
-## Proposed correction map
-
-Write the localized relay state schematically as
+However, the next low-mode audit exposed a more delicate fact: the correction lattice is **not forward-stable as a whole**. In particular, the parent-child/catalyst feedback mode
 
 \[
-W=W_1+W_2+W_c+Z,
+(1,-2)
 \]
 
-where `W_1,W_2` are the designated parents, `W_c` is the extracted desired child branch, and `Z` is the sum of all correction modes.
+is uniformly growing on the certified relay bracket. See `proofs/feedback_mode_instability_and_compact_inverse_obstruction.md`.
 
-After subtracting the desired child source, write the remaining residual as
+Therefore the earlier naive target
 
 \[
-\mathcal R(Z)=R_0+LZ+Q(Z)+C(Z),
+Z=\mathcal T(Z)
+\]
+
+with a single stable inverse for every non-designated mode was too optimistic.
+
+## 1. Revised linear decomposition
+
+Write the correction space schematically as
+
+\[
+\mathfrak X
+=\mathfrak X_s\oplus\mathfrak X_u\oplus\mathfrak X_c,
 \]
 
 where:
 
-- `R_0` contains the first unwanted sum sideband, cutoff defects and improved curl/localization errors;
-- `L` is the linearized packet operator on the correction modes;
-- `Q(Z)` contains correction-correction quadratic terms;
-- `C(Z)` contains parent/catalyst/child interactions with corrections.
+- `X_s` contains uniformly forward-stable nonzero lattice modes;
+- `X_u` contains finitely many low modes with positive local growth, including `(1,-2)`;
+- `X_c` contains mean/neutral and endpoint compatibility directions.
 
-The zero-force problem is to solve
+The high harmonic tail is still favorable: lattice separation plus quadratic viscous damping shows that only finitely many low nonzero modes can fail to be strongly stable.
 
-\[
-\boxed{\mathcal R(Z)=0.}
-\]
+## 2. One-sided dichotomy inverses
 
-Equivalently, after inverting the stable/improved pieces of `L`,
+For a stable scalar coordinate
 
 \[
-\boxed{Z=\mathcal T(Z).}
+z'=a(v)z+f,
+\qquad a\le-\gamma<0,
 \]
 
-## Desired contraction structure
+use the forward inverse with entrance condition `z(v_-)=0`.
 
-The current estimates suggest three distinct small parameters:
+For an unstable scalar coordinate
 
-1. the unwanted sum mode has a fixed stable inverse with no epsilon loss;
+\[
+z'=a(v)z+f,
+\qquad a\ge\gamma>0,
+\]
+
+use the terminal/backward inverse with `z(v_+)=0`.
+
+Both are bounded by `gamma^{-1}` in the corresponding direction.
+
+But these inverses do **not** automatically yield a correction vanishing at both ends of the collar.
+
+## 3. Exact compact-support compatibility
+
+For
+
+\[
+z'=a(v)z+f(v)
+\]
+
+on `[v_-,v_+]`, imposing
+
+\[
+z(v_-)=z(v_+)=0
+\]
+
+requires the exact moment condition
+
+\[
+\boxed{
+\int_{v_-}^{v_+}
+\exp\left(-\int_{v_-}^{w}a(s)\,ds\right)f(w)\,dw=0.
+}
+\]
+
+This condition is generic neither for stable nor unstable forcing. Thus exact zero-force closure contains a finite-dimensional solvability problem that cannot be removed by saying that a tail is exponentially small.
+
+## 4. Revised nonlinear architecture
+
+The local residual equation should be organized as a Lyapunov-Schmidt / exponential-dichotomy system.
+
+First project onto the complementary stable/unstable range and solve there using the one-sided inverses. Then collect the resulting finite family of endpoint/mean compatibility functionals
+
+\[
+\mathcal M_j(\mathbf p,Z)=0,
+\qquad j=1,\dots,N_c,
+\]
+
+where `p` denotes adjustable relay parameters such as relative pulse translations, amplitudes/phases, or amplitudes of deliberately added compensating packets.
+
+Only after those finite equations are solved exactly should one run a contraction for the remaining infinite-dimensional correction.
+
+Schematic form:
+
+\[
+Z=\mathcal G_{\mathbf p}
+\big(R_0+\mathcal N(Z)\big),
+\]
+
+subject to
+
+\[
+\boxed{
+\mathcal M(\mathbf p,Z)=0.
+}
+\]
+
+The operator `G_p` is the forward/backward dichotomy inverse on the complement of the compatibility block.
+
+## 5. Small parameters that remain useful
+
+The following gains still survive the revised architecture:
+
+1. the first sum-sideband inverse has a fixed stable gap;
 2. curl/localization remainders gain at least `epsilon^(1/2-kappa_s)` relative to the principal relay source;
-3. feedback generated while the child is still a tail carries an extra Gaussian factor `exp(-c S_*)`.
+3. parent-child feedback is generated in Gaussian tails and therefore carries an additional `exp(-c S_*)` factor;
+4. high lattice harmonics become increasingly viscously stable.
 
-The target norm should therefore weight correction components according to their mechanism rather than forcing all of them into one unweighted amplitude class.
+These gains should make the infinite-dimensional complement contractive. The new difficulty is the finite compatibility system, not the high-mode tail.
 
-A plausible schematic norm is
+## 6. Next theorem-level target
 
-\[
-\|Z\|_{\mathfrak X}
-=
-\sup_{\gamma}
-\left(
-\varepsilon^{-\alpha_\gamma}
-S_*^{-C_\gamma}
-P_\gamma^{-1}
-\|Z_\gamma\|
-\right),
-\]
+### Finite compatibility transversality lemma
 
-with separate exponents for stable sidebands, curl remainders and flat feedback modes.
-
-The next theorem-level target is:
-
-### Local nonlinear correction contraction
-
-Find a ball `B_R` in a weighted correction space such that for all sufficiently large levels,
+Choose a minimal set of adjustable relay parameters `p_1,...,p_m` and a matching finite set of compatibility moments `M_1,...,M_m`. Prove that at the reference relay configuration
 
 \[
-\mathcal T(B_R)\subseteq B_R,
+\boxed{
+\det\left(\frac{\partial M_i}{\partial p_j}\right)\ne0.
+}
 \]
 
-and
+Then the implicit-function theorem can solve the exact endpoint/mean constraints simultaneously with the small nonlinear correction.
 
-\[
-\|\mathcal T(Z)-\mathcal T(\widetilde Z)\|_{\mathfrak X}
-\le\kappa\|Z-\widetilde Z\|_{\mathfrak X},
-\qquad \kappa<1.
-\]
-
-If proved, Banach's fixed-point theorem would eliminate the local non-designated residual **exactly**, instead of exporting it into a smooth external force.
+This is now the correct local zero-force closure target.
 
 ## Warning
 
-The source forced construction does not need such a theorem because exponentially flat residuals may be absorbed into the prescribed smooth force. Therefore this contraction is genuinely new work; it cannot be cited as already contained in the source paper.
-
-The first subproblem is to classify every correction-generated harmonic produced by `W_+^{corr}` and determine whether it lands in:
-
-- a uniformly stable beta sector;
-- an algebraically improved packet class;
-- or a potentially resonant sector requiring a new cancellation.
+The forced source construction does not require this finite compatibility solve because exponentially flat residuals can be retained in the prescribed external force. The compatibility system is therefore genuinely new work for SOL-UNFORCED-NS.
