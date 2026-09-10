@@ -1,7 +1,7 @@
 # STATUS
 
 **Project:** SOL-UNFORCED-NS  
-**Working version:** v0.6 preferred / v0.7 global-filter candidate  
+**Working version:** v0.8 preferred model candidate  
 **Date:** 2026-09-10  
 **Branch:** `research/local-beta-relay-v0.2`
 
@@ -21,19 +21,22 @@ was retracted when interpreted as a physical frequency jump between overlapping 
 \boxed{\Omega_{\rm phys}(q)\asymp q^{-(1+h)/2}.}
 \]
 
-## v0.6 preferred design
+See `proofs/chart_invariant_carrier_scale.md`.
 
-The current broadly robust model candidate uses
+## v0.4–v0.7 historical progression
 
-\[
-\beta_1=2,\qquad \beta_2=1,\qquad x_1=\frac34.
-\]
+- **v0.4:** valid same-scale difference relay, but `(1,-2)` is a genuinely growing feedback mode and exact compact support creates a compatibility problem.
+- **v0.5:** integral-beta choice `2-1=1` kills the inviscid growth term of `(1,-2)` exactly, but the first regenerated unit-beta descendant is action-supercritical.
+- **v0.6:** moving the parent to `x_1=3/4` creates an in-window action filter for the radial feedback ladder, including a proved finite-`u_*` deficit for `(2,-3)`.
+- **v0.7:** rational half-step tuning closes the off-window principal lattice at one moderate tuned value `u_*≈49.36`, but leaves a possible source cone-threshold issue.
 
-Its exact finite-`u_*` resonance is proved for every `u_*>=20`, the first feedback mode `(1,-2)` is purely radial at principal level, and every in-window unit-beta feedback-ladder descendant beyond the desired child is action-subcritical.
+## v0.8 preferred large-u half-step family
 
-## v0.7 rational half-step candidate
+The current preferred **model-level** architecture is the asymptotic half-step family in
 
-A sharper candidate was introduced to close the previously open off-window low-mode problem. It uses
+`proofs/integral_beta_v08_large_u_halfstep_family.md`.
+
+For an integer `M`, set
 
 \[
 \boxed{
@@ -41,109 +44,150 @@ A sharper candidate was introduced to close the previously open off-window low-m
 \qquad
 \beta_2=1,
 \qquad
-x_1=\frac{29}{40},
+u_M=M^2,
 \qquad
-y=\frac{1073}{1440},
-\qquad
-x_c=\frac{203}{288}.
+\delta_M=\frac1{2M}.
 }
 \]
 
-These coordinates satisfy the exact desired relation
+Choose a relay root `x_M` and define
 
 \[
-2x_1-y=x_c.
+y_M=(1+\delta_M)x_M,
+\qquad
+x_{c,M}=(1-\delta_M)x_M.
 \]
 
-The unit-beta feedback ladder has
+Then
 
 \[
-x_a=\frac{1073-58a}{1440},
+2x_M-y_M=x_{c,M},
 \]
 
-so zero lies exactly halfway between `a=18` and `a=19`; the near-zero off-window accident is replaced by a fixed arithmetic gap.
+so the desired difference harmonic is exactly unit-beta.
 
-Define the exact finite-`u` resonance residual
+The theorem proves that for every sufficiently large integer `M` there exists an exact finite-`u_*` resonance
 
 \[
-R(u)=\mathcal E_{2,u}(29/40)
-+\mathcal E_{1,u}(1073/1440)
--\mathcal E_{1,u}(203/288).
+\boxed{u_*=M^2}
 \]
 
-Outward interval arithmetic certifies
+with
 
 \[
-R(20)<0<R(100),
+x_M\to2^{-2/3},
+\qquad
+y_M\to2^{-2/3},
+\qquad
+x_{c,M}\to2^{-2/3}.
 \]
 
-so at least one tuned
+Thus the admissible design values satisfy
 
 \[
-\boxed{u_\dagger\in(20,100)}
+\boxed{u_*\to\infty.}
 \]
 
-exists. Numerically,
+This removes the v0.7 concern that the tuned root might lie below an unknown profile-dependent cone threshold: choose one sufficiently large `M` after that threshold is known, then freeze it for the dyadic cascade.
 
-\[
-\boxed{u_\dagger\approx49.35646602870114.}
-\]
+## Complete principal lattice action filter
 
-At any such tuned root, the entire two-generator lattice can be parameterized by integers
+For a lattice mode `(a,b)`, define
 
 \[
 T=2a+b,
 \qquad
-N=37T-2a,
+N=(2M+1)T-2a.
 \]
 
-with exact radial coefficient
+Then its reduced radial coefficient is exactly
 
 \[
-r=\frac{29}{1440}N.
+\boxed{r_{a,b}=\frac{x_M}{2M}N.}
 \]
 
-`proofs/integral_beta_v07_global_action_filter.md` proves at the principal exact-envelope/lattice level that every non-designated growing lattice mode is action-subcritical. In particular there is a uniform gap
+The theorem proves the half-step arithmetic gap and, more importantly, a **uniform principal action deficit**: there exist `M_0` and `delta_*>0` such that for every `M>=M_0` and every non-designated principal-growing lattice mode,
 
 \[
 \boxed{
-S_{a,b}
+S_M(a,b)
 -
-\mathcal E_{|T|,u_\dagger}
-\left(\frac{29|N|}{1440|T|}\right)
-< -0.15
+\mathcal E_{|T|,M^2}(\xi_M(a,b))
+\le-\delta_*.
 }
 \]
 
-for every non-designated growing mode. Hence even the previously open off-window modes retain an `e^{-cS_*}` deficit after maximal homogeneous amplification.
+The only action-resonant nonzero modes are the deliberately retained catalyst and desired child (plus conjugates). Modes with `T=0` are purely viscous at principal level. Every other growing harmonic is action-subcritical.
 
-This is stronger than the v0.6 in-window filter, but v0.7 is **not yet promoted to preferred design** for one important reason: the source construction only requires `u_*` to exceed a profile-dependent cone-margin threshold, and the repository has not yet proved that some tuned resonance can be placed above an arbitrarily large admissible threshold.
+For one fixed sufficiently large `M`, since
 
-## Other proved/derived layers
+\[
+L_s\asymp S_*,
+\]
 
-- Chart-invariant physical carrier scaling at fixed physical point.
-- Beta-dependent envelope/turning formulas.
-- Translated auxiliary-torus overlap geometry.
-- Exact difference-phase locking.
-- Source-normalized nonzero growing projection.
-- Harmonic-lattice separation and high-mode viscous stabilization.
-- Stable inverse for the first unwanted sum sideband.
-- Compact-support compatibility obstruction for generic unstable correction modes.
-- Abstract two-collar rank theorem for one complex compatibility moment plus prescribed child output.
+the post-amplification suppression is
+
+\[
+\boxed{
+\exp(-\delta_*\lambda_0L_s/M^2)=e^{-c_M S_*}.
+}
+\]
+
+Hence the complete two-generator harmonic lattice is filtered at the principal envelope level, including the previously problematic off-window modes.
+
+This is now the strongest model theorem in the branch.
+
+## Other established layers
+
+**DERIVED:** chart-invariant physical carrier scaling at fixed physical point.
+
+**DERIVED WORKING PROPOSITION:** beta rescaling preserves principal inviscid eigendirections while viscous damping scales quadratically in carrier magnitude; exact beta turning/envelope formulas are in `proofs/beta_phase_stability.md`.
+
+**PROVED GEOMETRIC LEMMA:** translated auxiliary-torus rectangles realize distinct local pulse coordinates in a prescribed common overlap collar while preserving exact separation outside relay supernodes.
+
+**PROVED PRINCIPAL ALGEBRA:** desired difference-harmonic source has a robust nonzero growing-child projection after correcting the source slope to `s=u_*x`.
+
+**PROVED HARMONIC-LATTICE LEMMA:** high lattice modes are increasingly viscously stable and only finitely many low modes can require separate treatment at fixed design parameters.
+
+**PROVED ABSTRACT CONTROL LEMMA:** if a residual low compatibility condition survives later source-level audit, two separated complex relay collars give full rank for one complex child-output condition plus one complex endpoint moment.
+
+## Immediate frontier
+
+The model-level carrier/envelope/lattice architecture is now substantially cleaner. The next decisive theorem is:
+
+### Source-localized action preservation
+
+Prove that replacing reference waves by the actual localized curl-generated source packets changes the action bookkeeping only through algebraic/polynomial prefactors:
+
+\[
+S_*^C\varepsilon^\rho,
+\]
+
+or already-flat factors, but **does not create an exponential gain of order `e^{+cS_*}`** capable of erasing the v0.8 action deficit.
+
+The audit must include:
+
+1. curl-generated remainder classes from Lemma 7.7;
+2. slow and bounded-`v` collar cutoffs;
+3. phase transport defects and `O(S_*^{-1})` frame/Leray errors;
+4. common-torus coordinate changes;
+5. stable/unstable one-sided inverses and exact compact-support compatibility;
+6. nonlinear products of already-subcritical correction modes.
+
+Only after this theorem is proved should the branch attempt a full exact zero-force local fixed point.
 
 ## Not proved
 
 - Full Controlled-Overlap Local Difference-Relay Lemma for actual localized curl-generated packets.
-- Source-level proof that action exponents are unchanged by every cutoff/curl/transport/Leray correction.
-- Exact zero-force solution of all subcritical residual modes.
-- A family of v0.7-type tuned resonances available for arbitrarily large admissible `u_*`.
-- Physical-scale inheritance from `q_j` to a later smaller `q_{j+1}`.
+- Source-localized preservation of the v0.8 global action deficit.
+- Exact zero-force solution of all non-designated residuals.
+- Physical-scale inheritance from the generated child at `q_j` to a valid parent at a later smaller `q_{j+1}`.
 - A finite or infinite autonomous Navier–Stokes relay chain.
-- Exact global closure `R(u,p)==0`.
+- Exact global closure `R(u,p) == 0`.
 - Finite-time blowup for unforced 3D Navier–Stokes.
 
 ## Publication threshold
 
-**Not reached, but the local model is now materially stronger.**
+**Not reached yet, but the model-level publication threshold is close.**
 
-The v0.7 global principal action filter closes the off-window lattice problem at model level. The next decisive test is whether its rational half-step geometry can be embedded into the source admissible large-`u_*` regime and then survive the localized packet calculus. Success on those two points would make a technical preprint on the autonomous local relay mechanism plausible even before physical-scale inheritance is complete.
+The v0.8 theorem is now a coherent nontrivial result: arbitrarily large admissible `u_*`, exact finite-`u_*` resonance, half-step small-divisor protection, and a complete principal lattice action filter. I would still wait before a standalone preprint because its significance for the actual Navier–Stokes packet construction depends on the next source-localized action-preservation theorem. If that theorem closes, the local relay architecture should be assembled immediately into a technical preprint even before physical-scale inheritance is solved.
