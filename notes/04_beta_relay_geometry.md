@@ -1,280 +1,146 @@
-# Note 04 — β-relay geometry
+# Note 04 — v0.4 same-scale beta difference relay
 
-Introduce an intermediate carrier scaling
+## 1. Historical correction
 
-\[
-n_{\Phi,\beta}\approx \beta B_s(s e_r+K).
-\]
+The v0.1–v0.3 relay witnesses were tied, directly or indirectly, to the now-retracted interpretation that neighboring dyadic charts produce the physical ratio \(17/12\). Their algebra remains useful as history, but they are **not current physical relay candidates**.
 
-At principal level:
+The current design works at one physical \(q\) and uses an exact difference harmonic.
 
-- the direction of the shear-sensitive phase normal is unchanged;
-- viscous damping scales like \(\beta^2\);
-- two parent β-values can be selected so their sum matches the next physical band ratio.
-
-## 1. Band ratio
+## 2. Current rational beta pair
 
 Choose
 
 \[
-r=\frac{17}{12}.
-\]
-
-Then
-
-\[
-2^{(1+h)/2}=\frac{17}{12},
-\qquad
-h=2\log_2\frac{17}{12}-1
-\approx0.005000681058366707<\frac1{100}.
-\]
-
-## 2. Corrections to earlier working witnesses
-
-Two earlier bootstrap candidates are now deprecated for different reasons.
-
-### v0.1
-
-The pair
-
-\[
-\beta_1=0.93,
-\qquad
-\beta_2=\frac{73}{150}
-\]
-
-matched the next-band ratio algebraically, but
-
-\[
-\beta_2^{-2/3}>\frac32,
-\]
-
-so the second parent had no internal turning point in the raw pulse interval.
-
-### v0.2
-
-The pair
-
-\[
-\beta_1=\frac56,
-\qquad
-\beta_2=\frac7{12}
-\]
-
-fixed that issue, but the associated resonance computation used an envelope primitive carrying an erroneous extra factor \(\beta^{2/3}\). The correct common-\(L_s\) reduced primitive derived from the source pulse equation is
-
-\[
 \boxed{
-I_\beta(x)
-=
-\log\!\big(x\beta^{2/3}\big)
--
-\frac{\beta^2}{3}\big(x^3-\beta^{-2}\big),
+\beta_1=\frac{25}{16},
+\qquad
+\beta_2=\frac9{16},
+\qquad
+\beta_1-\beta_2=1.
 }
 \]
 
-with
+The desired difference branch is therefore a unit-beta child. The unwanted sum branch has
 
 \[
-I_\beta'(x)=F_\beta(x)=\frac1x-\beta^2x^2.
+\boxed{\beta_+=\frac{17}{8}.}
 \]
 
-Therefore the old v0.2 numerical witness is also deprecated.
-
-This correction is recorded in `proofs/beta_phase_stability.md`.
-
-## 3. Interior-turning threshold
-
-The large-\(u_*\) turning point is
+Fix the decaying-parent coordinate
 
 \[
-x_\beta=\beta^{-2/3}.
+\boxed{x_1=\frac{29}{32}=0.90625.}
 \]
 
-A sufficient condition for it to lie below the raw endpoint \(3/2\) is
+For the catalyst coordinate \(y\), set
 
 \[
-\boxed{
-\beta>\left(\frac23\right)^{3/2}\approx0.544331.
-}
+\boxed{x_c(y)=\beta_1x_1-\beta_2y.}
 \]
 
-## 4. Preferred v0.3 rational relay pair
-
-Use
+Use the corrected reduced envelope primitive
 
 \[
-\boxed{
-\beta_1=\frac{41}{48},
+I_\beta(x)=\log x+\frac23\log\beta-\frac{\beta^2x^3}{3}+\frac13,
 \qquad
-\beta_2=\frac9{16}.
-}
+F_\beta=I_\beta'=\frac1x-\beta^2x^2.
 \]
 
-Then
-
-\[
-\beta_1+\beta_2
-=
-\frac{41}{48}+\frac{27}{48}
-=
-\frac{17}{12}
-=r.
-\]
-
-Both β-values exceed the interior-turning threshold. Their reduced turning points are
-
-\[
-\beta_1^{-2/3}\approx1.110806094,
-\qquad
-\beta_2^{-2/3}\approx1.467523222.
-\]
-
-Choose an exact rational coordinate for the decaying parent,
-
-\[
-\boxed{x_1=\frac{71}{48}\approx1.479166667.}
-\]
-
-For the second parent use opposite signed slope, \(x_2=-y_2\), and impose the reduced phase relation
-
-\[
-\boxed{
-\beta_1x_1-\beta_2y_2=rx_c.
-}
-\tag{R1}
-\]
-
-Together with reduced envelope balance
-
-\[
-\boxed{
-I_{\beta_1}(x_1)+I_{\beta_2}(y_2)=I_1(x_c),
-}
-\tag{R2}
-\]
-
-this leaves one scalar equation for \(y_2\), because
-
-\[
-x_c=\frac{\beta_1x_1-\beta_2y_2}{r}.
-\]
-
-The numerical root is
-
-\[
-\boxed{
-y_2\approx0.9381374363215359,}
-\]
-
-which gives
-
-\[
-\boxed{x_c\approx0.519354743421351.}
-\]
-
-Both values lie strictly inside the raw interval \([1/2,3/2]\).
-
-## 5. Transversality
+## 3. Certified reduced resonance
 
 Define
 
 \[
-R(y)
-=
-I_{\beta_1}(x_1)
-+
-I_{\beta_2}(y)
--
-I_1\!\left(
-\frac{\beta_1x_1-\beta_2y}{r}
-\right).
+G(y)=I_{\beta_1}(x_1)+I_{\beta_2}(y)-I_1(x_c(y)).
 \]
 
-At the v0.3 root,
+The exact-rational certificate proves
 
 \[
-\boxed{R'(y_2)\approx1.4449>1.4.}
+G(613/500)<0<G(1227/1000),
 \]
 
-Thus the reduced resonance is transverse, not a tangential numerical coincidence.
-
-This matters because the exact finite-\(u_*\) envelope differs from the reduced one by \(O(u_*^{-2})\) in \(C^1\). The implicit-function mechanism therefore predicts persistence of the relay root for all sufficiently large admissible \(u_*\).
-
-## 6. Growth/decay orientation
-
-For the reduced net-growth profile
+and \(G'>0\) on the bracket. Hence there is a unique root
 
 \[
-F_\beta(x)=\frac1x-\beta^2x^2,
+\boxed{1.226<y_0<1.227.}
 \]
 
-the v0.3 witness satisfies
+Numerically,
 
 \[
-F_{41/48}(x_1)\approx-0.920262<0,
+y_0\approx1.2260460510205621,
+\qquad
+x_{c,0}\approx0.7263647213009338.
+\]
+
+At the root,
+
+\[
+F_{25/16}(x_1)\approx-0.901652<0,
 \]
 
 \[
-F_{9/16}(y_2)\approx+0.787472>0,
+F_{9/16}(y_0)\approx+0.340012>0,
 \]
 
 \[
-F_1(x_c)\approx+1.655737>0.
+F_1(x_{c,0})\approx+0.849113>0.
 \]
 
-Hence
+Thus
 
 \[
 \boxed{
-\text{decaying old parent}
-+
-\text{growing catalyst}
-\longrightarrow
-\text{growing child}
+\text{decaying parent}
++\text{ growing catalyst}
+\xrightarrow{\text{difference}}
+\text{ growing child}.
 }
 \]
 
-survives after correcting the envelope primitive.
-
-## 7. Finite-\(u_*\) numerical persistence check
-
-Using the exact normalized envelope primitive from `proofs/beta_phase_stability.md`, keep \(\beta_1,\beta_2,x_1\) fixed and solve the exact envelope equation together with the same leading phase relation.
-
-Representative roots are:
-
-| \(u_*\) | \(y_2(u_*)\) | \(x_c(u_*)\) |
-|---:|---:|---:|
-| 10 | 0.9411505724 | 0.5181583512 |
-| 20 | 0.9388940430 | 0.5190543261 |
-| 50 | 0.9382586450 | 0.5193066165 |
-| 100 | 0.9381677439 | 0.5193427095 |
-| 1000 | 0.9381377394 | 0.5193546231 |
-
-The roots converge to the reduced witness and preserve the required parent/child growth signs throughout this sample.
-
-This is still a numerical persistence check, not a proof, but together with the transverse reduced root and the \(C^1\) asymptotic estimate it gives a clear route to a rigorous finite-\(u_*\) existence proposition.
-
-## 8. Important asymmetry in the source geometry
-
-The source pulse coordinate on a fixed sign rectangle satisfies
+The reduced envelope budget is
 
 \[
-|s(v)|=u_*\left(\frac12+\frac{v}{L_s}\right).
+I_{25/16}(x_1)\approx-0.07328937,
+\quad
+I_{9/16}(y_0)\approx-0.04082504,
 \]
 
-Therefore two packets evaluated at the same physical \(v\) have the same \(|s|/u_*\). Our relay uses different reduced coordinates \(x_1\neq y_2\neq x_c\).
+\[
+I_1(x_{c,0})\approx-0.11411441,
+\]
 
-So a relay cannot be realized by simply placing all three packets on the same unshifted pulse rectangle.
+with the first two summing to the child exponent.
 
-The β-dependent recentering from `proofs/beta_phase_stability.md` is therefore not merely convenient: some additional **relative pulse translation / asynchronous support placement** is required to make the three local coordinates meet at one physical overlap collar.
+## 4. Unwanted sum sideband
 
-This is now the central geometric proof obligation.
+Its induced local coordinate is
 
-## 9. Status
+\[
+x_+(y)=\frac{\beta_1x_1+\beta_2y}{\beta_+}.
+\]
 
-- Correct envelope primitive: **DERIVED**.
-- v0.3 reduced relay root: **NUMERICAL, TRANSVERSE**.
-- finite-\(u_*\) persistence: **NUMERICAL CHECKED; analytic proof route identified**.
-- realization by translated localized curl-generated packets: **OPEN**.
-- sideband disposal: **OPEN**.
+At the root,
+
+\[
+x_+\approx0.9909018959,
+\qquad
+\beta_+^{-2/3}\approx0.6050074331,
+\]
+
+and
+
+\[
+\boxed{F_{17/8}(x_+)\approx-3.42465.}
+\]
+
+So the non-designated sum harmonic lies deep in a viscously decaying region. This is a much cleaner sideband geometry than the obsolete v0.3 design, but exact zero-force disposal remains open.
+
+## 5. Geometric advantage
+
+The three desired local coordinates \(x_1\), \(y_0\), \(x_{c,0}\) all lie well inside \((1/2,3/2)\). The smallest endpoint margin is about \(0.226\), giving substantially more room for an overlap collar than the earlier witnesses.
+
+## 6. Scope
+
+This is a **same-physical-scale relay**. It does not by itself prove a cascade to larger physical frequency. The next-scale mechanism must use transport to smaller physical \(q\), where the intrinsic carrier grows as \(q^{-(1+h)/2}\).

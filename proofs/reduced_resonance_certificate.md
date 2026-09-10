@@ -1,6 +1,6 @@
-# Reduced β-relay resonance: rigorous interval certificate
+# Reduced beta-difference relay resonance: rigorous interval certificate
 
-**Status:** PROVED REDUCED LEMMA. This is a theorem for the reduced large-\(u_*\) envelope model only. It is not yet the full localized Navier–Stokes relay lemma.
+**Status:** PROVED REDUCED LEMMA for the corrected v0.4 same-physical-scale design. This is not yet the full localized Navier–Stokes relay lemma.
 
 ## 1. Reduced envelope
 
@@ -8,335 +8,253 @@ For \(\beta>0\), define
 
 \[
 I_\beta(x)
-=
-\log x+\frac23\log\beta
--
-\frac{\beta^2x^3}{3}
-+
-\frac13,
-\qquad x>0.
+=\log x+\frac23\log\beta-\frac{\beta^2x^3}{3}+\frac13,
+\qquad
+F_\beta(x)=I_\beta'(x)=\frac1x-\beta^2x^2.
 \]
 
-Then
-
-\[
-I_\beta'(x)
-=
-F_\beta(x)
-:=
-\frac1x-\beta^2x^2.
-\]
-
-The turning point is
-
-\[
-x_\beta=\beta^{-2/3}.
-\]
-
-## 2. Rational design point
+## 2. Corrected difference design
 
 Set
 
 \[
-\rho_0=\frac{17}{12},
-\qquad
-\beta_1=\frac{41}{48},
+\boxed{
+\beta_1=\frac{25}{16},
 \qquad
 \beta_2=\frac9{16},
-\]
-
-so that
-
-\[
-\beta_1+\beta_2=\rho_0.
-\]
-
-Fix
-
-\[
-x_1=\frac{71}{48}.
-\]
-
-For \(y>0\), define the child coordinate by exact reference phase closure:
-
-\[
-\boxed{
-x_c(y)
-=
-\frac{\beta_1x_1-\beta_2y}{\rho_0}.
+\qquad
+\beta_1-\beta_2=1,
 }
+\]
+
+and fix
+
+\[
+\boxed{x_1=\frac{29}{32}.}
+\]
+
+For the desired difference harmonic, define
+
+\[
+\boxed{x_c(y)=\beta_1x_1-\beta_2y.}
 \tag{R1}
 \]
 
-Define the envelope-resonance function
+The reduced envelope-resonance function is
 
 \[
 \boxed{
-G(y)
-=
-I_{\beta_1}(x_1)
-+
-I_{\beta_2}(y)
--
-I_1(x_c(y)).
+G(y)=I_{\beta_1}(x_1)+I_{\beta_2}(y)-I_1(x_c(y)).
 }
 \tag{R2}
 \]
 
-The desired relay condition is \(G(y)=0\).
+## 3. Exact rational sign certificate
 
-## 3. Rational logarithm reduction
-
-For rational \(y\), the quantity \(x_c(y)\) is rational. Multiplying (R2) by three gives
+For rational \(y\), \(x_c(y)\) is rational and
 
 \[
-\boxed{
 3G(y)=\log Z(y)+P(y),
-}
-\tag{R3}
 \]
 
 where
 
 \[
-Z(y)
-=
-\left(\frac{x_1y}{x_c(y)}\right)^3
-(\beta_1\beta_2)^2
-\in\mathbb Q_{>0},
+Z(y)=\left(\frac{x_1y}{x_c(y)}\right)^3(\beta_1\beta_2)^2\in\mathbb Q_{>0},
+\]
+
+\[
+P(y)=1-\beta_1^2x_1^3-\beta_2^2y^3+x_c(y)^3\in\mathbb Q.
+\]
+
+Using
+
+\[
+\log Z=2\sum_{j=0}^{\infty}\frac{w^{2j+1}}{2j+1},
+\qquad
+w=\frac{Z-1}{Z+1},
+\]
+
+with the explicit positive-tail bound recorded in `experiments/reduced_resonance_certificate.py`, one obtains
+
+\[
+\boxed{
+G\!\left(\frac{613}{500}\right)<0
+}
+\]
+
+with certified value near
+
+\[
+-3.76534608122\times10^{-5},
 \]
 
 and
 
 \[
-P(y)
-=
-1-
-\beta_1^2x_1^3
--
-\beta_2^2y^3
-+
-x_c(y)^3
-\in\mathbb Q.
+\boxed{
+G\!\left(\frac{1227}{1000}\right)>0
+}
 \]
 
-Thus the sign of \(G\) at rational test points can be certified using exact rational arithmetic plus a rigorous interval for \(\log Z\).
-
-## 4. Logarithm certificate
-
-For \(Z>1\), put
+with certified value near
 
 \[
-w=\frac{Z-1}{Z+1}\in(0,1).
+7.79811209016\times10^{-4}.
 \]
 
-The identity
-
-\[
-\log Z
-=
-2\sum_{j=0}^{\infty}
-\frac{w^{2j+1}}{2j+1}
-\]
-
-has positive terms. Therefore, for every \(N\ge0\),
-
-\[
-2\sum_{j=0}^{N}
-\frac{w^{2j+1}}{2j+1}
-\le
-\log Z
-\le
-2\sum_{j=0}^{N}
-\frac{w^{2j+1}}{2j+1}
-+
-\frac{2w^{2N+3}}{(2N+3)(1-w^2)}.
-\tag{R4}
-\]
-
-All quantities in (R4) are rational when \(Z\) is rational.
-
-Using \(N=30\), the exact-arithmetic certificate implemented in `experiments/reduced_resonance_certificate.py` yields:
-
-for
-
-\[
-y_-:=\frac{469}{500}=0.938,
-\]
-
-\[
--1.98590613905684\times10^{-4}
-<
-G(y_-)
-<
--1.98590613901825\times10^{-4},
-\]
-
-hence
-
-\[
-\boxed{G(y_-)<0.}
-\tag{R5}
-\]
-
-For
-
-\[
-y_+:=\frac{939}{1000}=0.939,
-\]
-
-\[
-1.24595084809731\times10^{-3}
-<
-G(y_+)
-<
-1.24595084810189\times10^{-3},
-\]
-
-hence
-
-\[
-\boxed{G(y_+)>0.}
-\tag{R6}
-\]
-
-By continuity, a root exists in \((y_-,y_+)\).
-
-## 5. Uniqueness and transversality
-
-Differentiating (R2) and using
-
-\[
-x_c'(y)=-\frac{\beta_2}{\rho_0},
-\]
-
-gives
+Hence a root exists in
 
 \[
 \boxed{
-G'(y)
-=
-F_{\beta_2}(y)
-+
-\frac{\beta_2}{\rho_0}F_1(x_c(y)).
+1.226<y_0<1.227.
 }
-\tag{R7}
+\tag{R3}
 \]
 
-On \([y_-,y_+]\),
+## 4. Uniqueness and transversality
+
+Since
+
+\[
+x_c'(y)=-\beta_2,
+\]
+
+we have
+
+\[
+\boxed{
+G'(y)=F_{\beta_2}(y)+\beta_2F_1(x_c(y)).
+}
+\tag{R4}
+\]
+
+On the wider interval \([1.1,1.3]\),
 
 \[
 y<\beta_2^{-2/3},
 \]
 
-so
+so \(F_{\beta_2}(y)>0\). Also
 
 \[
-F_{\beta_2}(y)>0.
+0.684<x_c(y)<0.798<1,
 \]
 
-Also (R1) gives
-
-\[
-0<x_c(y)<1
-\]
-
-on this interval, hence
-
-\[
-F_1(x_c(y))>0.
-\]
-
-Therefore
+so \(F_1(x_c(y))>0\). Therefore
 
 \[
 \boxed{G'(y)>0}
-\tag{R8}
 \]
 
-throughout the bracket. The root is unique and transverse.
+throughout that interval. The root is unique and transverse.
 
 Numerically,
 
 \[
 \boxed{
-y_0\approx0.938137436321536}
+y_0\approx1.2260460510205621,}
+\]
+
+\[
+\boxed{x_{c,0}\approx0.7263647213009338,}
 \]
 
 and
 
 \[
-\boxed{
-x_{c,0}\approx0.519354743421351.}
+G'(y_0)\approx0.8176378187.
 \]
 
-At the root,
+## 5. Growth/decay orientation
+
+The turning points are
 
 \[
-G'(y_0)\approx1.44489709545.
+\beta_1^{-2/3}\approx0.7426542134,
+\qquad
+\beta_2^{-2/3}\approx1.4675232217.
 \]
 
-## 6. Growth/decay orientation
-
-For the first parent,
+Since
 
 \[
-\beta_1^{-2/3}\approx1.10009942538
-<
-x_1=1.479166\ldots,
+x_1=0.90625>\beta_1^{-2/3},
 \]
 
-so
+the first parent is decaying. Since
 
 \[
-\boxed{F_{\beta_1}(x_1)<0.}
+y_0<\beta_2^{-2/3},
 \]
 
-For the catalyst root,
+the catalyst is growing. Since
 
 \[
-y_0<\beta_2^{-2/3}\approx1.46752322172,
+x_{c,0}<1,
 \]
 
-hence
+the unit-beta child is growing.
+
+Numerically,
 
 \[
-\boxed{F_{\beta_2}(y_0)>0.}
+F_{25/16}(x_1)\approx-0.901652,
 \]
-
-Finally \(x_{c,0}<1\), hence
 
 \[
-\boxed{F_1(x_{c,0})>0.}
+F_{9/16}(y_0)\approx+0.340012,
 \]
 
-Thus the reduced resonance has the required orientation:
+\[
+F_1(x_{c,0})\approx+0.849113.
+\]
+
+Thus
 
 \[
 \boxed{
 \text{decaying parent}
-+
-\text{growing catalyst}
-\longrightarrow
-\text{growing child}.
++\text{ growing catalyst}
+\xrightarrow{\text{difference harmonic}}
+\text{ growing child}.
 }
-\tag{R9}
 \]
 
-## 7. Consequence
+## 6. Unwanted sum sideband
 
-The reduced β-relay resonance is no longer merely a floating-point observation. There is a unique root in the explicit rational interval
+The same real parent pair also produces a sum harmonic with
 
 \[
-\boxed{
-\frac{469}{500}<y_0<\frac{939}{1000}
-}
+\beta_+=\beta_1+\beta_2=\frac{17}{8}.
 \]
 
-with a strictly positive derivative and the required growth/decay signs.
+Its induced reduced coordinate is
 
-The remaining work is to transport this certified reduced root to:
+\[
+x_+(y)=\frac{\beta_1x_1+\beta_2y}{\beta_+}.
+\]
 
-1. the exact finite-\(u_*\) β-envelope;
-2. the actual rounded carrier ratios \(k_{\ell+1}/k_\ell\);
-3. the full localized curl-generated PDE packet system.
+At the resonance root,
+
+\[
+x_+\approx0.9909018958583841,
+\]
+
+while
+
+\[
+\beta_+^{-2/3}\approx0.6050074331.
+\]
+
+Therefore the sum sideband is on the decaying branch, with
+
+\[
+\boxed{F_{17/8}(x_+)\approx-3.42465.}
+\]
+
+This is a strong viscous filter, but exact zero-force disposal of that sideband is still an open PDE obligation.
+
+## 7. Scope
+
+This certificate replaces the obsolete `17/12` cross-band resonance. It establishes only a **same-physical-scale difference-harmonic relay resonance**. The physical cascade to smaller \(q\) is a separate inheritance problem.

@@ -1,45 +1,30 @@
-# Working derivation — physical carrier scaling
+# Physical carrier scaling — correction notice
 
-**Status: DERIVED, not publication-final.**
+**Status:** the original bootstrap derivation in this file is retracted.
 
-Assume the forced construction uses
+The earlier argument held the chart shear parameter \(\lambda_0\) fixed while changing the dyadic chart scale \(Q\). That is not the source normalization at a fixed physical point.
 
-\[
-Q=2^{-\ell},
-\qquad
-\varepsilon=Q^h,
-\qquad
-k\asymp\varepsilon^{-1/2}.
-\]
+The corrected derivation is in
 
-If normalized spatial derivatives correspond to physical derivatives through a factor \(Q^{-1/2}\), then the physical carrier scale is
+`proofs/chart_invariant_carrier_scale.md`.
 
-\[
-\Omega_\ell
-\asymp
-Q^{-1/2}k
-\asymp
-Q^{-1/2}\varepsilon^{-1/2}.
-\]
-
-Since \(\varepsilon=Q^h\),
+Its governing conclusion is
 
 \[
 \boxed{
-\Omega_\ell
-\asymp
-Q^{-(1+h)/2}.
+\Omega_Q
+=
+\frac{q^{-(1+h)/2}\sqrt{\lambda_{0,\rm prof}}}
+{(1+u_*^2)^{3/4}},
 }
 \]
 
-For \(Q_\ell=2^{-\ell}\),
+so the leading physical carrier is independent of the overlapping chart label \(Q\) and grows intrinsically only as the physical variable \(q\) decreases.
+
+Accordingly,
 
 \[
-\frac{\Omega_{\ell+1}}{\Omega_\ell}
-=
-2^{(1+h)/2}.
+2^{(1+h)/2}
 \]
 
-## Audit obligation
-
-Before publication, replace the assumptions above with exact definitions and equation numbers from the primary paper, and bound all phase-normal errors.
+must **not** be used as a neighboring-chart physical relay ratio.

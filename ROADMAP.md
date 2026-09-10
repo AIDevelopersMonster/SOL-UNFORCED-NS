@@ -1,45 +1,63 @@
 # ROADMAP
 
-## Phase I — local mechanism
+## Phase I — exact local difference relay
 
-1. Re-audit all scale definitions against the primary OpenAI forced Navier–Stokes paper.
-2. Formalize the β-generalized phase and damping model.
-3. Derive the quadratic interaction after Leray projection for unequal β.
-4. Replace plane waves by localized curl-generated packets.
-5. Quantify:
-   - desired sum branch,
-   - undesired difference branch,
-   - phase defects,
-   - curl remainders,
-   - cutoff errors.
-6. Prove or disprove the Controlled-Overlap Local β-Relay Lemma.
+1. Keep the corrected physical carrier law
+   \[
+   \Omega_{\rm phys}\asymp q^{-(1+h)/2}
+   \]
+   separate from dyadic chart bookkeeping.
+2. Use the exact local difference relation
+   \[
+   \beta_1-\beta_2=1
+   \]
+   and define \(\Phi_c=\Phi_1-\Phi_2\).
+3. Certify the envelope resonance in the reduced and exact finite-\(u_*\) models.
+4. Prove a uniform lower bound for the desired difference interaction projected onto the child growing polarization.
+5. Replace principal waves by the actual localized curl-generated packets and track phase, curl, cutoff, and Leray errors.
+6. Prove or kill the **Controlled-Overlap Local Difference-Relay Lemma**.
 
-## Phase II — sparse relay graph
+## Phase II — exact local correction closure
 
-If Phase I succeeds:
+1. Treat the unwanted sum branch \(\beta_+=17/8\) as a strongly damped response.
+2. Control parent-child feedback using tail separation.
+3. Build a convergent correction scheme for every non-designated sideband and localization residual.
+4. Require exact zero-force closure inside the local relay module; flat errors may not simply be left in an external forcing term.
+5. Preserve sparse support separation outside designated relay supernodes.
 
-1. Replace complete label separation by a sparse controlled-overlap graph.
-2. Assign one permitted parent pair to each child.
-3. Prove all non-designated cross-interactions remain exactly zero by support separation.
-4. Bound all designated relay interactions.
-5. Check that correction steps do not create secondary uncontrolled relay edges.
+## Phase III — physical-scale inheritance
 
-## Phase III — autonomous chain
+The local relay at one physical \(q\) does not itself create the next \(q\)-scale. Prove a separate transport/inheritance statement:
+
+\[
+C_j(q_j)\longrightarrow P_{j+1}(q_{j+1}),
+\qquad q_{j+1}<q_j.
+\]
+
+Required checks:
+
+- phase/advection compatibility;
+- amplitude and envelope inheritance;
+- growth of intrinsic carrier \(\Omega_{\rm phys}(q)\);
+- viscosity budget across the transport interval;
+- support nesting and absence of backward-heat storage.
+
+## Phase IV — autonomous chain
 
 1. Construct a finite relay chain.
 2. Uniformize constants across levels.
-3. Prove summability of time intervals and energy.
-4. Pass to an infinite chain.
-5. Audit smoothness of initial data and compact support.
+3. Prove summability of time intervals and kinetic energy.
+4. Pass to an infinite chain if the estimates close.
+5. Audit smooth compactly supported initial data.
 
-## Phase IV — exact unforced closure
+## Phase V — exact unforced closure
 
 Target:
+
 \[
 R(u,p)
-=
-\partial_tu+(u\cdot\nabla)u-\nu\Delta u+\nabla p
+=\partial_tu+(u\cdot\nabla)u-\nu\Delta u+\nabla p
 \equiv0.
 \]
 
-No publication claim of a Navier–Stokes solution is allowed before this phase is complete and independently audited.
+No claim of solving the unforced Navier–Stokes problem is allowed before this phase is complete and independently audited.

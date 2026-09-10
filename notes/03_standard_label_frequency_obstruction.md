@@ -1,53 +1,53 @@
-# Note 03 — standard-label frequency obstruction
+# Note 03 — retracted chart-frequency obstruction
 
-## Physical carrier scale
+**Status: RETRACTED AS A PHYSICAL OBSTRUCTION.**
 
-Working from the forced Navier–Stokes normalization,
-
-\[
-Q=2^{-\ell},
-\qquad
-\varepsilon=Q^h,
-\qquad
-k\sim\varepsilon^{-1/2},
-\]
-
-and normalized spatial derivatives introduce a factor \(Q^{-1/2}\). The resulting physical carrier scale is
+The bootstrap argument treated
 
 \[
-\Omega_\ell
-\asymp
-Q^{-1/2}\varepsilon^{-1/2}
-=
-Q^{-(1+h)/2}.
+Q=2^{-\ell},\qquad \varepsilon=Q^h,\qquad k\sim\varepsilon^{-1/2}
 \]
 
-Therefore
+and inferred a physical carrier
 
 \[
-r
-:=
-\frac{\Omega_{\ell+1}}{\Omega_\ell}
-=
-2^{(1+h)/2}.
+Q^{-1/2}k\sim Q^{-(1+h)/2},
 \]
 
-For \(0<h<1/100\),
+leading to the supposed neighboring-chart ratio \(2^{(1+h)/2}\).
+
+That comparison omitted the chart scaling of the source shear parameter \(\lambda_0\), and therefore of \(B_s\). With the full source normalization,
 
 \[
-1.414\ldots < r < 1.419\ldots
+k_QB_{s,Q}
+=\frac{\sqrt{\lambda_{0,Q}}}{\sqrt{\varepsilon_Q}(1+u_*^2)^{3/4}},
 \]
 
-## Obstruction
+and the \(Q\)-dependence cancels after conversion back to physical derivatives. See `proofs/chart_invariant_carrier_scale.md`.
 
-Two standard same-band \(m=1\) waves with the same longitudinal carrier coefficient can produce, at principal frequency level, sum or difference coefficients corresponding to \(2\) or \(0\).
+Thus two overlapping dyadic charts at the same physical point do **not** define distinct physical carrier scales merely because their chart labels differ.
 
-The next band requires \(r\in(1.414,1.419)\).
+## Replacement design constraint
 
-Hence the standard pair does not directly frequency-match the next standard band.
+For collinear principal carriers at one physical point, a unit-beta child must satisfy the harmonic relation
 
-## Status
+\[
+\epsilon_1\beta_1+\epsilon_2\beta_2=1,
+\qquad \epsilon_j\in\{\pm1\}.
+\]
 
-**WORKING DERIVATION.**
+The current v0.4 design uses the difference branch
 
-The exact formulation must be tied to the paper's phase definitions and error classes before it is called a lemma.
+\[
+\boxed{\beta_1-\beta_2=1}
+\]
+
+with \(\beta_1=25/16\), \(\beta_2=9/16\).
+
+The true increase of physical carrier occurs when the physical variable \(q\) decreases, through
+
+\[
+\Omega_{\rm phys}(q)\asymp q^{-(1+h)/2}.
+\]
+
+Accordingly, cross-\(q\) inheritance is now a separate proof obligation.

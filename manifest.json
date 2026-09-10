@@ -1,7 +1,9 @@
 {
   "project": "SOL-UNFORCED-NS",
-  "version": "0.1",
-  "date": "2026-09-09",
-  "status": "research bootstrap; no solution claim",
-  "main_target": "Controlled-Overlap Local beta-Relay Lemma"
+  "version": "0.4-working",
+  "date": "2026-09-10",
+  "status": "research; no unforced Navier-Stokes solution claim",
+  "carrier_law": "physical leading carrier is chart-invariant at fixed point and scales intrinsically as q^{-(1+h)/2}",
+  "local_relay": "desired difference harmonic with beta1=25/16, beta2=9/16, beta1-beta2=1",
+  "main_target": "localized exact difference-relay module plus physical-scale inheritance q_j -> q_{j+1}"
 }

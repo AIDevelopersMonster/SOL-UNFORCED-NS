@@ -1,63 +1,59 @@
-# Proof obligation — Controlled-Overlap Local β-Relay Lemma
+# Proof obligation — Controlled-Overlap Local Difference-Relay Lemma
 
-## Candidate statement
+## Corrected v0.4 target
 
-Let \(U\) be a smooth local background flow on a short spacetime cell and suppose the principal linearized packet dynamics around \(U\) has a one-dimensional growing polarization.
-
-Construct two localized divergence-free parent packets
+Let \(U\) be the local background flow in a source-type pulse cell. Construct two localized divergence-free parent packets \(W_1,W_2\) with
 
 \[
-W_1,\qquad W_2
+\beta_1=25/16,
+\qquad
+\beta_2=9/16,
 \]
 
-with β-scaled phase normals and one deliberately permitted support overlap.
-
-The target is to show that the quadratic cross-interaction satisfies
+one deliberately permitted auxiliary-support overlap, and define the desired child phase by
 
 \[
-\mathbb P\Big[
-(W_1\cdot\nabla)W_2
-+
-(W_2\cdot\nabla)W_1
-\Big]
-=
-S_c+E,
+\Phi_c=\Phi_1-\Phi_2.
+\]
+
+The target is to prove that the difference-harmonic part of
+
+\[
+\mathbb P\big[(W_1\cdot\nabla)W_2+(W_2\cdot\nabla)W_1\big]
+\]
+
+has the form
+
+\[
+S_c+E
 \]
 
 where:
 
-1. \(S_c\) has the child carrier frequency at the next relay scale;
-2. the projection of \(S_c\) onto the child's growing eigenpolarization obeys
+1. \(S_c\) has the exact child phase \(\Phi_c\) and unit-beta principal normal;
+2. its projection onto the child growing polarization satisfies
    \[
-   |\Pi_+S_c|
-   \ge c_0 A_1A_2\Omega_c
+   |\Pi_+S_c|\ge c_0A_1A_2\Omega
    \]
-   for some scale-uniform \(c_0>0\);
-3. the undesired principal sideband has strictly negative net viscous exponent;
-4. localization and curl corrections satisfy a gain
-   \[
-   E\in W^{1-\delta}
-   \]
-   while the desired relay source is at order
-   \[
-   S_c\in W^{1/2};
-   \]
-5. all non-designated label pairs remain support-disjoint.
+   with a scale-uniform \(c_0>0\);
+3. the unwanted sum harmonic has \(\beta_+=17/8\) and is solved as a strongly damped correction;
+4. curl, cutoff, phase-transport and Leray remainders lie in a strictly improved class;
+5. all non-designated label pairs remain support-disjoint;
+6. the entire local correction scheme closes with **zero external force**.
 
-## What would count as a proof
+## Layers already established
 
-A proof must include:
+- chart-invariant physical carrier law;
+- beta-envelope/turning-point formula;
+- translated overlap geometry;
+- exact difference-phase locking at phase level;
+- certified reduced resonance;
+- finite-u envelope persistence;
+- principal growing-polarization nondegeneracy;
+- conditional tail-feedback suppression.
 
-- exact phase definitions;
-- exact Leray projection;
-- exact divergence-free localization;
-- lower bound for growing projection;
-- upper bounds for all remainder terms;
-- support bookkeeping;
-- constants uniform enough to iterate.
+## Still missing
 
-## Current status
+The decisive missing step is the full **localized curl-generated interaction estimate plus exact correction closure**. Until this is proved, the local autonomous relay remains unproved.
 
-**NOT PROVED.**
-
-The existing calculations support only the principal/reduced mechanism.
+A further independent problem remains after local closure: transport the generated child from \(q_j\) into a valid parent at a later physical scale \(q_{j+1}<q_j\).

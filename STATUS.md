@@ -1,112 +1,117 @@
 # STATUS
 
 **Project:** SOL-UNFORCED-NS  
-**Bootstrap:** v0.1  
-**Date:** 2026-09-09
+**Working version:** v0.4  
+**Date:** 2026-09-10  
+**Branch:** `research/local-beta-relay-v0.2`
 
-## Claim discipline
+## Current correction
 
-### Established inside this repository only after direct algebra/numerical checking
+### RETRACTED
 
-- The rational relay choice
-  \[
-  r=\frac{17}{12},
-  \qquad
-  h=2\log_2\!\frac{17}{12}-1
-  \approx 0.005000681058366707
-  \]
-  satisfies \(0<h<1/100\).
+The bootstrap/v0.3 comparison
 
-- With
-  \[
-  \beta_1=\frac{93}{100},
-  \qquad
-  \beta_2=\frac{73}{150},
-  \]
-  we have
-  \[
-  \beta_1+\beta_2=\frac{17}{12},
-  \qquad
-  \beta_-=\beta_1-\beta_2=\frac{133}{300}.
-  \]
+\[
+\Omega_\ell\asymp Q_\ell^{-(1+h)/2},
+\qquad
+\Omega_{\ell+1}/\Omega_\ell=2^{(1+h)/2}
+\]
 
-- For the current reduced large-\(u_*\) model,
-  \[
-  F_\beta(x)=\frac1x-\beta^2x^2,
-  \]
-  the witness
-  \[
-  x_c=\frac{17}{32},
-  \quad
-  x_1\approx1.550891747,
-  \quad
-  x_2\approx-1.417243476
-  \]
-  gives
-  \[
-  F_{\beta_1}(x_1)<0,\qquad
-  F_{\beta_2}(|x_2|)>0,\qquad
-  F_1(x_c)>0.
-  \]
+when interpreted as a physical frequency jump between overlapping dyadic charts at a fixed physical point.
 
-- Under the current phase bookkeeping, the associated difference branch has
-  \[
-  x_-\approx4.80914545044
-  \]
-  and
-  \[
-  F_{\beta_-}(x_-)<0.
-  \]
+The omitted chart scaling of \(\lambda_0\) cancels the apparent \(Q\)-dependence. The corrected intrinsic leading carrier scale is
 
-These calculations are reproducible with `experiments/relay_parameter_scan.py`.
+\[
+\boxed{
+\Omega_{\rm phys}(q)\asymp q^{-(1+h)/2}
+}
+\]
 
-## Source-derived statements that still require exact source-line/page audit before publication
+up to the profile factor recorded in `proofs/chart_invariant_carrier_scale.md`.
 
-- Physical carrier scaling inferred from the OpenAI forced Navier–Stokes normalization:
-  \[
-  \Omega_\ell\asymp Q^{-(1+h)/2}.
-  \]
+Therefore the old physical locking condition
 
-- The next-band ratio:
-  \[
-  \Omega_{\ell+1}/\Omega_\ell = 2^{(1+h)/2}.
-  \]
+\[
+\beta_1+\beta_2=17/12
+\]
 
-- The principal reduced β-growth model:
-  \[
-  a_\beta(s)
-  =
-  \lambda_0
-  \left[
-  \frac{1}{\sqrt{1+s^2}}
-  -
-  \beta^2
-  \frac{1+s^2}{(1+u_*^2)^{3/2}}
-  \right].
-  \]
+and all witnesses whose physical interpretation depended on it are deprecated.
 
-- Wave-class power counting for the relay source and curl remainders.
+## Current v0.4 design
 
-These are working transcriptions/inferences from the cited papers and must be re-audited against the exact definitions before they are elevated to theorem statements.
+Use the desired **difference branch**
+
+\[
+\boxed{
+\beta_1=\frac{25}{16},
+\qquad
+\beta_2=\frac9{16},
+\qquad
+\beta_1-\beta_2=1.
+}
+\]
+
+Choose
+
+\[
+x_1=\frac{29}{32}.
+\]
+
+The corrected reduced envelope model has a unique transverse resonance
+
+\[
+1.226<y_0<1.227,
+\qquad
+x_{c,0}=\beta_1x_1-\beta_2y_0\approx0.7263647213.
+\]
+
+At the root,
+
+\[
+F_{\beta_1}(x_1)<0,
+\qquad
+F_{\beta_2}(y_0)>0,
+\qquad
+F_1(x_{c,0})>0.
+\]
+
+The unwanted sum branch has
+
+\[
+\beta_+=\beta_1+\beta_2=\frac{17}{8}
+\]
+
+and is strongly decaying at its induced local coordinate.
+
+## Proved / derived layers
+
+**DERIVED from source normalization:** chart-invariant carrier scaling at fixed physical point.
+
+**DERIVED WORKING PROPOSITION:** beta-rescaling preserves the principal inviscid eigendirections while viscous damping scales as \(\beta^2\); exact beta turning point and envelope primitive are recorded in `proofs/beta_phase_stability.md`.
+
+**PROVED GEOMETRIC LEMMA:** translated auxiliary-torus rectangles can realize distinct local pulse coordinates in one common overlap collar while preserving separation outside designated relay supernodes.
+
+**PROVED REDUCED LEMMA:** the v0.4 same-scale difference relay has a unique transverse reduced resonance in the explicit rational interval \((613/500,1227/1000)\).
+
+**PROVED MODEL THEOREM:** the v0.4 resonance persists in the exact finite-\(u_*\) envelope model for all \(u_*\ge20\).
+
+**DERIVED PHASE-LOCKING LEMMA:** defining \(\Phi_c=\Phi_1-\Phi_2\) gives exact harmonic closure and automatically preserves angular periodicity because the rounded quantities \(kp_j\) are integers.
+
+**PROVED PRINCIPAL ALGEBRA:** the desired difference interaction of the source growing polarizations has a strictly nonzero growing-child projection; a quantitative witness lower factor is recorded in `proofs/difference_branch_projection.md`.
+
+**CONDITIONAL COEFFICIENT LEMMA:** during a bounded tail-seeding collar, parent-child feedback is exponentially smaller than the desired parent-parent seed, conditional on the full localized phase/PDE embedding.
 
 ## Not proved
 
-- Existence of an exact unforced localized relay.
-- Stability of the relay under physical localization.
-- Preservation of all OpenAI correction-cycle estimates after controlled support overlap.
-- Closure of all residual terms with \(R\equiv0\).
+- Full Controlled-Overlap Local beta-Relay Lemma for actual localized curl-generated packets.
+- Exact solution of the unwanted sum sideband and all feedback/cutoff/curl residuals with **zero external force**.
+- A transported physical-scale inheritance theorem taking a generated child at \(q_j\) into a valid parent at some later \(q_{j+1}<q_j\).
+- A finite or infinite autonomous Navier–Stokes relay chain.
+- Exact global closure \(R(u,p)\equiv0\).
 - Finite-time blowup for unforced 3D Navier–Stokes.
-
-## GitHub threshold
-
-Reached.
-
-Reason: the project now contains independent mathematical objects, explicit parameters, competing barriers, a falsifiable local lemma, and reproducible computations.
 
 ## Publication threshold
 
-Not reached.
+**Not reached.**
 
-Minimum desired threshold:
-
-> A rigorous **Controlled-Overlap Local β-Relay Lemma** for localized divergence-free packets with a quantified growing projection and a strictly improved remainder class.
+The present results justify GitHub versioning and internal theorem files. A technical preprint becomes warranted when the **localized difference-branch relay module** is closed with a quantitative growing projection and an exact correction mechanism for the non-designated terms, or if an independently interesting obstruction theorem emerges first.

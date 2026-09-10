@@ -1,39 +1,34 @@
-# Note 05 — controlled-overlap problem
+# Note 05 — controlled-overlap problem, v0.4
 
-The forced construction deliberately separates labels so that unwanted cross-products vanish by support geometry.
+The source forced construction deliberately separates most labels so cross-products vanish by support geometry. An autonomous relay instead permits one designated interaction family.
 
-An autonomous relay requires the opposite operation for one designated pair:
-
-\[
-(\gamma_j^{(1)},\gamma_j^{(2)})
-\longrightarrow
-\gamma_{j+1}.
-\]
-
-Proposed replacement:
+The v0.4 local relay uses the **difference harmonic**:
 
 \[
-F_\gamma F_{\gamma'}=0
+(P_j^{(1)},\overline{P_j^{(2)}})
+\longrightarrow C_j,
 \]
 
-for all non-designated pairs, while one assigned parent pair has a small intentional overlap inside the child seed collar.
-
-## Sparse relay graph
-
-Each child has exactly one permitted incoming relay edge:
+with
 
 \[
-P_j^{(1)}+P_j^{(2)}
-\to
-C_{j+1}.
+\Phi_{C_j}=\Phi_{P_j^{(1)}}-\Phi_{P_j^{(2)}},
+\qquad
+\beta_1-\beta_2=1.
 \]
 
-The core proof obligations are:
+All non-designated pairs should still satisfy exact auxiliary-support separation.
 
-1. designated overlap produces the desired child source;
-2. non-designated cross-products remain zero;
-3. correction steps do not create extra uncontrolled relay edges;
-4. localization/curl remainders improve in the wave hierarchy;
-5. the difference branch stays in a quantitatively decaying region.
+## Sparse relay supernodes
 
-This is now the main architectural target.
+Treat each permitted relay family as a finite supernode. Relative auxiliary offsets inside a supernode are prescribed by the translated-overlap lemma; distinct supernodes remain disjoint whenever their slow supports meet.
+
+The core local obligations are now:
+
+1. the designated **difference** harmonic produces a unit-beta child source with a scale-uniform growing-polarization lower bound;
+2. the unwanted **sum** harmonic \(\beta_+=17/8\) is solved as a strongly damped correction, not discarded;
+3. parent-child feedback remains exponentially suppressed during the seed collar and is then solved exactly;
+4. curl, cutoff, transport-defect and Leray errors improve in the wave hierarchy;
+5. every correction step preserves the sparse support graph.
+
+After local closure, a separate physical-scale inheritance theorem must transport the child from \(q_j\) to a later \(q_{j+1}<q_j\).
