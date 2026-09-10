@@ -106,14 +106,11 @@ Then its reduced radial coefficient is exactly
 \boxed{r_{a,b}=\frac{x_M}{2M}N.}
 \]
 
-The theorem proves the half-step arithmetic gap and, more importantly, a **uniform principal action deficit**: there exist `M_0` and `delta_*>0` such that for every `M>=M_0` and every non-designated principal-growing lattice mode,
+The theorem proves the half-step arithmetic gap and a **uniform principal action deficit**: there exist `M_0` and `delta_*>0` such that for every `M>=M_0` and every non-designated principal-growing lattice mode,
 
 \[
 \boxed{
-S_M(a,b)
--
-\mathcal E_{|T|,M^2}(\xi_M(a,b))
-\le-\delta_*.
+S_M(a,b)-\mathcal E_{|T|,M^2}(\xi_M(a,b))\le-\delta_*.
 }
 \]
 
@@ -135,59 +132,110 @@ the post-amplification suppression is
 
 Hence the complete two-generator harmonic lattice is filtered at the principal envelope level, including the previously problematic off-window modes.
 
-This is now the strongest model theorem in the branch.
+## Source-localized action preservation — finite stage CLOSED
+
+A finite-stage transfer theorem is now proved in
+
+`proofs/source_localized_action_preservation.md`.
+
+Fix one sufficiently large v0.8 design `M`, freeze `u_*=M^2`, and work in a bounded relay collar `|v-v_0|<=L_0`. Because every translated pulse coordinate has derivative `1/L_s`, the local coordinates satisfy
+
+\[
+ x_1(v)=x_M+\theta(v),\qquad
+ x_2(v)=y_M+\theta(v),\qquad
+ x_c(v)=x_{c,M}+\theta(v),
+\]
+
+with
+
+\[
+|\theta(v)|=O(S_*^{-1}).
+\]
+
+For every nonzero-tangential lattice phase its effective reduced slope obeys the exact covariance
+
+\[
+\boxed{
+\xi_{a,b}(v)=\xi_{a,b}(v_0)+\theta(v).
+}
+\]
+
+Combining this with the v0.8 pointwise global action gap, negativity of the base actions, and a high-degree/finite-degree split yields a uniform collar estimate: every non-designated principal-growing genealogy retains a fixed fraction of the center action deficit throughout the relay collar.
+
+The following source operations have now been audited against the OpenAI coefficient calculus:
+
+- selected coefficient products inside the designated overlap supernode;
+- common-torus pullback;
+- normalized coefficient derivatives;
+- curl generation and curl remainder;
+- pulse amplitude inversion;
+- supported linear residual operators;
+- wave-wave transport using the incompressibility gain;
+- relay-compatible shifted temporal cutoffs;
+- conversion to every fixed finite physical derivative order.
+
+For every fixed finite correction depth, these operations introduce only powers of `epsilon`, `Q`, `S_*`, and fixed coefficient constants. None introduces `exp(+cS_*)`. Therefore every non-designated action-subcritical genealogy retains
+
+\[
+\boxed{e^{-c_MS_*}}
+\]
+
+through the finite-stage localized curl-generated packet calculus.
+
+This closes the previously stated source-localized action-preservation barrier **at finite stage**.
 
 ## Other established layers
 
 **DERIVED:** chart-invariant physical carrier scaling at fixed physical point.
 
-**DERIVED WORKING PROPOSITION:** beta rescaling preserves principal inviscid eigendirections while viscous damping scales quadratically in carrier magnitude; exact beta turning/envelope formulas are in `proofs/beta_phase_stability.md`.
-
 **PROVED GEOMETRIC LEMMA:** translated auxiliary-torus rectangles realize distinct local pulse coordinates in a prescribed common overlap collar while preserving exact separation outside relay supernodes.
 
 **PROVED PRINCIPAL ALGEBRA:** desired difference-harmonic source has a robust nonzero growing-child projection after correcting the source slope to `s=u_*x`.
 
-**PROVED HARMONIC-LATTICE LEMMA:** high lattice modes are increasingly viscously stable and only finitely many low modes can require separate treatment at fixed design parameters.
+**PROVED HARMONIC-LATTICE LEMMA:** high lattice modes are increasingly viscously stable and only finitely many low modes require separate treatment for a fixed design.
 
-**PROVED ABSTRACT CONTROL LEMMA:** if a residual low compatibility condition survives later source-level audit, two separated complex relay collars give full rank for one complex child-output condition plus one complex endpoint moment.
+**PROVED ABSTRACT CONTROL LEMMA:** if a finite compact-support compatibility condition survives, two separated complex relay collars give full rank for one complex child-output condition plus one complex endpoint moment.
+
+**PROVED FINITE-STAGE SOURCE TRANSFER:** the v0.8 global action deficit survives every fixed finite composition of the localized source operators audited above.
 
 ## Immediate frontier
 
-The model-level carrier/envelope/lattice architecture is now substantially cleaner. The next decisive theorem is:
+The remaining local obstruction is no longer the pointwise lattice, off-window modes, large-`u_*` tuning, or finite-stage localization.
 
-### Source-localized action preservation
+The sharp target is now a **stage-uniform infinite-lattice zero-force closure**.
 
-Prove that replacing reference waves by the actual localized curl-generated source packets changes the action bookkeeping only through algebraic/polynomial prefactors:
+A natural analytic lattice norm is
 
 \[
-S_*^C\varepsilon^\rho,
+\|z\|_\sigma
+=
+\sum_{(a,b)\in\mathbb Z^2}
+ e^{\sigma(|a|+|b|)}
+\|z_{a,b}\|_{\rm packet},
 \]
 
-or already-flat factors, but **does not create an exponential gain of order `e^{+cS_*}`** capable of erasing the v0.8 action deficit.
+augmented by the v0.8 action weight. The exponential lattice weight is submultiplicative and therefore compatible with quadratic convolution.
 
-The audit must include:
+Need to prove simultaneously:
 
-1. curl-generated remainder classes from Lemma 7.7;
-2. slow and bounded-`v` collar cutoffs;
-3. phase transport defects and `O(S_*^{-1})` frame/Leray errors;
-4. common-torus coordinate changes;
-5. stable/unstable one-sided inverses and exact compact-support compatibility;
-6. nonlinear products of already-subcritical correction modes.
-
-Only after this theorem is proved should the branch attempt a full exact zero-force local fixed point.
+1. quadratic lattice convolution is bounded in a packet norm carrying the action weight;
+2. after removing a finite low block, the full linearized lattice symbol has stable/unstable right inverses with constants uniform in harmonic index;
+3. the finite mean/endpoint compatibility block can be solved exactly;
+4. the nonlinear correction map is contractive in the resulting weighted space, giving **zero external force**.
 
 ## Not proved
 
-- Full Controlled-Overlap Local Difference-Relay Lemma for actual localized curl-generated packets.
-- Source-localized preservation of the v0.8 global action deficit.
-- Exact zero-force solution of all non-designated residuals.
-- Physical-scale inheritance from the generated child at `q_j` to a valid parent at a later smaller `q_{j+1}`.
+- Stage-uniform infinite-lattice right inverse and contraction.
+- Exact compact-support solution of the full compatibility block.
+- Exact local zero-force residual closure.
+- Full Controlled-Overlap Local Difference-Relay Theorem for the infinite corrected packet system.
+- Physical-scale inheritance from a generated child at `q_j` to a valid parent at a later smaller `q_{j+1}`.
 - A finite or infinite autonomous Navier–Stokes relay chain.
-- Exact global closure `R(u,p) == 0`.
+- Exact global closure `R(u,p)==0`.
 - Finite-time blowup for unforced 3D Navier–Stokes.
 
 ## Publication threshold
 
-**Not reached yet, but the model-level publication threshold is close.**
+**Not yet crossed, but now very close at the local-theorem level.**
 
-The v0.8 theorem is now a coherent nontrivial result: arbitrarily large admissible `u_*`, exact finite-`u_*` resonance, half-step small-divisor protection, and a complete principal lattice action filter. I would still wait before a standalone preprint because its significance for the actual Navier–Stokes packet construction depends on the next source-localized action-preservation theorem. If that theorem closes, the local relay architecture should be assembled immediately into a technical preprint even before physical-scale inheritance is solved.
+The complete principal two-generator lattice and the finite-stage source-localized action calculus are both under control. Publication should wait for the stage-uniform weighted lattice closure. If that closure succeeds, the exact local autonomous relay module itself merits immediate technical-preprint assembly even before physical-scale inheritance is solved. If it fails for a clean structural reason, that obstruction may itself be publishable.
