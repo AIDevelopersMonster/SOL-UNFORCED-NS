@@ -1,13 +1,7 @@
 # Results
 
-`relay_candidates.csv` records the historical relay witnesses and their status.
+`relay_candidates.csv` stores the **current** reduced-model relay candidate.
 
-Rows v0.1–v0.3 are retained for audit history but are **deprecated**. Their physical interpretation depended on the now-retracted neighboring-chart carrier ratio.
+The previous v0.1–v0.3 rows depended on the retracted neighboring-chart carrier interpretation and have been removed from the live result table. They remain recoverable from Git history for audit purposes.
 
-The current v0.4 row uses a same-physical-scale **difference harmonic** with
-
-\[
-\beta_1-\beta_2=1.
-\]
-
-Numerical rows are not PDE theorems. The corresponding rigorous model statements live in `proofs/`.
+The current v0.4 row is still only a model witness/certificate input. It is not a theorem about the full Navier–Stokes PDE without the corresponding proof files.

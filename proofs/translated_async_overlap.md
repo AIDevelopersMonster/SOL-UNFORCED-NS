@@ -1,87 +1,82 @@
 # Translated asynchronous overlap on the auxiliary torus
 
-**Status:** PROVED GEOMETRIC LEMMA inside the published auxiliary-rectangle framework. This lemma concerns support geometry only.
+**Status:** PROVED GEOMETRIC LEMMA inside the auxiliary-rectangle framework. This concerns support geometry only.
 
-## 1. Local pulse coordinate
+## 1. Affine pulse coordinate
 
-For a label \(\gamma\), write its auxiliary rectangle as
-
-\[
-R_\gamma=\{c_\gamma+\xi v_r+\eta v_t:|\xi|,|\eta|<r_0\}.
-\]
-
-With
+For a label rectangle
 
 \[
-v_\gamma=\frac{\eta_\gamma+r_0}{c_i},
-\qquad
-L_{s,\gamma}=\frac{2r_0}{c_i},
+R_\gamma=\{c_\gamma+\xi v_r+\eta v_t:|\xi|,|\eta|<r_0\},
 \]
 
-the normalized pulse coordinate
+with \(v=(\eta+r_0)/c_i\) and \(L_s=2r_0/c_i\), a sign-fixed pulse has normalized coordinate
 
 \[
-x_\gamma=\frac{|s_\gamma|}{u_*}=\frac12+\frac{v_\gamma}{L_{s,\gamma}}
+x=\frac{|s|}{u_*}=\frac12+\frac{v}{L_s}.
 \]
 
-is equivalent to
+Hence
 
 \[
-\boxed{\eta_\gamma=2r_0(x_\gamma-1).}
+\boxed{\eta=2r_0(x-1).}
+\tag{T1}
 \]
 
-Thus prescribed pulse coordinates can be realized at one common torus point by translating the rectangle centers.
-
-## 2. Common overlap lemma
-
-Fix finitely many target coordinates \(x_j\in(1/2,3/2)\). Choose one lift \(Y_0\) and put
+Choosing a common torus point \(Y_0\) and centers
 
 \[
-\eta_j=2r_0(x_j-1),
-\qquad
- c_j=Y_0-\eta_jv_t\pmod{\mathbb Z^2}.
+\boxed{c_j=Y_0-2r_0(x_j-1)v_t\pmod{\mathbb Z^2}}
+\tag{T2}
 \]
 
-Then \(Y_0\in R_j\) for all labels and has the prescribed local coordinate in each rectangle. A common collar exists with temporal half-width
+realizes any finite collection \(x_j\in(1/2,3/2)\) at the same physical auxiliary point.
+
+The normalized temporal margin is
 
 \[
-\rho r_0,
-\qquad
-\rho<\min_j(1-2|x_j-1|).
+\mu_j=1-2|x_j-1|>0.
+\tag{T3}
 \]
 
-The common-covering-torus extension for neighboring dyadic charts is unchanged: bounded covering depth gives only a fixed distortion constant.
+Thus a common collar of any half-width smaller than \(r_0\min_j\mu_j\) exists. The same statement passes to neighboring-band common tori with only a fixed bounded distortion because the covering-depth difference is bounded.
 
-## 3. Sparse separation
+## 2. Sparse supernodes
 
-Designated relay labels may be grouped into finite supernodes with prescribed internal offsets. A generic-center coloring argument then preserves exact disjointness between all non-designated supernodes after choosing sufficiently small \(r_0\).
+A designated relay family may be treated as one finite supernode with prescribed internal offsets (T2), while generic center choices retain exact disjointness between distinct supernodes. This modifies only the final separation step of the source finite-color construction; the local affine overlap statement itself is exact.
 
-## 4. Updated v0.4 witness
+## 3. v0.4 margin
 
-For
+For the corrected difference relay,
 
 \[
 x_1=0.90625,
-\qquad
-y_0\approx1.2260460510,
-\qquad
-x_c\approx0.7263647213,
+\qquad y_0\approx1.2260460510,
+\qquad x_c\approx0.7263647213.
 \]
 
-the normalized distances to the raw pulse endpoints are
+Therefore
 
 \[
-\min\{x_j-1/2,\,3/2-x_j\}\approx0.22636.
+\eta_1/r_0=-0.1875,
 \]
-
-Equivalently, the smallest normalized temporal rectangle margin is about
 
 \[
-\boxed{0.4527}
+\eta_2/r_0\approx0.4520921020,
 \]
 
-in the \(\eta/r_0\) convention. This is far more generous than the obsolete near-endpoint witnesses.
+\[
+\eta_c/r_0\approx-0.5472705574.
+\]
 
-## 5. Consequence
+The smallest normalized temporal margin is
 
-The corrected difference relay has ample auxiliary support room for a bounded-\(v\) seeding collar. The remaining obstruction is not overlap geometry but the full localized PDE interaction and exact correction closure.
+\[
+\boxed{\mu_{\rm geom}\approx0.4527294426.}
+\]
+
+This is much larger than in the obsolete v0.3 geometry. In particular, a temporal half-width \(0.2r_0\) fits safely inside all three raw rectangles before any fixed common-torus distortion.
+
+## 4. Scope
+
+The lemma proves that asynchronous parent/catalyst/child coordinates are geometrically compatible with one common overlap collar. It does not estimate the nonlinear interaction inside that collar.

@@ -1,16 +1,20 @@
 # Proof obligation — Controlled-Overlap Local Difference-Relay Lemma
 
-## Corrected v0.4 target
+## Candidate statement
 
-Let \(U\) be the local background flow in a source-type pulse cell. Construct two localized divergence-free parent packets \(W_1,W_2\) with
+Let \(U\) be a smooth local background flow in a source-type slow cell with the one-dimensional growing packet polarization of the OpenAI pulse equation. Construct two localized exactly divergence-free beta packets
 
 \[
-\beta_1=25/16,
-\qquad
-\beta_2=9/16,
+W_1,\qquad W_2
 \]
 
-one deliberately permitted auxiliary-support overlap, and define the desired child phase by
+whose auxiliary supports have one deliberately prescribed overlap and whose parameters satisfy
+
+\[
+\boxed{\beta_1=25/16,\qquad \beta_2=9/16,\qquad \beta_1-\beta_2=1.}
+\]
+
+Define the child phase by the exact difference
 
 \[
 \Phi_c=\Phi_1-\Phi_2.
@@ -19,41 +23,38 @@ one deliberately permitted auxiliary-support overlap, and define the desired chi
 The target is to prove that the difference-harmonic part of
 
 \[
-\mathbb P\big[(W_1\cdot\nabla)W_2+(W_2\cdot\nabla)W_1\big]
+(W_1\cdot\nabla)W_2+(W_2\cdot\nabla)W_1
 \]
 
-has the form
+contains a unit-beta child source \(S_c\) with
 
 \[
-S_c+E
+|\Pi_+S_c|\ge c_0A_1A_2\Omega P_1P_2
 \]
 
-where:
+for a scale-uniform \(c_0>0\), while every non-designated term is either in a strictly improved class or is solved by an exact zero-force correction.
 
-1. \(S_c\) has the exact child phase \(\Phi_c\) and unit-beta principal normal;
-2. its projection onto the child growing polarization satisfies
-   \[
-   |\Pi_+S_c|\ge c_0A_1A_2\Omega
-   \]
-   with a scale-uniform \(c_0>0\);
-3. the unwanted sum harmonic has \(\beta_+=17/8\) and is solved as a strongly damped correction;
-4. curl, cutoff, phase-transport and Leray remainders lie in a strictly improved class;
-5. all non-designated label pairs remain support-disjoint;
-6. the entire local correction scheme closes with **zero external force**.
+The unwanted principal sum harmonic has beta
 
-## Layers already established
+\[
+\beta_+=17/8
+\]
 
-- chart-invariant physical carrier law;
-- beta-envelope/turning-point formula;
-- translated overlap geometry;
-- exact difference-phase locking at phase level;
-- certified reduced resonance;
-- finite-u envelope persistence;
-- principal growing-polarization nondegeneracy;
-- conditional tail-feedback suppression.
+and should be treated as a strongly damped forced response, not ignored.
 
-## Still missing
+## Required proof components
 
-The decisive missing step is the full **localized curl-generated interaction estimate plus exact correction closure**. Until this is proved, the local autonomous relay remains unproved.
+1. exact difference-phase admissibility after angular rounding;
+2. source-class embedding of the designated distinct-label product;
+3. exact divergence-free curl localization;
+4. uniform growing-polarization lower bound;
+5. stable inversion of the damped sum sideband;
+6. exact, not merely flat, treatment of cutoff and feedback residuals;
+7. sparse support bookkeeping;
+8. constants uniform enough to feed a later physical-scale inheritance theorem.
 
-A further independent problem remains after local closure: transport the generated child from \(q_j\) into a valid parent at a later physical scale \(q_{j+1}<q_j\).
+## Current status
+
+**NOT YET A FULL PDE LEMMA.**
+
+The phase relation, reduced/exact envelope resonance, overlap geometry, principal projection, and localization stability have separate proof files. Exact zero-force correction closure and physical-scale inheritance remain open.
