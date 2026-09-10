@@ -1,7 +1,7 @@
 # STATUS
 
 **Project:** SOL-UNFORCED-NS  
-**Working version:** v0.8 preferred model candidate  
+**Working version:** v0.8 forward relay architecture  
 **Date:** 2026-09-10  
 **Branch:** `research/local-beta-relay-v0.2`
 
@@ -37,47 +37,15 @@ for some fixed `delta_*>0` after `M` is frozen.
 
 ## Source-localized action preservation — CLOSED at finite stage
 
-`proofs/source_localized_action_preservation.md` proves that the v0.8 action gap survives every fixed finite composition of the localized source operations audited from the OpenAI construction:
-
-- designated products in the overlap supernode;
-- common-torus pullback;
-- normalized coefficient derivatives;
-- curl generation and curl remainders;
-- pulse inversion;
-- supported linear residual operators;
-- wave-wave transport with incompressibility gain;
-- relay-compatible shifted cutoffs;
-- every fixed finite physical derivative order.
-
-No audited operation creates `exp(+c S_*)`; non-designated action-subcritical descendants retain
+`proofs/source_localized_action_preservation.md` proves that the v0.8 action gap survives every fixed finite composition of the localized source operations audited from the OpenAI construction. No audited operation creates `exp(+cS_*)`; non-designated action-subcritical descendants retain
 
 \[
-\boxed{e^{-c_M S_*}.}
+\boxed{e^{-c_MS_*}.}
 \]
 
 ## Stage-uniform infinite lattice — stable complement CLOSED
 
-`proofs/finite_critical_block_uniform_stable_inverse.md` proves that for one frozen v0.8 design and one fixed correction interval there is a **finite** critical set
-
-\[
-\mathcal C_M\subset\mathbb Z^2
-\]
-
-containing every lattice mode that can be neutral or growing anywhere in the interval.
-
-The infinite complement
-
-\[
-\mathcal S_M=(\mathbb Z^2\setminus\{0\})\setminus\mathcal C_M
-\]
-
-has a uniform negative gap
-
-\[
-\Gamma_\nu\le-\gamma_M<0
-\]
-
-and, for high indices, quadratic viscous damping. Hence the exact localized stable-complement inverse satisfies a stage-uniform modewise estimate
+`proofs/finite_critical_block_uniform_stable_inverse.md` proves that for one frozen design the infinite stable complement has a uniform negative gap and quadratic high-mode smoothing:
 
 \[
 \boxed{
@@ -88,104 +56,136 @@ and, for high indices, quadratic viscous damping. Hence the exact localized stab
 }
 \]
 
-This reduces all possible compact-support/Fredholm obstructions to a **finite-dimensional critical block**.
+`proofs/analytic_quadratic_symbol_bound.md` proves that this smoothing controls the one-output-carrier loss of the localized Navier-Stokes bilinear symbol in the analytic lattice norm. Hence the infinite stable complement is contractive at the action-subcritical scale.
 
-## Infinite quadratic convolution — CLOSED on the stable complement
+## Critical block count — new result
 
-`proofs/analytic_quadratic_symbol_bound.md` introduces the analytic lattice norm
-
-\[
-\|z\|_{\mathfrak A_\sigma}
-=
-\sum_{\nu\in\mathbb Z^2}
- e^{\sigma|\nu|}(1+|\nu|)
-\|z_\nu\|_{\rm pkt}.
-\]
-
-Using the one-output-carrier structure left after exact incompressibility and the two-power high-mode smoothing of the stable inverse, the nonlinear stable-complement map obeys
+`proofs/v08_critical_block_cardinality.md` quantifies the finite critical set for the large-`u_*` family. Although finite for every frozen `M`, its scalar cardinality satisfies
 
 \[
-\boxed{
-\|\mathcal G_S\mathcal B(z,w)\|_{\mathfrak A_\sigma}
-\le
-C_M
-\|z\|_{\mathfrak A_\sigma}
-\|w\|_{\mathfrak A_\sigma}.
-}
+\boxed{|\mathcal C_M|=\Theta(M^5).}
 \]
 
-The associated Lipschitz estimate gives a contraction on a ball of radius
+Representative center counts are already large at modest values:
 
 \[
-\rho_\ell\asymp S_*^C e^{-c_M S_*}
+|\mathcal C_5|\approx7.9\times10^3,
+\qquad
+|\mathcal C_{10}|\approx2.66\times10^5,
+\qquad
+|\mathcal C_{20}|\approx8.88\times10^6.
 \]
 
-once the finite critical component has been chosen at the same action-subcritical size.
+Therefore the previously proposed literal strategy of imposing a separate two-sided compact-support compatibility condition on every critical scalar mode is mathematically finite but architecturally poor. The abstract multicollar theorem remains correct, but it is no longer the preferred local closure mechanism.
 
-Thus the **infinite-dimensional stable complement is no longer the local obstruction**.
+## Preferred local closure — FORWARD INPUT-OUTPUT MAP
 
-## Finite critical block — abstract control reduction CLOSED
+`proofs/forward_relay_input_output_closure.md` reformulates the relay as an exact forward initial-value problem on a bounded characteristic collar.
 
-`proofs/multicollar_finite_critical_transversality.md` proves the general finite control theorem.
-
-If the `N` critical compact-support moment kernels
+Instead of imposing
 
 \[
-K_1,\dots,K_N
+Z(v_-)=Z(v_+)=0,
 \]
 
-are linearly independent on the relay interval, then one can choose `N` distinct narrow collar centers so that the sampling matrix
+we prescribe only the incoming correction
 
 \[
-[K_i(\tau_j)]
+Z(v_-)=Z_{\rm in}
 \]
 
-has nonzero determinant. If one also prescribes the desired complex child output, `N+1` complex collars suffice provided the augmented family
+and solve the exact localized correction equation forward.
+
+On the finite critical block, smoothness over the fixed bounded collar gives a finite propagator constant. On the infinite stable complement, the stronger uniform inverse and high-mode smoothing are available. Combining both yields a full forward Duhamel map on the analytic packet lattice space.
+
+For incoming error
 
 \[
-K_0,K_1,\dots,K_N
+\|Z_{\rm in}\|\lesssim\rho_\ell,
+\qquad
+\rho_\ell=C_MS_*^{C_M}e^{-c_MS_*},
 \]
 
-is linearly independent.
+the Duhamel map is contractive for sufficiently large dyadic level. Therefore there is a unique exact local correction satisfying
 
-The rank persists for smooth narrow collars and under the `o(1)` localized packet perturbations. The implicit-function theorem then slaves the finite critical controls to the small stable correction.
+\[
+\boxed{R(U_{\rm des}+Z)=0}
+\]
 
-This generalizes the previously proved one-moment two-collar theorem.
+throughout the relay collar, with **zero external force**.
 
-## Immediate frontier
+The outgoing correction is not forced to vanish. It exits as part of the state:
 
-The local zero-force problem has now been reduced to one concrete **source-specific finite-dimensional condition**:
+\[
+\boxed{Z_{\rm out}=Z(v_+)},
+\]
+
+and remains action-subcritical:
 
 \[
 \boxed{
-K_0,K_1,\dots,K_N
-\text{ for the actual v0.8 finite critical set are linearly independent.}
+\|Z_{\rm out}\|
+\le C_MS_*^{C_M}e^{-c_MS_*}.
 }
 \]
 
-Everything else in the local architecture now has a theorem-level route:
+This changes the architecture fundamentally. A relay is treated as an input-output dynamical module rather than an isolated compactly supported bubble that erases its entire correction state at every stage.
 
-1. complete principal lattice action filter — proved;
-2. arbitrarily large admissible `u_*` — proved;
-3. finite-stage localized action preservation — proved;
-4. stage-uniform stable-complement inverse — proved;
-5. analytic quadratic contraction on the infinite stable complement — proved;
-6. abstract finite multi-collar control theorem — proved.
+## Current local conclusion
 
-The next decisive task is therefore to **enumerate the actual finite critical set `C_M`, derive its moment kernels, and prove the augmented kernel family is linearly independent**. If that succeeds, the local Lyapunov-Schmidt system closes and one can assemble the full Controlled-Overlap Local Difference-Relay Theorem with zero external force.
+At the theorem-architecture level, the local module now has:
+
+1. exact finite-`u_*` half-step resonance at arbitrarily large admissible `u_*`;
+2. robust designated growing-child projection;
+3. complete principal lattice action filter;
+4. finite-stage source-localized preservation of that filter;
+5. stage-uniform analytic control of the infinite stable lattice complement;
+6. a forward Banach contraction giving exact zero residual inside the bounded relay collar while carrying a flat outgoing error state.
+
+The earlier full critical-kernel determinant is no longer required for the preferred local formulation. It remains relevant only if one insists on exact two-sided temporal compact support of every local correction.
+
+## Remaining source-specific local bookkeeping
+
+Before packaging a publication-final **Controlled-Overlap Local Difference-Relay Theorem**, one consolidated source-class statement should still be written showing explicitly that the designated child extraction and the decomposition
+
+\[
+U=U_{\rm des}+Z
+\]
+
+are compatible with the exact divergence-free curl/Leray formulation on the same translated collar. This appears to be bookkeeping rather than a new spectral obstruction, but it must be written rather than assumed.
+
+## New decisive frontier — physical-scale inheritance
+
+The major mathematical problem is now global rather than local:
+
+\[
+\boxed{
+(A_{c,\rm out},Z_{\rm out})\text{ at scale }q_j
+\longrightarrow
+\text{valid input state at a smaller physical scale }q_{j+1}<q_j.
+}
+\]
+
+Need to prove simultaneously that:
+
+- the designated child becomes a valid parent/catalyst component for the next relay after actual physical transport to smaller `q`;
+- its intrinsic carrier follows the corrected physical law `Omega_phys(q)~q^{-(1+h)/2}`;
+- the flat outgoing correction remains in the admissible incoming error class;
+- repeated relay maps do not accumulate the flat errors to primary size.
+
+This **Physical-Scale Inheritance Law** is now the decisive frontier for constructing an autonomous chain.
 
 ## Not proved
 
-- Linear independence/transversality of the actual full v0.8 finite critical kernel family.
-- Exact local zero-force closure of the complete corrected packet system.
-- Full Controlled-Overlap Local Difference-Relay Theorem.
-- Physical-scale inheritance from a generated child at `q_j` to a valid parent at a later smaller `q_{j+1}`.
-- A finite or infinite autonomous Navier-Stokes relay chain.
-- Exact global closure `R(u,p)==0`.
+- Publication-final consolidated source-class statement for the exact local input-output relay.
+- Physical-scale inheritance from a generated child at `q_j` to a valid parent/catalyst state at some `q_{j+1}<q_j`.
+- Iterability of the relay map through infinitely many physical scales.
+- A finite or infinite autonomous Navier-Stokes relay chain producing singularity.
+- Exact global closure `R(u,p)==0` on the complete space-time construction.
 - Finite-time blowup for unforced 3D Navier-Stokes.
 
 ## Publication threshold
 
-**Not crossed yet, but now concentrated in one finite-dimensional local question.**
+**Local technical-preprint threshold is now essentially reached, subject to one consolidated source-class bookkeeping theorem.**
 
-If the actual finite critical kernel family is proved independent and the local Lyapunov-Schmidt system closes, the local autonomous relay module crosses the publication threshold immediately, even before physical-scale inheritance is solved.
+The local zero-force relay no longer depends on an enormous critical-kernel determinant once formulated as a forward input-output map. After the source-class compatibility statement is written and audited, the local relay architecture is sufficiently self-contained for a technical preprint. This would still be a local construction theorem, not a solution of the unforced Navier-Stokes blowup problem.
