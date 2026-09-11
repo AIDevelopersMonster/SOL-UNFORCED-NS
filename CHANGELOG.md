@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v0.5 — 2026-09-11
+
+Mean-block closure audit and radial reformulation.
+
+- Decomposed the differentiated angular-mean map into temporal/transport, five-dimensional moment, wave-covariance, signed-stress, supported-remnant, and radial compactification blocks.
+- Isolated positive small factors for every visible **non-radial** nonlinear block:
+  \[
+  \varepsilon^{1-2\kappa_s},\quad
+  \varepsilon^{0.9-2\kappa_s},\quad
+  \varepsilon^{1/2-\kappa_s},\quad
+  \varepsilon^{0.17},\quad
+  \rho_\ell.
+  \]
+- Corrected the previous Gevrey radial claim: compact radial remainders are stretched-exponentially small only **across a fixed Gevrey-radius gap**; unrestricted same-radius `o(1)` operator norm fails because of near-resonant torus modes.
+- Added an exact one-sided radial characteristic inverse as the preferred input-output alternative to two-sided radial compact support.
+- Marked `proofs/forward_relay_input_output_closure.md` superseded wherever it asserted complete local zero residual; the valid theorem remains exact nonzero-harmonic forward closure conditional on the angular mean.
+- Updated `STATUS.md`: current local frontier is the coupled temporal-radial characteristic mean theorem, including a quantitative exponent-preserving `m -> z(m)` difference estimate and simultaneous radial pressure/stress forwardization.
+
 ## v0.4 — 2026-09-10
 
 Major carrier-scaling correction and relay redesign.
