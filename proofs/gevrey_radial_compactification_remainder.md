@@ -1,231 +1,303 @@
-# Gevrey control of the radial compactification remainder
+# One-shot Fourier--Gevrey control of the radial compactification remainder
 
-**Status:** PROVED QUANTITATIVE GE VREY ESTIMATE / CONDITIONAL EXACT-CLOSURE INPUT. This theorem upgrades the source's repeated-iteration flatness mechanism for the radial compactification remainder to an explicit stretched-exponential bound in a compactly supported Gevrey class.
+**Status:** PROVED CONDITIONAL ESTIMATE / CORRECTION OF THE PREVIOUS DRAFT.
 
-It does not yet prove the complete nonlinear mean fixed point, but it removes the need to iterate the derivative-losing radial torus inverse indefinitely inside one Banach space.
-
-## 1. Abstract radial remainder operator
-
-Let `A_1` denote the source radial compactification remainder operator appearing in the axial mean construction, schematically of the form
+This note replaces the earlier decreasing-radius iteration argument for the radial cutoff remainder. The previous route from a fixed-loss estimate
 
 \[
-A_1=\mathcal R\circ (v_r\cdot\partial_y)^{-1}\circ \mathcal E,
+\|A_1 f\|_{C^m}\le C^{m+1}\varepsilon^\delta\|f\|_{C^{m+r}}
 \]
 
-where `mathcal E` is a fixed finite-order differential/error operator and `mathcal R` is a fixed compactly supported reconstruction operator. The source iteration shows that repeated application of `A_1` gains a positive power of the small parameter while paying finitely many torus derivatives at each step.
+to an `N(epsilon)->infinity` Gevrey iteration did not justify preservation of a positive limiting radius: the one-step constant depends on the radius loss, and that dependence cannot be iterated indefinitely without additional quantitative control.
 
-We isolate the only structural input needed below:
+The repaired argument uses the exact source representation from Section 8.2 of the OpenAI construction and obtains a **one-shot** stretched-exponential estimate by Fourier sampling along the rapidly shifted radial characteristic.
 
-there exist constants `r>=1`, `delta>0`, and `C>=1` such that for every integer `m>=0`,
+The theorem below is conditional only on an explicit profile regularity requirement: the coefficient to which the radial operator is applied, and the fixed cutoff multiplying the remainder, must belong to one common compactly supported Gevrey class of order `s>1`. This Gevrey profile-compatibility requirement must still be audited for the complete coupled relay construction.
 
-\[
-\boxed{
-\|A_1 f\|_{C^m}
-\le
-C^{m+1}\varepsilon^\delta
-\|f\|_{C^{m+r}}.
-}
-\tag{G1}
+## 1. Notation and the source identity
 
-The source finite-stage calculus supplies estimates of this form, with fixed derivative loss and positive epsilon gain.
-
-## 2. Compactly supported Gevrey class
-
-Fix `s>1`. A compactly supported coefficient `f` belongs to the Gevrey class `G^s_L` if
+There are two unrelated quantities denoted `M` in the wider project. To avoid collision with the frozen v0.8 relay-design integer, this note writes
 
 \[
-\boxed{
-\|f\|_{G^s_L}
-:=
-\sup_{m\ge0}
-\frac{L^m\|f\|_{C^m}}{(m!)^s}
-<\infty.
-}
-\tag{G2}
-
-Compactly supported nontrivial functions exist for every `s>1`.
-
-For `0<L'<L`, the standard factorial inequality gives
-
-\[
-\boxed{
-\|f\|_{C^{m+r}}
-\le
-\|f\|_{G^s_L}
-L^{-(m+r)}((m+r)!)^s.
-}
-\tag{G3}
-
-Using
-
-\[
-(m+r)!\le C_r^{m+1}m!\,(m+1)^r,
+\boxed{M_{\rm rad}}
 \]
 
-we obtain
+for the large radial phase-transport parameter called `M` in source equations (8.5)--(8.10).
+
+On one common auxiliary torus, after the source change of radial variable
 
 \[
-\frac{(L')^m(m+r)!^s}{L^{m+r}m!^s}
-\le
-C_{r,s}L^{-r}
-\left(\frac{L'}L\right)^m
-(m+1)^{rs}.
-\tag{G4}
+U=R^{d_r},
+\]
 
-The right-hand side is uniformly bounded in `m` because `L'/L<1`.
-
-Therefore (G1) implies the radius-losing Gevrey estimate
+Lemma 8.2 writes the full-line radial integral in the form
 
 \[
 \boxed{
-\|A_1f\|_{G^s_{L'}}
-\le
-C_{s,r,L,L'}\varepsilon^\delta
-\|f\|_{G^s_L}.
+(J_{M_{\rm rad}}F)(U,y)
+=\int_{\mathbb R}
+F(U+u,y+M_{\rm rad}u v_r)\,du .
 }
-\tag{G5}
-
-Thus one application of the radial remainder loses Gevrey radius but **not** Gevrey order.
-
-## 3. Iterated remainder and optimized truncation
-
-Choose a decreasing sequence of radii
-
-\[
-L=L_0>L_1>\cdots>L_N>L_\infty>0
+\tag{RG1}
 \]
 
-with equal decrements
-
-\[
-L_j-L_{j+1}=\frac{L-L_\infty}{N}.
-\]
-
-The constant in (G5) grows at most polynomially in the inverse radius loss. Therefore for some exponent `p=p(r,s)` and constant `C_*`,
+The compactification remainder is, up to fixed analytic radial weights,
 
 \[
 \boxed{
-\|A_1^Nf\|_{G^s_{L_\infty}}
-\le
-\left(C_*\varepsilon^\delta N^p\right)^N
-\|f\|_{G^s_L}.
+A_e f
+=R^{-e}(\partial_R\chi_m)
+J_{M_{\rm rad}}(R^e f),
+\qquad e\in\{0,1,2\}.
 }
-\tag{G6}
+\tag{RG2}
+\]
 
-Choose
+The source moment condition implies that the auxiliary Haar mode `k=0` of the full-line integral vanishes. Thus only `k\ne0` must be estimated.
+
+The radial torus direction satisfies the source Diophantine inequality (6.7)
 
 \[
 \boxed{
-N=N(\varepsilon)
-=\left\lfloor c\varepsilon^{-\delta/(2p)}\right\rfloor
+|v_r\cdot k|
+\ge \frac{c_0}{1+|k|},
+\qquad k\in\mathbb Z^2\setminus\{0\}.
 }
-\tag{G7}
-
-with `c>0` sufficiently small. Then
-
-\[
-C_*\varepsilon^\delta N^p
-\le C_*c^p\varepsilon^{\delta/2}
-<\frac12
+\tag{RG3}
 \]
 
-for sufficiently small `epsilon`.
+Finally, the source scaling in the proof of Lemma 8.2 gives
+
+\[
+\boxed{
+M_{\rm rad}^{-1}
+\le C\varepsilon^{\kappa_s}S_*^{\rho_g}.
+}
+\tag{RG4}
+\]
+
+## 2. Gevrey input class
+
+Fix `s>1`. On a fixed compact `U`-interval and the auxiliary torus, use any standard Gevrey norm equivalent to
+
+\[
+\boxed{
+\|F\|_{G^s_\lambda}
+=
+\sum_{a\ge0}\sum_{\beta\in\mathbb N^2}
+\frac{\lambda^{a+|\beta|}}
+{(a!)^s(\beta!)^s}
+\|\partial_U^a\partial_y^\beta F\|_{L^\infty}.
+}
+\tag{RG5}
+\]
+
+For compactly supported `G^s_\lambda` data, the radial Fourier transform of each torus coefficient obeys the standard Gevrey decay estimate
+
+\[
+\boxed{
+|\widehat F_k(\xi)|
+\le C\|F\|_{G^s_\lambda}
+\exp\{-c\lambda_0(|k|^{1/s}+|\xi|^{1/s})\},
+}
+\tag{RG6}
+\]
+
+for some `lambda_0>0` depending only on the chosen equivalent norm and fixed support interval.
+
+The same estimate holds after any fixed finite collection of slow or characteristic derivatives, provided those derivatives are included in the norm. They play no role in the fast radial Fourier argument and are suppressed below.
+
+## 3. Exact Fourier sampling formula
+
+Write
+
+\[
+F(U,y)=\sum_{k\in\mathbb Z^2}F_k(U)e^{2\pi i k\cdot y}.
+\]
+
+For `k\ne0`, (RG1) gives
+
+\[
+\begin{aligned}
+(J_{M_{\rm rad}}F)_k(U)
+&=
+\int_{\mathbb R}F_k(U+u)
+ e^{2\pi iM_{\rm rad}u(v_r\cdot k)}\,du\\
+&=
+e^{-2\pi iM_{\rm rad}U(v_r\cdot k)}
+\widehat F_k\!\left(-2\pi M_{\rm rad}(v_r\cdot k)\right).
+\end{aligned}
+\tag{RG7}
+\]
+
+Thus the radial operator does not merely admit arbitrary-order integration by parts. It **samples the radial Fourier transform at the frequency**
+
+\[
+\boxed{
+\xi_k=-2\pi M_{\rm rad}(v_r\cdot k).
+}
+\tag{RG8}
+\]
+
+## 4. The sampled frequency cannot be simultaneously small with the torus frequency
+
+Set `x=|k|>=1`. By (RG3),
+
+\[
+|\xi_k|
+\ge c\frac{M_{\rm rad}}{1+x}.
+\]
 
 Hence
 
 \[
-\|A_1^Nf\|_{G^s_{L_\infty}}
-\le
-2^{-N}\|f\|_{G^s_L}.
+x^{1/s}+|\xi_k|^{1/s}
+\ge
+c_s\left(
+x^{1/s}
++
+\left(\frac{M_{\rm rad}}{1+x}\right)^{1/s}
+\right).
 \]
 
-Since `N~epsilon^{-delta/(2p)}`, we obtain
+If `x>=sqrt(M_rad)`, the first term is at least `M_rad^{1/(2s)}`. If `x<sqrt(M_rad)`, the second term is at least a fixed multiple of `M_rad^{1/(2s)}`. Therefore
 
 \[
 \boxed{
-\|A_1^Nf\|_{G^s_{L_\infty}}
+|k|^{1/s}+|\xi_k|^{1/s}
+\ge c_sM_{\rm rad}^{1/(2s)}.
+}
+\tag{RG9}
+\]
+
+This is the key point. A torus mode that is close to radial resonance must have large `|k|`; a low torus mode is sampled at a large radial Fourier frequency. Gevrey decay controls both regimes simultaneously.
+
+## 5. Gevrey derivatives of the full-line integral
+
+Differentiating (RG7) gives factors
+
+\[
+|\xi_k|^a|k|^{|\beta|}
+\]
+
+for `a` radial and `beta` torus derivatives. Use the elementary Gevrey absorption inequality
+
+\[
+\boxed{
+x^n e^{-\theta x^{1/s}}
+\le C_{s,\theta}^{n+1}(n!)^s,
+\qquad x\ge0,
+}
+\tag{RG10}
+\]
+
+and reserve a fixed fraction of the exponential decay in (RG6) for each of:
+
+1. radial derivatives;
+2. torus derivatives;
+3. summation over `k`;
+4. the uniform `M_rad` gain from (RG9).
+
+Consequently there exist fixed radii `0<lambda'<lambda` and constants `C,c>0`, independent of the dyadic level, such that
+
+\[
+\boxed{
+\|J_{M_{\rm rad}}F\|_{G^s_{\lambda'}}
 \le
-\exp\!\left(-c\varepsilon^{-\mu}\right)
-\|f\|_{G^s_L},
+C\exp\{-cM_{\rm rad}^{1/(2s)}\}
+\|F\|_{G^s_\lambda},
+}
+\tag{RG11}
+\]
+
+whenever the Haar-zero moment removes the `k=0` contribution.
+
+The loss from `lambda` to `lambda'` is **one fixed loss**, not a loss repeated `N(epsilon)` times.
+
+## 6. The compactification remainder
+
+The changes between `R` and `U=R^{d_r}` take place on a fixed compact shell bounded away from `R=0`; the coordinate map and the weights `R^{\pm e}` are analytic there. Choose the fixed cutoff `chi_m` in a compactly supported Gevrey-`s` class. Multiplication by `partial_R chi_m` and the analytic radial weights is bounded from a slightly larger radius to a fixed smaller radius.
+
+Therefore (RG2) and (RG11) give
+
+\[
+\boxed{
+\|A_e f\|_{G^s_{\lambda_*}}
+\le
+C\exp\{-cM_{\rm rad}^{1/(2s)}\}
+\|f\|_{G^s_\lambda},
+\qquad e\in\{0,1,2\}.
+}
+\tag{RG12}
+\]
+
+For the axial mean reconstruction,
+
+\[
+\Delta\gamma=\gamma_d-A_1\gamma_d,
+\]
+
+so the entire radial compactification error satisfies the one-step bound
+
+\[
+\boxed{
+\|A_1\gamma_d\|_{G^s_{\lambda_*}}
+\le
+\tau_{\rm rad,\ell}
+\|\gamma_d\|_{G^s_\lambda},
 \qquad
-\mu=\frac{\delta}{2p}>0.
+\tau_{\rm rad,\ell}
+:=C e^{-cM_{\rm rad}^{1/(2s)}}.
 }
-\tag{G8}
-
-This is a quantitative stretched-exponential remainder.
-
-## 4. Consequence for the axial mean correction
-
-Suppose the source compact axial reconstruction gives
-
-\[
-\Delta\gamma
-=\gamma_d-A_1\gamma_d.
+\tag{RG13}
 \]
 
-Iterating the correction `N` times gives a finite exact telescoping identity
+No radial-remainder iteration is required.
+
+## 7. Dyadic smallness
+
+By (RG4),
 
 \[
-\boxed{
-\sum_{j=0}^{N-1}\Delta\gamma[A_1^j\gamma_d]
-=
-\gamma_d-A_1^N\gamma_d.
-}
-\tag{G9}
-
-The unresolved tail is therefore precisely `A_1^N gamma_d`, and (G8) yields
-
-\[
-\boxed{
-\|A_1^N\gamma_d\|_{G^s_{L_\infty}}
-\le
-\exp(-c\varepsilon^{-\mu})
-\|\gamma_d\|_{G^s_L}.
-}
-\tag{G10}
-
-Thus the radial compactification defect can be made smaller than every algebraic power of `epsilon` by a **finite**, epsilon-dependent number of Gevrey corrections while preserving a positive limiting Gevrey radius.
-
-## 5. Why this is stronger than C-infinity flatness for the unforced program
-
-The source only needs the statement
-
-\[
-A_1^N\gamma_d=O(\varepsilon^A)
+M_{\rm rad}
+\ge c\varepsilon^{-\kappa_s}S_*^{-\rho_g}.
 \]
 
-for any prescribed finite `A`, because the remaining flat term may be left in the external force.
-
-For the unforced program, a merely formal all-orders statement is insufficient unless the constants are controlled with the correction depth. The Gevrey estimate (G10) supplies such control and turns the arbitrary-order source iteration into one explicit stretched-exponential estimate.
-
-This does **not** make the remainder exactly zero. Its role is different: it produces a tail small enough to be inserted into the exact forward mean fixed-point problem, where the characteristic inverse from `characteristic_fast_time_mean_inverse.md` has no torus derivative loss.
-
-## 6. Hybrid exact mean closure strategy
-
-The mean block can now be organized as follows.
-
-1. Use the exact characteristic inverse `mathcal J_i` for the fast-time zero-average correction. This is derivative-loss free in the characteristic Gevrey norm.
-2. Use the source finite-dimensional radial moment/Vandermonde correction exactly.
-3. Apply only `N(epsilon)` radial compactification corrections, obtaining the stretched-exponential tail (G10).
-4. Treat that tail, together with the ordinary algebraically small nonlinear mean residual, as the source term of one final forward contraction in the characteristic Gevrey space.
-
-Because the final forward inverse does not lose torus derivatives, no infinite chain of radius losses is required.
-
-## 7. Remaining estimate needed for exact closure
-
-Let `m` denote the full mean correction and `z(m)` the already-constructed exact nonzero-harmonic forward solution. To finish the local zero-force theorem it now suffices to prove a local Lipschitz bound in one fixed positive-radius characteristic Gevrey space:
+Hence
 
 \[
 \boxed{
-\|\mathcal N_{\rm mean}(m)-\mathcal N_{\rm mean}(\tilde m)\|_{G^s_{L_\infty}}
+\tau_{\rm rad,\ell}
 \le
-\eta_\ell
-\|m-\tilde m\|_{G^s_{L_\infty}},
-\qquad
-\eta_\ell\to0.
+C\exp\!\left[
+-c\varepsilon^{-\kappa_s/(2s)}
+S_*^{-\rho_g/(2s)}
+\right].
 }
-\tag{G11}
+\tag{RG14}
+\]
 
-The source exponent gain `0.9-2kappa_s`, the nonzero-wave smallness, and the stretched-exponential radial tail are precisely the available small factors for (G11).
+Since in the source dyadic bookkeeping `epsilon=Q^h`, `Q=2^{-ell}`, and `S_*=ell^2`, the exponent in (RG14) tends to `+infinity`; therefore
 
-Therefore the sharp remaining local task is no longer a Nash--Moser theorem. It is a **single-space Gevrey Lipschitz estimate for the coupled mean/nonzero forward map**.
+\[
+\boxed{\tau_{\rm rad,\ell}=o(1).}
+\tag{RG15}
+\]
+
+In fact it beats every fixed algebraic power of `epsilon` after allowing fixed polynomial powers of `S_*`.
+
+## 8. What is proved and what remains
+
+**Proved in this note, under the explicit Gevrey-input hypothesis:**
+
+- the source full-line radial integral has the exact Fourier sampling formula (RG7);
+- the Diophantine radial direction forces the sampled pair `(k,xi_k)` away from the joint low-frequency region by (RG9);
+- one fixed Gevrey-radius loss gives the direct stretched-exponential estimate (RG12);
+- the radial cutoff remainder is therefore a single small block with factor `tau_rad,ell=o(1)` and does not require an infinite or epsilon-dependent Gevrey iteration.
+
+**Not yet proved here:**
+
+- that every fixed cutoff/profile and every coefficient entering the complete coupled mean/nonzero forward map belongs to one common Gevrey-`s` class with radii compatible with the finite losses above;
+- the complete one-space coupled mean contraction.
+
+Those are now separated cleanly from the radial small-divisor mechanism. The old `N(epsilon)` decreasing-radius argument should not be used in a publication proof.
