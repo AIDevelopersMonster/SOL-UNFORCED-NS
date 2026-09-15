@@ -1,20 +1,14 @@
 # Turning-face zero-cost promoted-ladder obstruction
 
-**Status:** PROVED PRINCIPAL / ACTION OBSTRUCTION TO ANY FINITE TERMINAL CONTROL BLOCK AT THE EXACT UNIT-BETA TURNING FACE. This corrects the previous `u=6` frontier note: the old catalyst `C` is not the only isolated terminal contaminant. If the surviving unit-beta channel `D` reaches its exact turning point with nonzero amplitude, then every additional `D` leaf costs zero action. A nonzero old `C` therefore seeds an infinite sum ladder
+**Status:** PROVED PRINCIPAL / ACTION OBSTRUCTION TO ANY FINITE TERMINAL CONTROL BLOCK AT THE EXACT UNIT-BETA TURNING FACE. **Correction:** an earlier version misstated the general non-turning first-relay resonance in the final route paragraph. The correct resonance is
 
 \[
-W_k:=C+kD,\qquad k=0,1,2,\ldots,
+\mathcal E_{2,u}(x)
++\mathcal E_{1,u}(x+\delta)
+-\mathcal E_{1,u}(x-\delta)=0.
 \]
 
-whose every fixed rung has the same action as `C`. The mandatory principal edges
-
-\[
-W_k+D\to W_{k+1}
-\]
-
-are strictly nonzero for every `k`. Hence, whenever `A_C>A_{P_{new}}`, infinitely many fixed lattice characters are promoted above the intended renewed parent. No finite-dimensional terminal Vandermonde/PBH block can remove this obstruction.
-
-The correct redesign is to abandon the old passive-cleanup gauge `x+delta=1` and renew on a non-turning section with `A_D<0`, or else introduce a genuinely infinite-dimensional/support-separation mechanism. The next note develops the non-turning route.
+The turning-face obstruction itself is unchanged because the old gauge has `x+delta=1` and hence `E_{1,u}(x+delta)=0`.
 
 ## 1. Turning-face data
 
@@ -29,10 +23,10 @@ T=2\delta.
 The surviving unit-beta channel has
 
 \[
-z_D(T)=x-\delta+T=x+\delta=1.
+z_D(T)=x-\delta+T=x+\delta=1,
 \]
 
-Therefore
+so
 
 \[
 \boxed{A_D(T)=\mathcal E_{1,u}(1)=0.}
@@ -43,39 +37,29 @@ At the `u=6` active redesign point recorded in `beta21_u6_fourth_gate_strong_H_r
 
 \[
 A_C(T)-A_{P_{new}}(T)
-\approx 5.22782435\times10^{-4}>0.
+\approx5.22782435\times10^{-4}>0.
 \tag{ZL2}
 \]
 
-Thus old `C` is exponentially above the desired renewed beta-two parent on the source action scale.
+Thus old `C` is exponentially above the desired renewed beta-two parent.
 
 ## 2. Infinite one-`C` sum ladder
 
 Define
 
 \[
-\boxed{W_k=C+kD.}
+\boxed{W_k=C+kD,\qquad k=0,1,2,\ldots.}
 \tag{ZL3}
 \]
 
-Its signed beta is
+Its signed beta is `k+1`. Since `A_D(T)=0`, absolute-leaf action bookkeeping gives
 
 \[
-\beta_k=k+1>0.
-\]
-
-Since leaf actions add in absolute genealogy bookkeeping and `A_D(T)=0`,
-
-\[
-\boxed{
-A_{W_k}(T)=A_C(T)+kA_D(T)=A_C(T)
-}
+\boxed{A_{W_k}(T)=A_C(T)}
 \tag{ZL4}
 \]
 
-for every fixed `k>=0`.
-
-Hence every rung has the same exponential action advantage over `P_new`:
+for every fixed `k`. Hence
 
 \[
 \boxed{
@@ -85,16 +69,15 @@ A_{W_k}(T)-A_{P_{new}}(T)
 \tag{ZL5}
 \]
 
-This statement does not rely on whether `W_k` lies in its own natural growing window. For large `k` the homogeneous beta-`k+1` mode is strongly viscous, but the quadratic source generated inside the terminal overlap still enters at the leaf action (ZL4). A stable inverse may contribute algebraic/high-mode smoothing; it cannot change the fixed source action exponent.
+Large-beta homogeneous stability supplies algebraic/high-mode smoothing but does not change this fixed source action exponent.
 
-## 3. Every mandatory edge is nonzero
+## 3. Every mandatory ladder edge is nonzero
 
 At the turning face write
 
 \[
 z_D=1,
-\qquad
-z_C=1+a,
+\qquad z_C=1+a,
 \qquad a>0.
 \]
 
@@ -102,7 +85,6 @@ Then
 
 \[
 z_{W_k}
-=\frac{z_C+kz_D}{k+1}
 =1+\frac{a}{k+1}>1=z_D.
 \tag{ZL6}
 \]
@@ -110,7 +92,7 @@ z_{W_k}
 Use actual source slopes
 
 \[
-s_1=u z_{W_k},\qquad s_2=u z_D,
+s_1=uz_{W_k},\qquad s_2=uz_D
 \]
 
 and beta weights
@@ -119,13 +101,13 @@ and beta weights
 b_1=k+1,\qquad b_2=1.
 \]
 
-For two growing reference polarizations
+For growing reference polarization
 
 \[
 g(s)=e_r-sK+c_0\sqrt{1+s^2}\,N,
 \]
 
-the principal sum vector is, up to the common oscillatory scalar,
+the principal sum vector for `W_k+D -> W_{k+1}` is proportional to
 
 \[
 B_+
@@ -133,13 +115,13 @@ B_+
 \tag{ZL7}
 \]
 
-The target beta is `b=b_1+b_2=k+2` and the target slope is
+The child slope is
 
 \[
-s_t=\frac{b_1s_1+b_2s_2}{b_1+b_2}>0.
+s_t=\frac{b_1s_1+b_2s_2}{b_1+b_2}.
 \]
 
-Projecting to the child divergence-free plane and resolving into growing/decaying references gives the growing coefficient
+Resolving the Leray projection into the child growing reference gives
 
 \[
 \kappa_k^+
@@ -153,75 +135,57 @@ Projecting to the child divergence-free plane and resolving into growing/decayin
 \tag{ZL8}
 \]
 
-Every factor in (ZL8) has a fixed strict sign:
+Here `s_1-s_2>0`; the first bracketed numerator is strictly positive; and the second is strictly positive. Therefore
 
-- `s_1-s_2>0` by (ZL6);
-- `b_1-b_2=k>=0`;
-- `-b_1s_1+b_2s_2<0`, so the first numerator is strictly positive;
-- `b_1 sqrt(1+s_1^2)-b_2 sqrt(1+s_2^2)>0` for `k>=1`; for `k=0` it is still positive because `s_1>s_2`.
+\[
+\boxed{\kappa_k^+>0\qquad(k\ge0).}
+\tag{ZL9}
+\]
+
+Thus every fixed rung is genuinely populated at principal order.
+
+## 4. Finite Duhamel order does not rescue a finite block
+
+For each fixed `k`, the `k`th rung carries only finite algebraic/Duhamel factors independent of the dyadic action scale. The ratio to the desired parent contains
+
+\[
+\exp\{[A_C-A_{P_{new}}]\Lambda_\ell\},
+\]
+
+which diverges because the bracket is fixed positive. Hence infinitely many individually fixed characters are promoted at high levels.
 
 Therefore
 
 \[
-\boxed{\kappa_k^+>0\qquad\text{for every }k\ge0.}
-\tag{ZL9}
-\]
-
-Thus the entire ladder is physically populated at principal order; it is not a lattice-arithmetic overcount.
-
-## 4. Why Duhamel order does not rescue a finite block
-
-The `k`th rung first appears at finite nonlinear/Duhamel order and therefore carries a finite coefficient depending on the fixed terminal-collar width. For each **fixed** `k`, this coefficient is independent of the dyadic action scale `Lambda_ell`.
-
-But (ZL5) produces the ratio
-
-\[
-\exp\{[A_C-A_{P_{new}}]\Lambda_\ell\}
-\]
-
-against the desired renewed parent. Since the bracket is fixed positive, this tends to infinity faster than any fixed algebraic source factor and overwhelms the finite Duhamel coefficient for every fixed `k`.
-
-Hence there are infinitely many individually promoted fixed lattice characters at high levels.
-
-## 5. Consequence
-
-The old conclusion
-
-\[
-\text{`only terminal old-}C\text{ cancellation remains'}
-\]
-
-is too optimistic at an exact turning boundary. Even a perfect scalar cancellation attempt must act in a neighborhood in which `C` and a zero-action-cost `D` coexist, and that neighborhood carries the infinite promoted ladder above.
-
-Therefore:
-
-\[
 \boxed{
 \text{exact turning-face renewal}
-+ A_D=0
-+ A_C>A_{P_{new}}
++A_D=0
++A_C>A_{P_{new}}
 \Longrightarrow
 \text{no finite terminal critical block.}
 }
 \tag{ZL10}
 \]
 
-This does **not** rule out active beta-(2,1) renewal. It rules out the special turning-point gauge as the final handoff architecture.
+## 5. Correct non-turning frontier
 
-## 6. Correct next route
-
-The relay resonance itself does not require `x+delta=1`. If one drops that obsolete passive-cleanup condition and keeps only
+The relay resonance does **not** require `x+delta=1`. Its correct finite-`u` form is
 
 \[
+\boxed{
 \mathcal E_{2,u}(x)
-=\mathcal E_{1,u}(x+\delta)
-+\mathcal E_{1,u}(x-\delta),
++\mathcal E_{1,u}(x+\delta)
+=\mathcal E_{1,u}(x-\delta).
+}
+\tag{ZL11}
 \]
 
-then an exact phase-slope reset can be performed on a **non-turning** section where
+At a non-turning renewal section with
 
 \[
-\mathcal E_{1,u}(x+\delta)<0.
+\mathcal E_{1,u}(x+\delta)<0,
 \]
 
-Every additional `D` leaf then costs a fixed negative action, restoring finiteness of every promoted lattice block. More generally the beta-preserving shear family `U_n` yields higher-order clock-resetting generator pairs. A concrete source-window-compatible candidate with passive disposal of old `C` is developed in the next theorem layer.
+every additional surviving unit-beta leaf costs a fixed negative action, so the zero-cost argument above disappears and the promoted terminal block is finite.
+
+The beta-preserving shear family may still be used to formulate higher-order target characters, but every non-turning numerical candidate must be solved using (ZL11). The previously recorded candidate values obtained from the incorrect plus-plus equation are retracted in `beta21_higher_order_clock_reset_family.md`.
