@@ -1,278 +1,221 @@
 # Source-normalized semiclassical whole-space mean-root Oseen reduction
 
-**Status:** PROVED FUNCTIONAL-ANALYTIC REDUCTION IN THE ISOTROPIC SOURCE CHART / EXACT SOURCE-LEVEL OSEEN AND COUPLED FIXED POINT STILL OPEN.  This revision corrects the coordinate scaling of the previous version.  The relevant semiclassical derivative is
+**Status:** PROVED UNIFORM ROOT-COEFFICIENT REDUCTION / EXACT SOURCE EQUATION AND COUPLED CONTRACTION STILL OPEN.  This revision incorporates the sharpened direct-curl estimate from `beta21_lowu_designated_mean_root_cauchy_curl_realization.md`.  The principal designated root coefficient is uniformly bounded and every positive-order semiclassical derivative is `O(S^{-a})+o(1)` after division by its natural `h=sqrt(epsilon)` amplitude.  Therefore the root does not create an `exp(poly(S))` Oseen constant.
+
+All statements are made in the isotropically normalized whole-space chart
 
 \[
-\boxed{h\nabla_y=h\sqrt Q\,\nabla_x,}
+y=(x-x_0)/\sqrt Q,
 \]
 
-where `y=(x-x_0)/sqrt(Q)` is the source-normalized whole-space Cartesian coordinate.  It is not `h nabla_x` in raw physical coordinates.
+not in raw physical coordinates.  The whole-space Leray projector survives this dilation exactly because its Fourier symbol is homogeneous of degree zero.
 
-The dilation maps `R^3` to `R^3`; no artificial boundary is introduced.  Because the Leray projector is a degree-zero whole-space Fourier multiplier, its `L^p` bounds are invariant under this isotropic dilation.  In the normalized chart the designated beta-zero root has amplitude `O(h)`, covector `O((hS)^{-1})`, and therefore uniformly admissible semiclassical jets.
+No exact unforced reset cell or global cascade is claimed here.
 
-The preferred concrete exponent remains `p=6`.  The remaining tasks are exact source insertion and the common mean/nonzero graph fixed point.  No exact unforced reset cell or global cascade is claimed.
-
-## 1. Normalized whole-space chart and semiclassical scale
+## 1. Semiclassical whole-space norm
 
 Let
 
 \[
-\boxed{h:=\sqrt\varepsilon}
+h:=\sqrt\varepsilon,
+\qquad
+D_h:=h\nabla_y=h\sqrt Q\,\nabla_x.
+\]
+
+For `1<p<infty` and fixed integer `m`, define
+
+\[
+\boxed{
+\|f\|_{W^{m,p}_{h}}
+:=\sum_{|\alpha|\le m}
+\|D_h^\alpha f\|_{L^p_y(\mathbb R^3)}.
+}
 \tag{SO1}
 \]
 
-and use the isotropic source chart
+For the auxiliary mean lattice use
 
 \[
-\boxed{y=\frac{x-x_0}{\sqrt Q}.}
+\boxed{
+\|a\|_{\mathfrak M^p_{\sigma,m,h}}
+:=
+\sum_{k\in\mathbb Z^2}
+ e^{\sigma|k|_1}
+ \|M_{\ell,k}a_k\|_{W^{m,p}_{h}}.
+}
 \tag{SO2}
 \]
 
-For the source-normalized velocity representative write schematically
-
-\[
-\widetilde u(y)=Q^A u_{phys}(x_0+\sqrt Q\,y).
-\]
-
-The carrier normalization gives
+The source carrier identity is
 
 \[
 \boxed{h kB_s\asymp1.}
 \tag{SO3}
 \]
 
-Thus the natural semiclassical derivative is
+## 2. Whole-space Leray under the source dilation
+
+If `S_Q` is the pullback by `x=x_0+sqrt(Q)y` together with the scalar velocity normalization, then
 
 \[
-\boxed{D_h:=h\nabla_y=h\sqrt Q\,\nabla_x.}
+\boxed{S_Q\mathbb P_x=\mathbb P_yS_Q.}
 \tag{SO4}
 \]
 
-For `1<p<infty` and integer `m>=0`, define
+Indeed the Leray symbol
 
 \[
-\boxed{
-\|f\|_{W^{m,p}_{h,y}}
-:=
-\sum_{|\alpha|\le m}
-\|D_h^\alpha f\|_{L^p_y(\mathbb R^3)}.
-}
-\tag{SO5}
+P(\xi)=I-\xi\otimes\xi/|\xi|^2
 \]
 
-In these normalized coordinates the source viscous operator has coefficient `epsilon=h^2`, so `D_h` is also the natural parabolic derivative scale.
-
-## 2. Isotropic dilation and whole-space Leray
-
-Let `S_Q` denote the pullback under `x=x_0+sqrt(Q)y` together with the scalar velocity normalization.  Translation and isotropic dilation preserve the direction of the Fourier covector.  The Leray symbol
-
-\[
-P(\xi)=I-\frac{\xi\otimes\xi}{|\xi|^2}
-\]
-
-is homogeneous of degree zero.  Therefore
-
-\[
-\boxed{
-S_Q\mathbb P_x
-=\mathbb P_yS_Q.
-}
-\tag{SO6}
-\]
-
-For every `1<p<infty`, `P_y` is bounded on `L^p` and commutes with the constant-coefficient derivatives `D_h`.  Hence
-
-\[
-\boxed{
-\|\mathbb P_y f\|_{W^{m,p}_{h,y}}
-\le C_p\|f\|_{W^{m,p}_{h,y}}
-}
-\tag{SO7}
-\]
-
-with a constant independent of `Q,h,S`.
-
-For auxiliary mode `k`, conjugate by the exact source reconstruction modulation `M_{ell,k}` and define
-
-\[
-\boxed{
-\|a\|_{\mathfrak M^p_{\sigma,m,h}}
-:=
-\sum_k e^{\sigma|k|_1}
-\|M_{\ell,k}a_k\|_{W^{m,p}_{h,y}}.
-}
-\tag{SO8}
-\]
-
-Then the exact coefficient Leray operator satisfies
+is homogeneous of degree zero.  For every `1<p<infty`, `P_y` is bounded on `L^p` and commutes with `D_h`.  Hence
 
 \[
 \boxed{
 \|\mathbb P_{coeff,\ell}a\|_{
 \mathfrak M^p_{\sigma,m,h}}
 \le C_p
-\|a\|_{\mathfrak M^p_{\sigma,m,h}}.
+\|a\|_{
+\mathfrak M^p_{\sigma,m,h}}
+}
+\tag{SO5}
+\]
+
+uniformly in `Q,h,S` and the auxiliary index.
+
+## 3. Semiclassical product price
+
+For `p>3` and sufficiently large fixed `m`, the normalized-coordinate Sobolev embedding gives
+
+\[
+\boxed{
+\|f\|_\infty
+\le C_{m,p}h^{-3/p}\|f\|_{W^{m,p}_h}
+}
+\tag{SO6}
+\]
+
+and
+
+\[
+\boxed{
+\|fg\|_{W^{m,p}_h}
+\le C_{m,p}h^{-3/p}
+\|f\|_{W^{m,p}_h}
+\|g\|_{W^{m,p}_h}.
+}
+\tag{SO7}
+\]
+
+The same estimate holds after summation in the analytic coefficient lattice because phase indices add and the exponential weight is submultiplicative.
+
+## 4. Sharp designated-root coefficient bound
+
+The exact Cauchy/curl construction gives
+
+\[
+\widetilde M_{des}=hV_M
+\]
+
+with
+
+\[
+\boxed{\|V_M\|_\infty\le C}
+\tag{SO8}
+\]
+
+and, for every fixed `a>=1`,
+
+\[
+\boxed{
+\|D_h^aV_M\|_\infty
+\le
+C_a\left[S^{-a}+h\operatorname{poly}(S)\right].
 }
 \tag{SO9}
 \]
 
-## 3. Semiclassical embedding and algebra price
-
-For `p>3` and sufficiently large fixed integer `m`, scaling in the normalized `y` variable gives
+Since `h` decreases exponentially in the source level while `S` grows polynomially,
 
 \[
 \boxed{
-\|f\|_{L^\infty_y}
-\le C_{m,p}h^{-3/p}
-\|f\|_{W^{m,p}_{h,y}}.
+\sup_{a\le m+1}\|D_h^aV_M\|_\infty
+\le C_m
 }
 \tag{SO10}
 \]
 
-and
+uniformly for sufficiently large levels, and every positive-order non-principal contribution tends to zero.
+
+The root lattice shift is the fixed character
 
 \[
-\boxed{
-\|fg\|_{W^{m,p}_{h,y}}
-\le
-C_{m,p}h^{-3/p}
-\|f\|_{W^{m,p}_{h,y}}
-\|g\|_{W^{m,p}_{h,y}}.
-}
+M=(1,-2),
+\qquad |M|_1=3,
+\]
+
+so multiplication by the root costs only the fixed analytic factor
+
+\[
+\boxed{e^{3\sigma_0}}
 \tag{SO11}
 \]
 
-The exact phase-addition identity and
+with `sigma_0=0.005`.
 
-\[
-e^{\sigma|k+j|_1}
-\le e^{\sigma|k|_1}e^{\sigma|j|_1}
-\]
+## 5. Uniform root transport operator
 
-give the same coefficient-lattice estimate.
-
-This explicit `h^{-3/p}` is the only Sobolev-embedding loss introduced by the whole-space `L^p` algebra.  The `Q` dilation produces no additional operator loss because all norms are taken in the normalized whole-space `y` chart.
-
-## 4. Correct root scale
-
-The Cauchy/curl theorem `beta21_lowu_designated_mean_root_cauchy_curl_realization.md` gives in the same normalized chart
-
-\[
-\boxed{\|\widetilde M_{des}\|_\infty=O(h),}
-\tag{SO12}
-\]
-
-and
-
-\[
-\boxed{
-\frac{c_-}{S}
-\le h|\Xi_M|
-\le\frac{c_+}{S},
-\qquad
-\Xi_M=\nabla_y\widetilde\Theta_M.
-}
-\tag{SO13}
-\]
-
-Thus its pure-phase semiclassical jets satisfy
-
-\[
-\boxed{
-\|D_h^a\widetilde M_{des}^{principal}\|_\infty
-\le C_a hS^{-a}.
-}
-\tag{SO14}
-\]
-
-The exact curl/localization remainder has an additional `hS poly(S)=o(1)` relative factor at fixed source order.  The source-level target is therefore
-
-\[
-\boxed{
-\|D_h^a\widetilde M_{des}\|_\infty
-\le C_a h\,\operatorname{poly}(S)(1+S^{-a}),
-}
-\tag{SO15}
-\]
-
-with the leading coefficient uniformly `O(h)`.
-
-## 5. Mean-root transport operator
-
-The root contribution to the normalized projected mean linearization is
+The root part of the normalized mean linearization is
 
 \[
 \mathcal L_Mm
-=-\mathbb P_y
-\left[
+=-\mathbb P_y\left[
 (\widetilde M_{des}\cdot\nabla_y)m
 +(m\cdot\nabla_y)\widetilde M_{des}
 \right].
 \]
 
-Write
+Since `nabla_y=h^{-1}D_h`,
 
 \[
-\nabla_y=h^{-1}D_h.
+(\widetilde M_{des}\cdot\nabla_y)m
+=(V_M\cdot D_h)m.
 \]
 
-The transport coefficient is
+Thus the transport coefficient is exactly the uniformly bounded `V_M`; no `h^{-1}` remains.
+
+The stretching term satisfies, at principal level,
 
 \[
-\widetilde M_{des}/h=O(1).
+\nabla_y\widetilde M_{des}
+=O(S^{-1}),
 \]
 
-At principal level, each `D_h` derivative falling on that coefficient gains `S^{-1}`.  Therefore the frozen principal root defines an `O(1)` first-order semiclassical operator.
-
-The stretching coefficient satisfies
-
-\[
-\boxed{
-\|\nabla_y\widetilde M_{des}^{principal}\|_\infty
-=O(S^{-1}).
-}
-\tag{SO16}
-\]
-
-The exact source/curl remainder changes this by the already isolated lower source class.  Consequently the source-level target estimate is
+while its localized/frame correction is `o(1)` by (SO9).  Standard fixed-order commutator estimates therefore give
 
 \[
 \boxed{
-\|\mathcal L_Mm\|_{W^{m-1,p}_{h,y}}
-\le C\operatorname{poly}(S)
-\|m\|_{W^{m,p}_{h,y}},
+\|\mathcal L_Mm\|_{W^{m-1,p}_h}
+\le C_m\|m\|_{W^{m,p}_h}
 }
-\tag{SO17}
+\tag{SO12}
 \]
 
-with an **actual leading operator constant `O(1)`**.  The publication-level task is to replace the conservative polynomial in (SO17) by the exact source small factors for the localization/frame remainder, so that the full forward propagator constant is uniform rather than `exp(poly(S))`.
+with `C_m` independent of `S` and the dyadic level.
 
-In auxiliary coefficient space the root shifts the lattice by
+This closes the specific Gronwall concern that remained in the previous revision.
 
-\[
-M=(1,-2),\qquad |M|_1=3.
-\]
-
-Thus the analytic lattice penalty is only
-
-\[
-\boxed{e^{3\sigma_0}}
-\tag{SO18}
-\]
-
-with `sigma_0=0.005`, independent of `S`.
-
-## 6. Whole-space root-augmented Oseen target
+## 6. Root-augmented whole-space Oseen generator
 
 Let
 
 \[
-U_{bg}=U_{base}+\widetilde M_{des}
+U_{bg}=U_{base}+\widetilde M_{des}.
 \]
 
-in normalized coordinates.  The old slow-base Oseen argument remains valid after isotropic rescaling because the whole-space geometry and Leray projector are unchanged up to conjugation.
+The slow-base part is handled by the same whole-space forward Oseen structure as in `global_fixed_order_leray_oseen_propagator.md`, now after isotropic source rescaling.  Add `L_M` from Section 5 to the full linear generator.
 
-Include the **principal** root transport in the linear generator.  If the lower-order source/curl remainder in (SO17) is shown to be `o(1)` in the same graph norm, the standard forward parabolic/transport argument yields
+The functional-analytic target is
 
 \[
 \boxed{
@@ -280,18 +223,18 @@ Include the **principal** root transport in the linear generator.  If the lower-
 \mathfrak M^p_{\sigma_0,m,h}}
 \le K_{p,m,I}
 \|f\|_{
-\mathfrak M^p_{\sigma_0,m,h}},
+\mathfrak M^p_{\sigma_0,m,h}}
 }
-\tag{SO19}
+\tag{SO13}
 \]
 
-with `K_{p,m,I}` independent of `S` and the dyadic level.
+on one bounded normalized collar, with `K_{p,m,I}` independent of `S` and the level.
 
-Thus the only unresolved linear issue is no longer the large root frequency; it is the sharp source estimate for the localized/frame remainder of the exact Cauchy root.
+After (SO12), no coefficient in the root part grows with `S`; proving (SO13) now requires only writing the exact source-rescaled mean operator and carrying the usual forward `W^{m,p}` parabolic/transport estimate through the cylindrical/zeroth-order terms.  There is no remaining root-frequency obstruction.
 
 ## 7. Residual mean quadratic exponent
 
-Let the residual mean correction have the old source size
+The residual mean correction has source size
 
 \[
 \|m_{corr}\|
@@ -299,9 +242,9 @@ Let the residual mean correction have the old source size
 =h^{2-2\kappa_s}
 \]
 
-up to fixed powers of `S` in the normalized source norm.
+up to fixed polynomial powers of `S`.
 
-One convective derivative contributes `h^{-1}`, and the semiclassical algebra contributes `h^{-3/p}`.  Therefore
+One convective derivative costs `h^{-1}` and the `W_h^{m,p}` algebra costs `h^{-3/p}`.  Therefore
 
 \[
 \boxed{
@@ -309,14 +252,14 @@ One convective derivative contributes `h^{-1}`, and the semiclassical algebra co
 \lesssim
 S^A h^{3-4\kappa_s-3/p}.
 }
-\tag{SO20}
+\tag{SO14}
 \]
 
-For every `p>3` the exponent is positive.  Choose
+Choose
 
 \[
 \boxed{p=6.}
-\tag{SO21}
+\tag{SO15}
 \]
 
 Then
@@ -327,18 +270,22 @@ Then
 =2.5-4\kappa_s
 =2.49996>0.
 }
-\tag{SO22}
+\tag{SO16}
 \]
 
-Hence the residual mean self-interaction remains strongly perturbative.
+Thus the residual mean self-interaction remains strongly perturbative in the new whole-space norm.
 
-## 8. Orbit covariance and generated beta-zero means
+## 8. Orbit covariance and beta-zero residual mean modes
 
-The designated beta-one/beta-two orbit waves remain source order `W_{1/2}`.  Genuine conjugate covariance lies in `M_{1-kappa_s}`.  The `O(S)` orbit multiplicity and fixed derivatives cost only fixed powers of `S`.
+Conjugate beta-one/beta-two orbit pairs lie in the source mean class
 
-Generated nonzero `rM` auxiliary mean coefficients have the action/analytic gaps proved in `beta21_lowu_mean_orbit_harmonic_split_and_covariance_audit.md`; after `sigma_0=0.005` they retain gaps larger than `0.176S` and `0.233S` before polynomial factors.
+\[
+W_{1/2}\times W_{1/2}	o M_{1-\kappa_s}.
+\]
 
-The exact source-level covariance estimate required for the common graph norm is therefore of the form
+The `O(S)` orbit cardinality and fixed derivatives contribute only fixed powers of `S`.  Generated `rM`, `r\ne\pm1`, have the much stronger action/analytic margins proved in `beta21_lowu_mean_orbit_harmonic_split_and_covariance_audit.md`.
+
+The exact covariance estimate still to be pinned in the new norm has the form
 
 \[
 \boxed{
@@ -348,14 +295,14 @@ The exact source-level covariance estimate required for the common graph norm is
 S^A\varepsilon^{\eta_{cov}}
 +S^Ae^{-cS}
 }
-\tag{SO23}
+\tag{SO17}
 \]
 
-for some explicit `eta_cov>0`.  Establishing the sharp value is a bookkeeping/interface step; the source exponent `1-kappa_s` leaves substantial room for the single semiclassical derivative/algebra loss.
+for some explicit `eta_cov>0`.  The available source exponent `1-kappa_s` leaves ample room for the single derivative/algebra losses in the local Duhamel map.
 
-## 9. Coupling to the designated nonzero orbit
+## 9. Coupling to the nonzero orbit
 
-The principal root interactions
+The order-one root interactions
 
 \[
 M+C_j\to C_{j+1},
@@ -363,29 +310,29 @@ M+C_j\to C_{j+1},
 M+Q_n\to Q_{n+1}
 \]
 
-are already included exactly in the designated nonzero shift generator.  They are not estimated as small terms.
+are part of the designated nonzero shift generator and are not estimated as perturbative terms.
 
-A residual mean perturbation couples to the nonzero orbit through the old mean-to-wave map and then returns through covariance.  The growing orbit adds polynomial mode-count factors and the explicit semiclassical `h` losses above, but no exponential lattice loss beyond the already budgeted `sigma_0` factors.
-
-The final common contraction must record one explicit positive exponent for this loop.
+A residual mean perturbation couples to the nonzero orbit through the old mean-to-wave map.  Its return through covariance must be estimated in the common graph norm.  The extra growing-orbit mode count is polynomial in `S`; the analytic lattice losses are already budgeted by `sigma_0=0.005`.
 
 ## 10. Remaining exact obligations
 
-The corrected norm leaves four concrete tasks:
+The mean-root frequency/jet problem is now closed at the reduction level.  The remaining tasks are:
 
-1. sharpen the exact curl/frame remainder in (SO15)--(SO17) to an `O(1)+o(1)` coefficient bound in the normalized chart;
-2. prove the forward root-augmented Oseen propagator (SO19) in the coefficient lattice;
-3. translate the orbit covariance and mean-to-wave-to-mean source estimates into the normalized `W^{m,6}_{h,y}` graph norm with explicit positive epsilon exponents;
-4. couple that mean solve to the corrected nonzero orbit/complement propagator and apply the already proved principal transversality.
-
-No raw-physical estimate using `h nabla_x` should be used; the `sqrt(Q)` source dilation is essential.
+1. write the exact source-rescaled whole-space mean equation in `W^{m,6}_{h,y}` and prove the forward propagator bound (SO13);
+2. translate the source covariance and mean-to-wave-to-mean estimates into this norm, producing explicit positive epsilon exponents;
+3. couple the resulting mean contraction to the corrected nonzero orbit/complement propagator;
+4. apply the already proved principal `C^1` transversality to obtain an exact finite-`S` local cell.
 
 ## 11. Consequence
 
-The high physical frequency of the beta-zero mean root is compatible with whole-space pressure and forward Oseen propagation once the **actual source normalization** is used:
+For the designated beta-zero root,
 
 \[
-\boxed{D_h=h\sqrt Q\,\nabla_x=h\nabla_y.}
+\boxed{
+\widetilde M_{des}/h=O(1),
+\qquad
+D_h^a(\widetilde M_{des}/h)=O(S^{-a})+o(1)\quad(a\ge1).
+}
 \]
 
-The whole-space Leray projector survives the isotropic dilation exactly, and the root phase increment is only `O(S^{-1})` in this semiclassical derivative.  The remaining barrier is now a sharp source/curl remainder bound, not a carrier-frequency blowup.
+Therefore its inclusion in the forward mean generator costs a **uniform** coefficient constant, not `exp(poly(S))`.  The next attack is no longer root localization; it is the exact source-rescaled Oseen/covariance estimate and the common coupled fixed point.
