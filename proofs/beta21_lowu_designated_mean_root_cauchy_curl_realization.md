@@ -1,6 +1,6 @@
 # Cauchy/curl realization of the designated beta-zero mean root in the source-normalized whole-space chart
 
-**Status:** PROVED LOCAL PRINCIPAL CURL REALIZATION + SEMICLASSICAL ERROR REDUCTION IN THE SOURCE-NORMALIZED CARTESIAN CHART / FULL SOURCE-CHART IDENTIFICATION STILL TO BE PINNED.  This revision corrects the coordinate normalization of the previous version.  The small parameter `h=sqrt(epsilon)` normalizes the carrier only **after** the standard isotropic physical dilation by `sqrt(Q)` used by the source.
+**Status:** PROVED LOCAL EXACT-DIVERGENCE-FREE CURL REDUCTION + UNIFORM SEMICLASSICAL ROOT-JET BUDGET / EXACT COMMON-COVER PHASE IDENTIFICATION STILL TO BE PINNED.  This revision removes an inapplicable shortcut: the source `primaryCurlRemainder` theorem assumes a nonzero harmonic, so it cannot be invoked directly for the angular-mean beta-zero root.  The needed estimate instead follows from the explicit curl construction below.
 
 The low-`u` boundary-layer cell requires a pre-existing beta-zero mean root
 
@@ -8,89 +8,66 @@ The low-`u` boundary-layer cell requires a pre-existing beta-zero mean root
 M=P-2C
 \]
 
-on the incoming physical Cauchy slice.  Such a field can be supplied as genuine initial data by an exact localized curl.  In the source-normalized whole-space chart its principal amplitude is `O(h)`, its beta-zero covector is `O((hS)^{-1})`, and its curl-localization error is smaller by `hS poly(S)->0`.
+on the incoming physical Cauchy slice.  In the isotropically normalized whole-space chart its amplitude is `O(h)`, its covector is `O((hS)^{-1})`, and every non-principal coefficient derivative gains an additional factor `h`.  Thus the normalized transport coefficient `M_des/h` has uniformly bounded semiclassical jets; all positive-order principal jets are actually `O(S^{-1})` or smaller.
 
 No exact reset cell or global cascade is claimed here.
 
-## 1. Whole-space source chart
-
-At one dyadic/source level let `Q` be the chart scale and let
-
-\[
-A=\frac12+h_{prof}
-\]
-
-be the source velocity homogeneity exponent.  Around the physical relay center `x_0`, introduce the isotropically rescaled Cartesian variable
-
-\[
-\boxed{
-y=\frac{x-x_0}{\sqrt Q}.}
-\tag{CR1}
-\]
-
-For a physical velocity field `u_phys`, write its chart-normalized representative as
-
-\[
-\boxed{
-\widetilde u(y)=Q^A u_{phys}(x_0+\sqrt Q\,y).
-}
-\tag{CR2}
-\]
-
-The source carrier calculation in `chart_invariant_carrier_scale.md` gives
-
-\[
-D_r,D_z,D_\theta
-=\sqrt Q\times(\text{physical spatial derivative})
-\]
-
-at the level relevant to the carrier, and
-
-\[
-\boxed{h\,kB_s\asymp1,\qquad h:=\sqrt\varepsilon.}
-\tag{CR3}
-\]
-
-Thus `h nabla_y`, not `h nabla_x`, is the natural semiclassical derivative for the packet carrier.
-
-The chart is still the whole space `R^3`; no artificial spatial boundary is introduced.
-
-## 2. Root phase and normalized covector
-
-Let `Theta_P,Theta_C` be the reconstructed physical phases of the beta-two parent and beta-one catalyst.  Define
-
-\[
-\boxed{\Theta_M:=\Theta_P-2\Theta_C.}
-\tag{CR4}
-\]
-
-Its angular coefficient vanishes because
-
-\[
-\beta(P)-2\beta(C)=0.
-\]
+## 1. Whole-space normalized chart
 
 Let
 
 \[
-\widetilde\Theta_M(y)
-:=\Theta_M(x_0+\sqrt Q\,y)
+h:=\sqrt\varepsilon,
+\qquad
+ y=\frac{x-x_0}{\sqrt Q}.
 \]
 
-and
+For physical velocity `u_phys`, write the source-normalized representative
 
 \[
-\boxed{\Xi_M:=\nabla_y\widetilde\Theta_M.}
-\tag{CR5}
+\widetilde u(y)=Q^A u_{phys}(x_0+\sqrt Q\,y).
 \]
 
-At the low-`u` boundary-layer point the reduced slope separation is
+The source carrier normalization gives
 
 \[
-\delta_S=\kappa/S.
+\boxed{h\,kB_s\asymp1.}
+\tag{CR1}
 \]
 
-Since the root normal coefficient is a fixed nonzero multiple of that difference and the normalized carrier is `kB_s`, the exact finite-`S` source coefficients give, on a sufficiently small strict core,
+The natural semiclassical derivative is therefore
+
+\[
+\boxed{D_h:=h\nabla_y=h\sqrt Q\,\nabla_x.}
+\tag{CR2}
+\]
+
+The dilation maps `R^3` onto `R^3`; no artificial boundary is introduced.
+
+## 2. Exact root phase
+
+Define the root phase by the exact character relation
+
+\[
+\boxed{\Theta_M:=\Theta_P-2\Theta_C.}
+\tag{CR3}
+\]
+
+and in normalized coordinates
+
+\[
+\widetilde\Theta_M(y)=\Theta_M(x_0+\sqrt Q\,y),
+\qquad
+\Xi_M:=\nabla_y\widetilde\Theta_M.
+\]
+
+The angular coefficient cancels because `beta(P)-2 beta(C)=0`.  At the boundary-layer scale
+
+\[
+\delta_S=\kappa/S
+\]
+
+the remaining radial/normal mismatch is a fixed nonzero multiple of `delta_S`.  Hence on a strict core the exact finite-`S` coefficients have the target two-sided estimate
 
 \[
 \boxed{
@@ -98,117 +75,95 @@ Since the root normal coefficient is a fixed nonzero multiple of that difference
 \le h|\Xi_M|
 \le\frac{c_+}{S}
 }
-\tag{CR6}
+\tag{CR4}
 \]
 
-for fixed `0<c_-<=c_+<infty` and all sufficiently large levels.  Equivalently,
+for fixed positive `c_-,c_+`.  Equivalently,
 
 \[
 \boxed{|\Xi_M|\asymp(hS)^{-1}.}
+\tag{CR5}
+\]
+
+Pinning the constants in (CR4) to the exact common-cover phase formula remains a source-notation task; the scaling follows directly from (CR1) and the exact character slope separation.
+
+## 3. Transverse root polarization
+
+The frozen beta-zero polarization is
+
+\[
+\boxed{b_M=-S_MK+c_0R_MN}
+\tag{CR6}
+\]
+
+with no radial component, while the beta-zero phase normal is radial.  Thus `b_M dot Xi_M=0` at principal order.  On the strict core choose its exact smooth transverse projection
+
+\[
+\widetilde b_M\cdot\Xi_M=0.
 \tag{CR7}
 \]
 
-In raw physical coordinates the covector is `Q^{-1/2}Xi_M`; all estimates below are intentionally carried out in the normalized whole-space `y` chart.
+The projection changes the frozen vector only by the allowed finite-`S`/slow-frame error.
 
-## 3. Principal root polarization
+## 4. Exact curl and physical Cauchy field
 
-The beta-zero mean-root polarization audit gives, in the frozen source frame,
-
-\[
-\boxed{b_M=-S_MK+c_0R_MN,}
-\tag{CR8}
-\]
-
-with no radial component.  The beta-zero phase normal is radial at principal order, so
-
-\[
-\boxed{b_M\cdot\Xi_M=0}
-\tag{CR9}
-\]
-
-at the frozen principal point.
-
-On the strict core, replace `b_M` by its smooth pointwise orthogonal projection to `Xi_M^perp`; this changes it only by the already allowed finite-`S`/slow-frame perturbation.  Denote the exact transverse polarization by
-
-\[
-\widetilde b_M,
-\qquad
-\widetilde b_M\cdot\Xi_M=0.
-\tag{CR10}
-\]
-
-## 4. Exact curl in normalized coordinates
-
-Choose a smooth source-admissible cutoff `chi(y)` supported strictly inside the relay core and equal to one on the smaller orbit-interaction core.  Let `a_M` be the normalized complex root amplitude selected by the principal Poincare fixed point.
-
-Define
+Choose a normalized source-admissible cutoff `chi(y)` equal to one on the orbit core and let `a_M` be the normalized complex root amplitude.  Define
 
 \[
 \boxed{
-\widetilde A_M(y)
-:=
-\chi(y)
-\frac{h a_M}{i|\Xi_M(y)|^2}
-\bigl(\Xi_M(y)\times\widetilde b_M(y)\bigr)
- e^{i\widetilde\Theta_M(y)}.
+\widetilde A_M
+=
+\chi
+\frac{h a_M}{i|\Xi_M|^2}
+(\Xi_M\times\widetilde b_M)
+ e^{i\widetilde\Theta_M}.
 }
-\tag{CR11}
+\tag{CR8}
 
 Set
 
 \[
 \boxed{
-\widetilde M_{des}
-:=2\Re(\nabla_y\times\widetilde A_M).
+\widetilde M_{des}=2\Re(\nabla_y\times\widetilde A_M).
 }
-\tag{CR12}
+\tag{CR9}
 
 Then
 
 \[
 \boxed{\nabla_y\cdot\widetilde M_{des}=0}
-\tag{CR13}
+\tag{CR10}
 \]
 
 exactly.
 
-Pull back to physical coordinates by
+Pull back to the physical slice by
 
 \[
-\boxed{
 M_{des}^{phys}(x)
-:=Q^{-A}\widetilde M_{des}
+=Q^{-A}
+\widetilde M_{des}
 \left(\frac{x-x_0}{\sqrt Q}\right).
-}
-\tag{CR14}
+\tag{CR11}
 \]
 
-Because isotropic dilation and multiplication by a scalar preserve zero divergence,
+Isotropic dilation preserves zero divergence, so this is honest divergence-free Cauchy data, not a future-time control.
+
+## 5. Principal term and direct localization remainder
+
+When the curl hits the exponential,
 
 \[
-\boxed{\nabla_x\cdot M_{des}^{phys}=0.}
-\tag{CR15}
+\nabla_y e^{i\widetilde\Theta_M}=i\Xi_Me^{i\widetilde\Theta_M}.
 \]
 
-Thus the designated root is honest physical Cauchy data.
-
-## 5. Principal curl term
-
-When `nabla_y` hits the exponential,
+Using transversality,
 
 \[
-\nabla_y e^{i\widetilde\Theta_M}
-=i\Xi_Me^{i\widetilde\Theta_M}.
+\Xi\times(\Xi\times b)=-|\Xi|^2b.
 \]
 
-Using
-
-\[
-\Xi\times(\Xi\times b)
-=-|\Xi|^2b
-\]
-
-for `b perpendicular Xi`, the leading curl is
+Hence
 
 \[
 \boxed{
@@ -217,166 +172,174 @@ for `b perpendicular Xi`, the leading curl is
 \chi h a_M\widetilde b_Me^{i\widetilde\Theta_M}
 +R_M^{curl}.
 }
-\tag{CR16}
+\tag{CR12}
 \]
 
-Hence the normalized source-chart root has size
-
-\[
-\boxed{\widetilde M_{des}=O(h)=O(\sqrt\varepsilon),}
-\tag{CR17}
-\]
-
-i.e. source order `M_{1/2}`.
-
-## 6. Curl-localization remainder
-
-The normalized vector-potential prefactor has size
+The vector-potential prefactor is
 
 \[
 \frac{h}{|\Xi_M|}
-\asymp h^2S
-\tag{CR18}
+\asymp h^2S.
 \]
 
-by (CR7).  A derivative falling on the fixed normalized cutoff or on a source-smooth frame/polarization coefficient therefore contributes only a lower-order term.  At every fixed source derivative order,
+A derivative falling on the normalized cutoff, frame or polarization therefore gives
 
 \[
 \boxed{
-\|R_M^{curl}\|
-\le C h^2S\,\operatorname{poly}(S).
+\|R_M^{curl}\|_\infty
+\le Ch^2S\,\operatorname{poly}(S).
 }
-\tag{CR19}
+\tag{CR13}
 \]
 
-Relative to the leading `O(h)` root,
+Thus
 
 \[
 \boxed{
-\frac{\|R_M^{curl}\|}{h}
-\le ChS\,\operatorname{poly}(S)
-\longrightarrow0.
+\widetilde M_{des}
+=h a_M\widetilde b_Me^{i\widetilde\Theta_M}
++O(h^2S\,\operatorname{poly}(S))
 }
-\tag{CR20}
+\tag{CR14}
 \]
 
-This is the same structural conclusion as source Lemma 7.7: exact curl localization preserves the leading packet and introduces only lower source classes.
-
-## 7. Correct semiclassical jets
-
-Define
+on the interaction core, and the relative error is
 
 \[
-\boxed{D_h:=h\nabla_y=h\sqrt Q\,\nabla_x.}
-\tag{CR21}
+\boxed{hS\,\operatorname{poly}(S)=o(1).}
+\tag{CR15}
 \]
 
-When `D_h` hits the root phase it contributes
+## 6. Sharpened semiclassical jets
+
+The key point is that the crude statement `h poly(S)` is not the correct bound for positive-order derivatives of the normalized coefficient.
+
+For the principal term, every `D_h` derivative hitting the phase contributes
 
 \[
 h\Xi_M=O(S^{-1}).
 \]
 
-When it hits a normalized cutoff/frame coefficient it contributes the corresponding source-normalized fixed-order jet.  Thus, for every fixed `a`,
+If a `D_h` derivative hits a normalized cutoff/frame/polarization coefficient, it contributes an **additional factor `h`** times a fixed-order source-polynomial jet.  Hence, for every fixed `a>=1`,
 
 \[
 \boxed{
-\|D_h^a\widetilde M_{des}\|_{L^\infty_y}
+\|D_h^a\widetilde M_{des}\|_\infty
 \le
-C_a h\,\operatorname{poly}(S)(1+S^{-a}).
+C_a h
+\left[
+S^{-a}+h\,\operatorname{poly}(S)
+\right].
 }
-\tag{CR22}
+\tag{CR16}
 \]
 
-The pure phase contribution obeys the sharper estimate
+At order zero,
 
 \[
 \boxed{
-\|D_h^a\widetilde M_{des}^{principal}\|_\infty
-\le C_a hS^{-a}.
+\|\widetilde M_{des}\|_\infty
+\le Ch[1+o(1)].
 }
-\tag{CR23}
+\tag{CR17}
 \]
 
-No statement of the form `h nabla_x Theta_M=O(S^{-1})` is used; the `sqrt(Q)` chart factor in (CR21) is essential.
-
-## 8. Principal self-advection
-
-Because
+Equivalently, for the transport coefficient
 
 \[
-\widetilde b_M\cdot\Xi_M=0,
+V_M:=\widetilde M_{des}/h,
 \]
 
-the frozen plane-wave self-advection vanishes, including the conjugate zero-frequency cross term.  Hence
+we have
 
 \[
 \boxed{
-\Pi_{principal}\mathcal B(\widetilde M_{des},\widetilde M_{des})=0.
+\|V_M\|_\infty\le C,
 }
-\tag{CR24}
-
-The exact localized root has only lower-order self-interaction generated by (CR19) and slow coefficient variation.
-
-## 9. Short-cell viscous persistence
-
-In the source-normalized chart the viscous coefficient is `epsilon=h^2` and
-
-\[
-|\Xi_M|^2\asymp(h^2S^2)^{-1}.
+\tag{CR18}
 \]
 
-Therefore
+and for every fixed `a>=1`,
 
 \[
 \boxed{
-\varepsilon|\Xi_M|^2\asymp S^{-2}.
+\|D_h^aV_M\|_\infty
+\le
+C_a\left[S^{-a}+h\,\operatorname{poly}(S)\right]
+=o(1)+O(S^{-a}).
 }
-\tag{CR25}
+\tag{CR19}
 \]
 
-Across the `O(1)` stretched boundary-layer collar, viscous damping changes the principal root amplitude by only
+This is the uniform coefficient estimate needed for the root-augmented Oseen generator.  No `exp(poly(S))` Gronwall factor is forced by the root.
+
+## 7. Why the published nonzero-harmonic curl theorem is not used
+
+The source theorem `PrimaryPulseBounds.primaryCurlRemainder_class` is derived from `CurlClassBounds.normalCurlRemainder_class` under the hypothesis
+
+\[
+\texttt{harmonic n != 0}.
+\]
+
+Our root has zero angular harmonic.  Therefore that theorem cannot be cited directly for (CR13)--(CR19).
+
+The estimates here instead use the explicit exact curl (CR8)--(CR12).  This is sufficient because the root still has a nonzero radial reconstructed covector (CR4), even though its angular frequency is zero.
+
+## 8. Principal self-advection and viscosity
+
+The transverse principal wave satisfies
+
+\[
+\Pi_{principal}\mathcal B(M_{des},M_{des})=0,
+\tag{CR20}
+\]
+
+including the conjugate zero-frequency cross term.
+
+Also
+
+\[
+|\Xi_M|^2\asymp(h^2S^2)^{-1},
+\]
+
+so the normalized viscous rate is
+
+\[
+\boxed{
+\varepsilon|\Xi_M|^2
+=h^2|\Xi_M|^2
+\asymp S^{-2}.
+}
+\tag{CR21}
+\]
+
+Across one `O(1)` boundary-layer collar the principal root therefore persists with multiplier
 
 \[
 \boxed{1+O(S^{-2}).}
-\tag{CR26}
+\tag{CR22}
 \]
 
-## 10. Cauchy realizability and whole-space scaling
+## 9. Remaining exact source obligations
 
-The field (CR14) is defined on one genuine physical Cauchy slice.  It is not a future-time control profile.
+The direct curl removes the nonzero-harmonic applicability issue.  The remaining source tasks are now narrow:
 
-The dilation `x=x_0+sqrt(Q)y` maps `R^3` to `R^3`.  It therefore preserves the whole-space nature of the pressure problem.  In particular the whole-space Leray projector may be conjugated through this isotropic dilation; its degree-zero Fourier symbol is unchanged up to the corresponding rotation/translation convention.
+1. pin the exact common-cover formula for `Theta_M=Theta_P-2Theta_C`;
+2. prove the two-sided normalized covector bound (CR4) with explicit constants at `u=1.8`, `x=0.70`, `kappa=kappa_*`;
+3. identify `chi` with an admissible normalized source cutoff whose fixed-order `y`-jets satisfy the source polynomial bounds used above;
+4. carry (CR19) into the whole-space root-augmented mean propagator.
 
-## 11. Remaining exact source insertion
+## 10. Consequence
 
-For a publication-level theorem one must still pin:
-
-1. the exact common-cover identity giving `Theta_M=Theta_P-2Theta_C`;
-2. the two-sided normalized covector bound (CR6) from the finite-`S` phase/frame coefficients;
-3. the chosen normalized cutoff to the source admissible slow/radial cutoff family;
-4. the precise polynomial/source-positive factors in (CR22).
-
-The source carrier identity `h kB_s asy 1`, Lemma 7.7 and `source_localized_action_preservation.md` already provide the required scaling architecture.
-
-## 12. Consequence
-
-The preloaded beta-zero root is Cauchy-realizable as an exact divergence-free field.  In the correct normalized whole-space chart,
+The designated beta-zero mean root has an exact divergence-free Cauchy realization and, in the correct source-normalized whole-space chart,
 
 \[
 \boxed{
-\widetilde M_{des}
-=h a_Mb_Me^{i\widetilde\Theta_M}+o(h),
+\widetilde M_{des}/h=O(1),
+\qquad
+D_h^a(\widetilde M_{des}/h)
+=O(S^{-a})+o(1)\quad(a\ge1).
 }
 \]
 
-and
-
-\[
-\boxed{
-\|(h\nabla_y)^a\widetilde M_{des}\|
-\le h\,\operatorname{poly}(S).
-}
-\]
-
-Its localization error and viscous damping are asymptotically smaller than the finite-principal-map correction.  These are the jet inputs required by the corrected whole-space mean-root Oseen reduction.
+Thus its fast physical oscillation does **not** generate a large coefficient constant in the semiclassical Oseen problem.  The next step is to use (CR18)--(CR19) in the projected whole-space mean equation and then couple that solve to the nonzero orbit block.
