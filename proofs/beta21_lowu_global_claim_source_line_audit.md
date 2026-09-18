@@ -321,3 +321,164 @@ The next work is not another global theorem.  It is a conservative proof replay 
 Any nonabsorbable loss or unproved compactness/invertibility assumption found in that replay downgrades the global chain immediately.
 
 No final unforced singularity or Clay-prize claim is made here.
+
+
+---
+
+# Gate 1 source-line correction: missing finite-\(S\) tangent normal-form theorem
+
+A deeper replay of the Gate 1 dependency chain found an earlier missing theorem.
+
+The file
+
+**beta21_lowu_exact_discrete_central_profile.md**
+
+treats as established the operator expansion
+
+\[
+\boxed{
+\mathcal P_{b,S}^{tan}
+=
+I+h_S\mathcal L_b+h_S^2\mathcal K_{b,S},
+\qquad
+h_S=S^{-1/2},
+}
+\tag{SLG1}
+\]
+
+with a uniform graph-norm bound
+
+\[
+\boxed{
+\sup_{S\ge S_0}
+\|\mathcal K_{b,S}\|_{X_b^{m+2}\to X_b^m}
+<\infty.
+}
+\tag{SLG2}
+\]
+
+However there is no theorem file
+\[
+\texttt{beta21_lowu_finiteS_profile_normal_form.md}
+\]
+in the branch.
+
+The existing file
+
+**beta21_lowu_profile_normal_form_coefficients.md**
+
+proves only the leading continuum coefficients and physical Gaussian admissibility.  Its own final list of open steps explicitly includes
+
+> derive the full \(O(h_S^2)\) remainder in the finite-\(S\) Poincare expansion in a Gaussian profile norm.
+
+Likewise
+
+**beta21_lowu_finiteS_designated_profile_obligation.md**
+
+identifies the complete variable-coefficient \(O(S)\) designated fixed-vector problem as the missing theorem.
+
+Therefore the exact discrete-profile theorem currently depends on an unproved input.
+
+## Consequence for gate status
+
+Until (SLG1)--(SLG2) are proved from the exact normalized finite-\(S\) designated generator,
+
+\[
+\boxed{
+\text{Gate 1 exact discrete core profile is CONDITIONAL.}
+}
+\]
+
+Since the exact Gate 1 characteristic family is an input to the repaired Gate 2 monodromy theorem,
+
+\[
+\boxed{
+\text{Gate 2 is downstream and therefore CONDITIONAL as well.}
+}
+\]
+
+Gate 3 is consequently also conditional.
+
+This correction supersedes every earlier branch/conversation statement that Gate 1--3 were unconditionally closed.
+
+## What is already available toward the repair
+
+The missing theorem is sharply constrained.
+
+1. The exact principal root-wave growing coefficient is given in
+   **beta21_lowu_single_root_coupling_ratio.md** by explicit formulas (RC7)--(RC9).
+
+2. The source growing-coordinate normalization theorem proves
+   \[
+   \chi_1=\chi_2=1
+   \]
+   at principal source-frame level.
+
+3. The tuned polarization satisfies
+   \[
+   m_S=\frac{2\kappa_S}{S},
+   \qquad
+   \tau_S=\tau_*+O(S^{-1}).
+   \]
+
+4. The pinned OpenAI source gives moving-frame/modal errors
+   \[
+   |error_{\alpha\beta}|\le C/S
+   =
+   Ch_S^2.
+   \]
+
+5. The physical action is centered:
+   \[
+   H_b(x)=H_b'(x)=0,
+   \]
+   so the action variation on the tangent scale
+   \[
+   z=x+d_bh_Sy
+   \]
+   starts quadratically.
+
+6. The tangent shift satisfies
+   \[
+   R=\rho_b e^{h_S\partial_y}
+   =
+   \rho_b\left(
+   I+h_S\partial_y+\frac12h_S^2\partial_y^2+\cdots
+   \right).
+   \]
+
+Thus the expected theorem is plausible but still has to be proved in the exact physical Gaussian graph norm.
+
+## Exact next target
+
+The next file must first pin the normalized finite-\(S\) designated generator and then prove
+
+\[
+\boxed{
+\mathcal P_{b,S}^{tan}
+=
+I+h_S(v_b\partial_y+B_by+C_b)
++h_S^2\mathcal K_{b,S},
+}
+\]
+
+with a uniform \(X_b^{m+2}\to X_b^m\) bound on \(\mathcal K_{b,S}\).
+
+Only after that theorem is proved may
+
+- the exact discrete central-profile theorem;
+- exact Gate 1 gluing;
+- repaired Gate 2 cocycle;
+- Gate 3 physical extraction
+
+be re-promoted.
+
+The preferred next file is
+
+\[
+\boxed{
+\texttt{beta21_lowu_finiteS_profile_normal_form.md}.
+}
+\]
+
+No global singularity or Clay-prize claim is made.
