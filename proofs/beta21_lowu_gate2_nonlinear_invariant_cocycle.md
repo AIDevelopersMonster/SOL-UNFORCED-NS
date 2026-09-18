@@ -6,17 +6,16 @@ This note closes Gate 2.
 
 The preceding theorem layers establish:
 
-1. an exact local Gate 1 characteristic family
-   `S_S(Xi)`;
+1. an exact local Gate 1 characteristic family `S_S(Xi)`;
 2. a finite characteristic Fredholm block `C^3`;
 3. an analytic hyperbolic complement with exponential dichotomy;
-4. a constant-fast-cell global schedule
-   `Delta sigma_j = Lambda epsilon_j`;
+4. a constant-fast active-cell schedule with positive shrinking buffers `b_j=epsilon_j^2`;
 5. a `C^2` exact local section;
-6. an exact characteristic connection with square-summable discretization
-   defect;
-7. a characteristic fundamental matrix and inverse that are uniformly
-   bounded for all late `sigma`.
+6. exact identity of the frozen active-cell tangent monodromy;
+7. an exact skew-Hermitian orthonormal/Kato slow characteristic connection;
+8. square-summable slow-section Taylor defect and summable buffer perturbation;
+9. a characteristic fundamental matrix and inverse uniformly bounded for all late stages.
+
 
 The only remaining issue is nonlinear coupling of the bounded
 characteristic orbit to the stable/unstable analytic complement.
@@ -52,6 +51,18 @@ No singularity theorem is claimed in this note.
 
 ---
 
+## 0. Source-line repair incorporated
+
+This version supersedes the earlier dependence on
+`beta21_lowu_gate2_characteristic_connection_audit.md`.
+The nonlinear cocycle uses instead:
+
+- `beta21_lowu_gate2_shrinking_buffer_schedule.md`;
+- `beta21_lowu_gate2_within_stage_characteristic_monodromy.md`.
+
+The first theorem makes the entire extra-buffer flow a summable `C^1` perturbation.  The second proves, by differentiating the exact Gate 1 fixed-family identity, that the frozen active-cell characteristic monodromy is exactly the identity and constructs an orthonormal characteristic frame whose slow connection is exactly skew-Hermitian.  Thus no unproved source sign for `error11/error22` is used anywhere in the cocycle theorem.
+
+
 ## 1. Exact one-step map
 
 Let
@@ -63,7 +74,7 @@ Let
 be the exact physical map consisting of
 
 1. the exact local low-`u` Gate 1 evolution on cell `j`;
-2. the fixed positive source-safe buffers;
+2. the positive shrinking source-safe buffers of fast length \(b_j=\varepsilon_j^2\);
 3. exact source chart/cover rebase;
 4. exact natural velocity normalization;
 5. relabelling to the next low-`u` characteristic chart.
@@ -94,11 +105,11 @@ Let
 \Xi_j^0
 \]
 
-be one nonzero solution of the exact characteristic connection from
+be one nonzero solution of the repaired exact characteristic transport from
 
-`beta21_lowu_gate2_characteristic_connection_audit.md`.
+`beta21_lowu_gate2_within_stage_characteristic_monodromy.md`.
 
-It remains in a fixed compact Gate 1 characteristic chart and obeys
+The frozen active-cell tangent monodromy is exactly the identity, the slow characteristic connection is skew-Hermitian in the orthonormal Gate 1 tangent frame, and the shrinking buffers contribute an \(\ell^1\) perturbation.  Therefore the characteristic fundamental matrix and its inverse remain uniformly bounded.  In particular the reference orbit stays in a fixed compact Gate 1 characteristic chart and obeys
 
 \[
 0<c_0\le|\Xi_j^0|\le C_0<\infty.
@@ -188,7 +199,7 @@ Let
 Q_c(j,k)
 \]
 
-be the characteristic propagator.  The previous audit gives
+be the characteristic propagator in the repaired orthonormal/Kato characteristic frame.  The within-stage monodromy theorem plus the shrinking-buffer theorem give
 
 \[
 \boxed{
@@ -338,7 +349,7 @@ Use the Banach space
 =
 \left\{
 (\xi,w):
-\sup_{j\ge J}|\xi_j|<\infty,quad
+\sup_{j\ge J}|\xi_j|<\infty,\quad
 \sup_{j\ge J}\frac{\|w_j\|}{\eta_j}<\infty
 \right\}
 \tag{NC19}
@@ -520,7 +531,7 @@ C
 
 Every term in brackets tends to zero as `J->infinity`.
 
-Hence, after increasing `J),
+Hence, after increasing `J`,
 
 \[
 \boxed{
