@@ -1,6 +1,6 @@
 # Low-`u` beta-(2,1) boundary-layer bilateral orbit reset
 
-**Status:** PROVED PRINCIPAL BOUNDARY-LAYER REDUCTION / FINITE-`S` PRINCIPAL TUNING TRANSVERSALITY PROVED / EXACT GROWING-BLOCK NAVIER--STOKES CLOSURE OPEN. This note replaces the temporally controlled corrected cell by a genuinely Cauchy-realizable physical Fourier orbit state. The preferred working point is
+**Status:** SUPERSEDED IN ITS ONE-SIDED ROOT-SHIFT FORM. THE REAL CAUCHY ROOT CONTAINS BOTH `+M` AND `-M` CHARACTERS, SO THE PRINCIPAL GENERATOR MUST CONTAIN BOTH `R` AND `R^{-1}`. SEE `beta21_lowu_real_root_bidirectional_principal_reset.md`. THE ORBIT ALGEBRA, ACTION FUNCTIONS, AND LOW-`u` STABILITY ANALYSIS REMAIN USEFUL; THE OLD DISPERSION FORMULAS AND NUMBERS MUST NOT BE CITED AS THE CURRENT PRINCIPAL RESET. This note replaces the temporally controlled corrected cell by a genuinely Cauchy-realizable physical Fourier orbit state. The preferred working point is
 
 \[
 \boxed{u=1.8,\qquad x=0.70.}
