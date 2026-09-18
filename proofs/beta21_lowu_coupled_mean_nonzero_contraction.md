@@ -252,17 +252,56 @@ By (CP3), (CP5), and (CP12),
 
 Thus the coupled system is asymptotically contractive even though one off-diagonal leg is only `O(1)` or polynomially bounded.
 
-## 6. Explicit weighted product norm
+## 6. Explicit weighted product norm from proved majorants
 
-The spectral-radius argument can be realized by an explicit Banach norm.
+The previous version chose
 
-Assume first `b_S,c_S>0` and define
+\[
+\tau_S=\sqrt{b_S/c_S}
+\]
+
+and then estimated \(\tau_S\) using only **upper** bounds on \(b_S,c_S\).
+That inference is invalid without a lower bound on \(c_S\).
+
+Use the proved majorants instead.
+
+Choose explicit positive upper bounds
 
 \[
 \boxed{
-\tau_S:=\sqrt{\frac{b_S}{c_S}}.
+b_S\le \bar b_S
+:=
+C_bS^{A_b}
+\left[
+\varepsilon^{1/2-\kappa_s}
++\rho_S
+\right],
 }
 \tag{CP16}
+\]
+
+and
+
+\[
+\boxed{
+c_S\le \bar c_S
+:=
+C_c(1+S^{A_c}).
+}
+\tag{CP17}
+\]
+
+The harmless \(1+\) makes \(\bar c_S>0\) even if the actual coupling happens to vanish.
+
+Define
+
+\[
+\boxed{
+\tau_S
+:=
+\sqrt{\frac{\bar b_S}{\bar c_S}}.
+}
+\tag{CP18}
 \]
 
 Use
@@ -270,36 +309,31 @@ Use
 \[
 \boxed{
 \|(m,z)\|_{*,S}
-:=
+=
 \|m\|_{Y_S}
 +\tau_S\|z\|_{Z_S}.
 }
-\tag{CP17}
+\tag{CP19}
 \]
 
 Then
 
 \[
-\begin{aligned}
-\|\delta m'\|+
-\tau_S\|\delta z'\|
-&\le
-(q_{m,S}+\tau_Sc_S)\|\delta m\|\\
-&\quad+
-(b_S+\tau_Sq_{z,S})\|\delta z\|.
-\end{aligned}
-\]
-
-By the choice of `tau_S`,
-
-\[
-\tau_Sc_S=\sqrt{b_Sc_S},
+\tau_S c_S
+\le
+\tau_S\bar c_S
+=
+\sqrt{\bar b_S\bar c_S},
 \]
 
 and
 
 \[
-\frac{b_S}{\tau_S}=\sqrt{b_Sc_S}.
+\frac{b_S}{\tau_S}
+\le
+\frac{\bar b_S}{\tau_S}
+=
+\sqrt{\bar b_S\bar c_S}.
 \]
 
 Therefore
@@ -311,7 +345,7 @@ Therefore
 q_{*,S}
 \|U-V\|_{*,S},
 }
-\tag{CP18}
+\tag{CP20}
 \]
 
 with
@@ -321,43 +355,60 @@ with
 q_{*,S}
 \le
 \max(q_{m,S},q_{z,S})
-+\sqrt{b_Sc_S}
-\longrightarrow0.
++
+\sqrt{\bar b_S\bar c_S}.
 }
-\tag{CP19}
+\tag{CP21}
 \]
 
-If either off-diagonal coefficient vanishes, the same conclusion follows with any positive fixed weight on the decoupled component.
-
-Thus for sufficiently large levels one may arrange
+Since
 
 \[
-\boxed{q_{*,S}<1/2.}
-\tag{CP20}
+\bar b_S\bar c_S
+\le
+S^A
+\left[
+\varepsilon^{1/2-\kappa_s}
++\rho_S
+\right]
+\longrightarrow0,
 \]
 
-## 7. Inhomogeneous radii
+we obtain
 
-The zero-input nonzero defect satisfies
+\[
+\boxed{
+q_{*,S}\to0.
+}
+\tag{CP22}
+\]
+
+Thus for sufficiently large \(S\),
+
+\[
+\boxed{
+q_{*,S}<1/2.
+}
+\tag{CP23}
+\]
+
+This proof needs no nonzero lower bound on either actual off-diagonal coefficient.
+
+## 7. Inhomogeneous radius in the majorant-weighted norm
+
+The zero-input bounds remain
 
 \[
 \boxed{
 R_{z,S}
 \le
 S^A\varepsilon^{1/5}
-+S^Ae^{-c_*S}.
++S^Ae^{-c_*S},
 }
-\tag{CP21}
+\tag{CP24}
 \]
 
-The residual mean forcing consists of:
-
-- old source mean defects;
-- genuine zero-character orbit covariance of order `M_{1-kappa_s}`;
-- exponentially small nonzero `rM` tails;
-- lower-order localized root self-source.
-
-Hence
+and
 
 \[
 \boxed{
@@ -366,42 +417,85 @@ R_{m,S}
 S^A\varepsilon^{1-\kappa_s}
 +S^Ae^{-cS}.
 }
-\tag{CP22}
-\]
-
-In the weighted product norm the zero-input size is
-
-\[
-R_{*,S}
-:=R_{m,S}+\tau_SR_{z,S}.
-\tag{CP23}
-\]
-
-Although `tau_S` may tend to zero or infinity polynomially/exponentially depending on the chosen coarse bounds, its asymptotic size is controlled by (CP10) and (CP8):
-
-\[
-\tau_S
-\lesssim
-S^A\varepsilon^{1/4-\kappa_s/2}
-\]
-
-up to harmless factors when the leading `epsilon^(1/2-kappa_s)` term dominates `b_S`.
-
-Therefore
-
-\[
-\boxed{R_{*,S}\to0.}
-\tag{CP24}
-\]
-
-In particular one can choose a product ball radius
-
-\[
-\boxed{r_{*,S}:=2R_{*,S}}
 \tag{CP25}
 \]
 
-for all sufficiently large levels.
+Put
+
+\[
+\boxed{
+R_{*,S}
+:=
+R_{m,S}
++\tau_SR_{z,S}.
+}
+\tag{CP26}
+\]
+
+From (CP18),
+
+\[
+\tau_S
+\le
+S^A
+\left[
+\varepsilon^{1/2-\kappa_s}
++\rho_S
+\right]^{1/2}.
+\tag{CP27}
+\]
+
+Using
+
+\[
+\rho_S
+\le
+S^A\varepsilon^{1/5}
++S^Ae^{-c_*S},
+\]
+
+the weakest algebraic exponent in the bracket is \(1/5\). Hence
+
+\[
+\boxed{
+\tau_S
+\le
+S^A\varepsilon^{1/10}
++
+S^Ae^{-cS}.
+}
+\tag{CP28}
+\]
+
+Consequently
+
+\[
+\tau_SR_{z,S}
+\le
+S^A\varepsilon^{3/10}
++
+S^Ae^{-cS},
+\]
+
+and therefore
+
+\[
+\boxed{
+R_{*,S}\to0.
+}
+\tag{CP29}
+\]
+
+Choose
+
+\[
+\boxed{
+r_{*,S}:=2R_{*,S}.
+}
+\tag{CP30}
+\]
+
+This repairs the weighted-norm step using only inequalities that were actually proved upstream.
 
 ## 8. Ball invariance
 
@@ -433,7 +527,7 @@ Hence
 \mathcal T_S(B_{r_{*,S}})
 \subset B_{r_{*,S}}.
 }
-\tag{CP26}
+\tag{CP31}
 \]
 
 ## 9. Exact coupled correction
@@ -444,7 +538,7 @@ Banach's fixed-point theorem now gives a unique pair
 \boxed{
 (m_S,z_S)
 }
-\tag{CP27}
+\tag{CP32}
 \]
 
 in the shrinking product ball such that
@@ -453,7 +547,7 @@ in the shrinking product ball such that
 \boxed{
 \mathcal T_S(m_S,z_S)=(m_S,z_S).
 }
-\tag{CP28}
+\tag{CP33}
 \]
 
 Within the exact source/physical reconstruction already established, this means the residual mean and nonzero equations vanish simultaneously on the local relay collar for the frozen macroscopic principal parameters.
@@ -465,7 +559,7 @@ The correction obeys
 \|(m_S,z_S)\|_{*,S}
 \le2R_{*,S}	o0.
 }
-\tag{CP29}
+\tag{CP34}
 \]
 
 This is a local coupled zero-residual correction theorem **at fixed principal parameter values**.  It is not yet the final reset theorem because the corrected outgoing finite-dimensional Poincare coordinates need not equal their exact reset targets until the macroscopic parameters are adjusted.
@@ -500,7 +594,7 @@ is `C^1` in `p` and that
 \le S^A R_{*,S}
 =o(1)
 }
-\tag{CP30}
+\tag{CP35}
 \]
 
 in action-normalized outgoing coordinates.
@@ -511,7 +605,7 @@ The source audits already show that fixed parameter differentiation costs only p
 (I-D_{(m,z)}\mathcal T_S)^{-1}
 \]
 
-has norm at most `2` once (CP20) holds.  Thus (CP30) is expected to follow from the same source estimates, but it is recorded as the next theorem rather than silently assumed.
+has norm at most `2` once (CP20) holds.  Thus (CP35) is expected to follow from the same source estimates, but it is recorded as the next theorem rather than silently assumed.
 
 ## 12. Consequence
 
