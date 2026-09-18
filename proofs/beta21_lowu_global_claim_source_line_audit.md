@@ -1,6 +1,6 @@
 # Global-claim source-line audit: Gate 2 monodromy correction
 
-**Status:** SOURCE-LINE AUDIT IN PROGRESS. A critical unsourced step has been found in Gate 2. The current Gate 2--3 global chain is conditional until a buffer-inclusive / within-stage characteristic-monodromy theorem is proved.
+**Status:** SOURCE-LINE AUDIT IN PROGRESS. THE PREVIOUS GATE 2 CHARACTERISTIC-MONODROMY GAP HAS BEEN REPAIRED BY `beta21_lowu_gate2_shrinking_buffer_schedule.md` AND `beta21_lowu_gate2_within_stage_characteristic_monodromy.md`, AND THE NONLINEAR COCYCLE HAS BEEN RERUN AGAINST THOSE INPUTS. GATE 2 IS RESTORED AT THE BRANCH-THEOREM LEVEL. A FINAL GLOBAL SINGULARITY CLAIM REMAINS WITHHELD UNTIL THE REMAINING DERIVED GATE 1 / GATE 3 LAYERS ARE SOURCE-LINE AUDITED.
 
 Pinned source:
 
@@ -76,251 +76,248 @@ This must receive an explicit standard PDE citation in any global paper.
 
 ---
 
-## 3. The Gate 2 discrepancy
+## 3. Gate 2 discrepancy and repair
 
-The theorem file
+The first source-line pass found a real logical gap.
+
+The theorem
 
 **beta21_lowu_gate2_natural_rebase_characteristic_invariance.md**
 
-proves only
+proved only that pure source scale/reference rebase is neutral after natural normalization.  It explicitly left within-stage normalized characteristic dynamics open.
+
+A later audit had asserted a source-small Hermitian connection without computing the complete buffer-inclusive exact characteristic transport.
+
+That stronger source estimate is now discarded.
+
+### Repair A: shrinking buffers
+
+The theorem
+
+**beta21_lowu_gate2_shrinking_buffer_schedule.md**
+
+replaces fixed fast buffers by
 
 \[
-\boxed{\text{pure scale/reference rebase is neutral}.}
+b_j=\varepsilon_j^2.
 \]
 
-Its final section explicitly says that genuine normalized within-stage dynamics still requires analysis and names the missing target
+They remain positive and fit inside the same constant-fast allocation, while
 
-**beta21_lowu_gate2_within_stage_characteristic_monodromy.md**.
+\[
+\sum_j b_j<\infty.
+\]
 
-No such theorem file exists in the branch.
+Standard short-time smooth dependence gives a summable \(C^1\) perturbation of the identity for the entire normalized buffer flow.  Thus no sign or leading coefficient of the source modal errors is needed on the extra buffers.
 
-The later file
+### Repair B: exact frozen active-cell tangent monodromy
 
-**beta21_lowu_gate2_characteristic_connection_audit.md**
+Gate 1 supplies an exact characteristic family
 
-asserts
+\[
+\mathscr P_{S,p}\mathscr S_S(p,\Xi)
+=
+\mathscr S_S(p,\Xi).
+\]
+
+Differentiate in \(\Xi\):
+
+\[
+D_U\mathscr P_{S,p}\,
+D_\Xi\mathscr S_S
+=
+D_\Xi\mathscr S_S.
+\]
+
+Therefore
 
 \[
 \boxed{
-\operatorname{Herm}\mathcal A_c^{(0)}=0
+D_U\mathscr P_{S,p}|_{E_{S,p}}=I
 }
-\tag{SL1}
 \]
 
-and then
+on the exact characteristic tangent bundle.
 
-\[
-\boxed{
-\|\operatorname{Herm}\mathcal A_{c,S}\|
-\le
-CS^B(\varepsilon^{a_*}+e^{-cS}).
-}
-\tag{SL2}
-\]
+All finite-\(S\) modal/frame/curl/tail effects inside the frozen active cell are already included in this identity.
 
-The cited ingredients are skew moving-frame kinematics, eigenRate subtraction, pure-rebase neutrality, and source-small Gate 1 correction derivatives.
-
-Those ingredients do not yet compute the full exact connection
-
-\[
-\mathcal A_{c,S}
-=
-[D_\Xi(\mathfrak C\circ\mathscr S)]^{-1}
-\mathfrak C
-\left(
-\mathcal X_{S,p}(\mathscr S)
--
-\partial_\sigma\mathscr S
-\right).
-\]
-
-In particular they do not explicitly account for the complete entrance/exit buffer evolution and the real component induced after projection to the exact characteristic basis.
-
-Therefore the bounded characteristic fundamental matrix used later in Gate 2 is not yet source-line justified.
-
-\[
-\boxed{\text{CRITICAL CONDITIONAL STEP.}}
-\]
-
----
-
-## 4. Why an unabsorbed \(O(S^{-1})\) per-cell factor matters
-
-The source-slot bridge proves one low-\(u\) cell has \(O(1)\) source fast length and finite-\(S\) moving-frame/modal errors may integrate to
-
-\[
-O(S^{-1})
-\]
-
-on such an interval.
-
-Since
-
-\[
-S_j\asymp(\log j)^2,
-\]
-
-an unabsorbed real multiplier
-
-\[
-1+c/S_j+o(S_j^{-1})
-\]
-
-cannot be treated as summable forcing:
-
-\[
-\sum_jS_j^{-1}
-=
-\infty.
-\]
-
-It must either
-
-1. be absorbed into an exact frozen one-step monodromy;
-2. be shown to be a connection rate multiplied by \(\Delta\sigma_j\); or
-3. be proved skew / modulus-neutral by an exact identity.
-
-The current chain has not yet established one of these alternatives for the complete buffer-inclusive transport.
-
----
-
-## 5. Conservative repair
-
-### Buffer-inclusive exact frozen section
+### Repair C: orthonormal/Kato slow connection
 
 Let
 
 \[
-\mathcal B^{in}_{S,p}(b),
+B_S(p)=D_\Xi\mathscr S_S(p,\Xi_*),
 \qquad
-\mathcal B^{out}_{S,p}(b)
+G_S(p)=B_S(p)^*B_S(p),
 \]
 
-be normalized unforced buffer flow maps of fast length \(b>0\), and define
+and define the orthonormal characteristic frame
 
 \[
-\boxed{
-\mathscr P^{ext}_{S,p}
+\mathcal E_S(p)
 =
-\mathcal B^{out}_{S,p}(b)
-\circ
-\mathscr P^{Gate1}_{S,p}
-\circ
-\mathcal B^{in}_{S,p}(b).
-}
-\tag{SL3}
+B_S(p)G_S(p)^{-1/2}.
 \]
 
-Choose \(b>0\) sufficiently small but fixed.
-
-At \(b=0\), Gate 1 has an exact full-state fixed family and a transverse finite-dimensional solve. Smooth dependence of the physical buffer flow gives
+Then
 
 \[
-\mathcal B(b)=I+O(b)
+\mathcal E_S^*\mathcal E_S=I,
 \]
 
-in the normalized fixed-order chart.
-
-The natural target is therefore a buffer-inclusive exact family
+so along the trapped-spine slow path
 
 \[
-\boxed{
-\mathscr P^{ext}_{S,p}
-\mathscr S^{ext}_{S,b}(p,\Xi)
+\mathcal A_S
 =
-\mathscr S^{ext}_{S,b}(p,\Xi).
-}
-\tag{SL4}
+\mathcal E_S^*
+\partial_\sigma\mathcal E_S
 \]
 
-If this is proved, every frozen buffer multiplier is part of the exact local monodromy rather than a Gate 2 error.
-
-### Slow characteristic connection
-
-After (SL4), Gate 2 compares extended frozen sections at nearby slow points.
-
-It is sufficient to prove
+satisfies
 
 \[
 \boxed{
-\|\operatorname{Herm}\mathcal A_{c,S}\|
-\le
-C/S
+\mathcal A_S^*+\mathcal A_S=0
+}
+\]
+
+exactly.
+
+Thus the first-order slow characteristic transport is norm-neutral by finite-dimensional Hilbert geometry, not by an unproved source sign condition.
+
+The discrete overlap map satisfies
+
+\[
+T_j^{char}
+=
+I-\Delta\sigma_j\mathcal A_j
 +
-CS^B(\varepsilon^{a_*}+e^{-cS}).
-}
-\tag{SL5}
+O((\Delta\sigma_j)^2),
 \]
 
-The stronger old estimate (SL2) is unnecessary.
-
-Along the trapped spine,
+hence
 
 \[
-S(\sigma)\asymp\sigma^2,
+(T_j^{char})^*T_j^{char}
+=
+I+O((\Delta\sigma_j)^2).
 \]
 
-so
+Since
 
 \[
-\boxed{
-\int_{\sigma_0}^{\infty}\frac{d\sigma}{S(\sigma)}
-<\infty.
-}
-\tag{SL6}
+\sum_j(\Delta\sigma_j)^2<\infty,
 \]
 
-Equivalently,
+the characteristic fundamental matrix and inverse remain uniformly bounded.
 
-\[
-\sum_j\frac{\Delta\sigma_j}{S_j}
-\asymp
-\sum_j\frac1{j(\log j)^2}
-<\infty.
-\tag{SL7}
-\]
+### Repair D: nonlinear cocycle rerun
 
-Thus an \(O(S^{-1})\) **connection rate** is harmless even though an \(O(S^{-1})\) per-cell multiplier is not.
+The file
 
----
+**beta21_lowu_gate2_nonlinear_invariant_cocycle.md**
 
-## 6. Corrected status
+has been updated so that its center propagation uses the repaired orthonormal/Kato connection and shrinking buffers.  It no longer cites the unsupported source-small Hermitian connection estimate.
 
-Until (SL4)--(SL5) are proved,
+### Verdict
 
 \[
 \boxed{
-\text{Gate 2 nonlinear invariant cocycle is CONDITIONAL.}
+\text{GATE 2 MONODROMY GAP: REPAIRED AT THE BRANCH-THEOREM LEVEL.}
 }
 \]
 
-Consequently the downstream Gate 3 construction is also conditional.
-
-The safe status is
-
-\[
-\boxed{\text{Gate 1: strong branch theorem;}}
-\]
-
-\[
-\boxed{\text{Gate 2: one monodromy repair remains;}}
-\]
-
-\[
-\boxed{\text{Gate 3: downstream, not globally promotable.}}
-\]
-
-This supersedes earlier conversation-level statements that Gate 2 or Gate 3 was unconditionally closed.
+The standard local Navier--Stokes flow theorem remains an external cited dependency for the shrinking buffers.
 
 ---
 
-## 7. Next targets and kill criterion
+## 4. Corrected Gate 2 source-line classification
 
-The next theorem targets are
+The decisive Gate 2 inputs are now classified as follows.
 
-1. **beta21_lowu_gate1_buffer_inclusive_exact_section.md**;
-2. **beta21_lowu_gate2_within_stage_characteristic_monodromy.md**.
+1. Pure source scale/reference rebase neutrality:
+   \[
+   \boxed{\text{SOURCE-EXACT.}}
+   \]
 
-If the buffer-inclusive fixed family cannot be continued for any positive fixed buffer length, or if the slow connection has a nonintegrable positive Hermitian rate, the global infinite-cascade line must be frozen at Gate 1.
+2. Exact Gate 1 characteristic fixed-family identity:
+   \[
+   \boxed{\text{DERIVED GATE 1 THEOREM.}}
+   \]
+
+3. Frozen tangent monodromy identity obtained by differentiating that exact family:
+   \[
+   \boxed{\text{EXACT CONSEQUENCE OF THE DERIVED GATE 1 THEOREM.}}
+   \]
+
+4. Orthonormal/Kato connection skew-Hermiticity:
+   \[
+   \boxed{\text{STANDARD FINITE-DIMENSIONAL HILBERT-BUNDLE IDENTITY.}}
+   \]
+
+5. \(C^2\) section Taylor remainder:
+   \[
+   \boxed{\text{DERIVED BRANCH THEOREM.}}
+   \]
+
+6. Shrinking buffer flow:
+   \[
+   \boxed{\text{STANDARD LOCAL PDE FLOW + SUMMABLE DESIGN CHOICE.}}
+   \]
+
+7. Hyperbolic analytic complement / Lyapunov--Perron solve:
+   \[
+   \boxed{\text{DERIVED BRANCH THEOREM.}}
+   \]
+
+At this source-line granularity there is no longer a missing Gate 2 within-stage monodromy hypothesis.
+
+---
+
+## 5. Updated safe project status
+
+After the repair,
+
+\[
+\boxed{
+\text{Gate 1: strong derived branch theorem;}
+}
+\]
+
+\[
+\boxed{
+\text{Gate 2: restored / closed at branch-theorem level;}
+}
+\]
+
+\[
+\boxed{
+\text{Gate 3: internally closed at branch-theorem level, but global promotion still withheld.}
+}
+\]
+
+Why is the global claim still withheld?
+
+Because Gate 1, the hyperbolic Gate 2 complement, and the physical Gate 3 lower-bound/Gram lemmas are substantial **derived** results.  The present source-line audit has classified their dependencies but has not yet independently replayed every estimate from the pinned source and standard PDE inputs.
+
+The next audit phase is therefore theorem-by-theorem proof replay, beginning with the Gate 1 normal form / tail / exact gluing chain and then the Gate 3 physical lower-bound chain.
+
+## 6. Next source-line audit targets
+
+The next work is not another global theorem.  It is a conservative proof replay of the two deepest derived blocks:
+
+1. **Gate 1 replay**
+   - finite-\(S\) tangent normal form;
+   - exact discrete central profile;
+   - analytic-tail parametrix;
+   - coupled full-state gluing and finite-dimensional IFT.
+
+2. **Gate 3 replay**
+   - center-point physical \(H^1\) lower bound;
+   - catalyst Gram coercivity;
+   - tail/correction upper bounds in the same physical norm.
+
+Any nonabsorbable loss or unproved compactness/invertibility assumption found in that replay downgrades the global chain immediately.
 
 No final unforced singularity or Clay-prize claim is made here.
