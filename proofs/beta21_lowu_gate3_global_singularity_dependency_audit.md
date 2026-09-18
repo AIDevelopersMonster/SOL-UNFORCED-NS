@@ -1,6 +1,6 @@
 # Gate 3 global singularity dependency audit
 
-**Status:** ADVERSARIAL AUDIT COMPLETE AT THE CURRENT THEOREM-LAYER LEVEL. GATE 3 IS **NOT YET PROMOTED TO A FINAL GLOBAL SINGULARITY THEOREM**. FOUR MAJOR INTERFACES PASS; ONE MICROLOCAL RELATIVE-JET / GRAM-COERCIVITY LEMMA REMAINS OPEN AND IS NOW THE UNIQUE MATHEMATICAL KILL CRITERION BEFORE ANY GLOBAL BLOW-UP CLAIM.
+**Status:** ADVERSARIAL GATE-LEVEL AUDIT COMPLETE. THE PREVIOUS MICROLOCAL GRAM-COERCIVITY GAP IS CLOSED BY `beta21_lowu_gate3_catalyst_H1_gram_coercivity.md`. AT THE INTERNAL BRANCH LEVEL, GATE 3 IS CLOSED. A FINAL GLOBAL SINGULARITY / CLAY-LEVEL CLAIM IS STILL **WITHHELD PENDING A SEPARATE SOURCE-BY-SOURCE LINE AUDIT OF THE ENTIRE DEPENDENCY CHAIN**.
 
 Research branch:
 
@@ -304,82 +304,63 @@ S_j^{-A_0/2}q_j^{-1/4-3h/2}
 
 ## Audit G. Does the orbit Gram matrix have the required physical H1 coercivity?
 
-### What is exact
+The earlier audit left this point open because a relative-jet estimate cannot be obtained by dividing absolute source jet bounds by exponentially small far-tail norms.
 
-For catalyst orbit indices \(r\ne s\),
+The new theorem
 
 \[
-\Theta_{C_r}-\Theta_{C_s}
-=
-(r-s)\Theta_M,
+\texttt{beta21_lowu_gate3_catalyst_H1_gram_coercivity.md}
 \]
 
-and the difference phase has constant nonzero radial derivative.
+uses the correct two-region argument.
 
-Repeated radial integration by parts therefore has no stationary-point contribution.
+1. Write the exact discrete profile as
 
-### What is still missing
+   \[
+   f_{C,S}=\phi_C+w_{C,S},
+   \qquad
+   \|w_{C,S}\|_{X_C^{m+1}}=O(S^{-1/2}).
+   \]
 
-The current extractor uses the normalized estimate
+2. The explicit continuum catalyst profile combined with the physical action has squared-amplitude Gaussian reserve
+
+   \[
+   \gamma_C
+   =
+   2\alpha_Cd_C^2+\Re(B_C/v_C)
+   \approx5.38831>0.
+   \]
+
+3. Use the moving central window
+
+   \[
+   |r|\le\sqrt{0.12\,S\log S}.
+   \]
+
+   On this window, continuum Gaussian relative jets grow only polylogarithmically and exact root-phase separation gives a Schur-small off-diagonal Gram kernel.
+
+4. Outside the moving window, do not divide by tiny diagonal norms.  Use direct physical Gaussian summability and absolute nonstationary-phase bounds.
+
+5. Reinsert the exact discrete-profile error in the physical Gaussian graph norm; it is \(o(1)\) relative to the principal physical packet scale.
+
+The result is
 
 \[
-\frac{
-|\langle\nabla W_{j,r},\nabla W_{j,s}\rangle|
-}{
-\|\nabla W_{j,r}\|_2\|\nabla W_{j,s}\|_2
+\boxed{
+\|\nabla V_j\|_2
+\ge
+cS_j^{-A_0/2}
+q_j^{-1/4-3h/2}.
 }
-\le
-C_NS_j^{B_N}
-\left(
-\frac{\sqrt{\varepsilon_j}S_j}{|r-s|}
-\right)^N.
-\tag{GA1}
 \]
-
-The pinned source provides absolute polynomial jet bounds. But (GA1) is a **relative-jet** statement after division by the diagonal norms.
-
-For modes deep in the physical large-deviation tail, those diagonal norms are very small. One cannot prove (GA1) on the entire \(O(S_j)\) orbit simply by dividing an absolute jet estimate by a tiny norm.
-
-The correct proof must split
-
-\[
-I_j=I_j^{\rm cen}\cup I_j^{\rm far},
-\]
-
-with
-
-\[
-|r|\le L\sqrt{S_j}
-\]
-
-in the central set.
-
-On \(I_j^{\rm cen}\), the exact tangent-Gaussian profile and fixed-order graph norm should provide uniform relative coefficient-jet control. Nonstationary phase then gives (GA1).
-
-On \(I_j^{\rm far}\), one should not normalize pairwise. Instead the strict physical action Gaussian should give directly
-
-\[
-\left\|
-\sum_{r\in I_j^{\rm far}}\nabla W_{j,r}
-\right\|_2
-\le
-e^{-cL^2}
-S_j^A
-\|\nabla W_{j,0}\|_2.
-\tag{GA2}
-\]
-
-Choose \(L\) large first and then take \(j\) late.
-
-This two-region statement has not yet been written as a complete theorem layer.
 
 ### Verdict
 
 \[
-\boxed{\text{AUDIT G: OPEN.}}
+\boxed{\text{AUDIT G: PASS AT THE CURRENT BRANCH-THEOREM LEVEL.}}
 \]
 
-This is now the unique genuine mathematical obstruction in the Gate 3 extraction chain.
+Because this lemma is branch-derived rather than a literal pinned-source theorem, it remains a mandatory target of the source-line audit.
 
 ---
 
@@ -411,9 +392,9 @@ For every \(T<1\), the standard smooth whole-space energy identity gives
 
 ---
 
-# Final audit verdict
+# Final gate-level audit verdict
 
-The current branch has passed the following global interfaces:
+At the current internal theorem-layer level, all Gate 3 interfaces now pass:
 
 \[
 \boxed{
@@ -427,42 +408,46 @@ The current branch has passed the following global interfaces:
 +
 \text{diagonal H1 lower scale}
 +
+\text{catalyst Gram coercivity}
++
 \text{small tail/correction}.
 }
 \]
 
-But the global singularity implication is **not publication-ready**, because physical catalyst-orbit H1 Gram coercivity still requires the relative-jet / far-tail split of Audit G.
-
-Therefore the safe current status is
+Together with the exact Gate 2 cocycle and the repaired physical \(H^1\) extractor, the branch now internally derives
 
 \[
-\boxed{
-\text{Gate 2 closed; Gate 3 reduced to one microlocal Gaussian Gram theorem.}
-}
-\]
-
-The next file must be
-
-\[
-\boxed{
-\texttt{beta21_lowu_gate3_catalyst_H1_gram_coercivity.md}.
-}
-\]
-
-### Kill criterion
-
-If central relative-jet constants require exponential-in-\(S\) loss, or if the far-orbit tail cannot be made uniformly small relative to the nonzero central characteristic packet, the global singularity line must be frozen.
-
-If the theorem closes with only polynomial \(S\)-loss, then the repaired extractor implies
-
-\[
-\|u(t_j)\|_{H^1}\to\infty
+\|u(t_j)\|_{H^1}\to\infty,
 \qquad
-(t_j\uparrow1)
+t_j\uparrow1,
 \]
 
-inside the current Gate 1--2 construction.
+from one smooth finite-energy Cauchy state.
 
-Even in that event, because of the significance of the conclusion, a separate line-by-line external/source audit should precede any claim of an unforced Navier--Stokes singularity.
+However this conclusion is too significant to promote on the basis of theorem-layer consistency alone.
+
+The mandatory next step is a source-line audit classifying every dependency as
+
+1. literal theorem from the pinned OpenAI source;
+2. standard external PDE theorem with an explicit citation;
+3. branch-derived theorem with a complete proof from 1--2;
+4. numerical certificate only;
+5. conditional / incomplete.
+
+The next file is
+
+\[
+\boxed{
+\texttt{beta21_lowu_global_claim_source_line_audit.md}.
+}
+\]
+
+Until that audit is complete, the safe public status remains:
+
+\[
+\boxed{
+\text{Gate 1 and Gate 2 are strong branch results; Gate 3 is internally closed but the global singularity claim is withheld.}
+}
+\]
 
 No Clay-prize claim is made here.
