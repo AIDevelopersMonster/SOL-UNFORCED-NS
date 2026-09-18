@@ -1,6 +1,6 @@
 # Exact discrete finite-`S` tangent-Gaussian central profile
 
-**Status:** PROVED DISCRETE CENTRAL PROFILE FROM THE ESTABLISHED `O(h_S^2)` NORMAL FORM / ONE NORMALIZATION PER SECTOR / FULL CORE+TAIL PDE FIXED POINT STILL OPEN.
+**Status:** SUPERSEDED / CONDITIONAL AFTER GATE 1 ADVERSARIAL RE-AUDIT. THE REQUIRED UNIFORM `O(h_S^2)` NORMAL FORM WAS NOT ACTUALLY PROVED UPSTREAM, AND THE DISPLAYED NEUMANN ARGUMENT LOSES ONE DERIVATIVE. SEE `beta21_lowu_gate1_adversarial_reaudit.md` AND `beta21_lowu_gate1_singular_discrete_profile_problem.md`. THIS FILE MUST NOT BE CITED AS AN EXACT DISCRETE-PROFILE THEOREM.
 
 This note closes the central finite-`S` profile obligation left after
 `beta21_lowu_finiteS_profile_normal_form.md` and the compact-bank obstruction.
