@@ -156,7 +156,7 @@ in the physical tangent-Gaussian graph norm.  Since \(\phi_C(0)\ne0\), (HX1) imp
 
 ---
 
-## 4. Diagonal physical \(H^1\) scale
+## 4. Robust diagonal physical \(H^1\) lower bound with only polynomial localization loss
 
 Put
 
@@ -178,26 +178,95 @@ U_{{\rm pkt},j}\asymp q_j^{-\gamma}.
 \tag{HX11}
 \]
 
-A fixed normalized packet occupies physical volume
+For the lower bound we do **not** use a global fixed-volume lower bound on the entire source support.  The pinned OpenAI source only gives pointwise positivity of the primary weight on the open strip, and explicitly warns that no positive minimum need persist at the support boundary.  The argument therefore uses a central point plus finite-order jet control.
+
+Choose the allowed normalization functional in the exact discrete central-profile theorem to be evaluation at the tangent-Gaussian profile center after fixing the common phase:
 
 \[
-|\operatorname{supp}W_j|
-\asymp q_j^{3/2-h}.
+\ell_C(f)=f(0).
 \tag{HX12}
 \]
 
-On the cutoff plateau, the principal oscillatory derivative is transverse to the nonzero polarization and dominates the fixed-order amplitude derivatives.  The curl/localization remainder is source-small.  Therefore the nonzero center packet from (HX9) obeys the two-sided diagonal estimate
+Then
+
+\[
+\ell_C(\phi_C)=1,
+\qquad
+f_{C,S}=\phi_C+O(S^{-1/2})
+\]
+
+in a graph norm controlling one more coefficient derivative.  Together with the compact-annulus bound \( |A_{C,j}|\ge c_C>0\), this gives a physical/source-normalized center coefficient satisfying
+
+\[
+\boxed{
+|a_{j,0}(x_{j,*})|_{\rm norm}\ge c_*>0
+}
+\tag{HX13}
+\]
+
+for all sufficiently late \(j\).
+
+The source finite-jet calculus gives, at every fixed order used here, a polynomial bound
+
+\[
+\boxed{
+\|\nabla_{\rm norm} a_{j,0}\|_{L^\infty}
+\le C S_j^{B_0}
+}
+\tag{HX14}
+\]
+
+on one fixed compact central chart.  Therefore there is a normalized ball
+
+\[
+B_j^{\rm norm}
+=
+B\!\left(x_{j,*},cS_j^{-B_0}\right)
+\]
+
+on which
+
+\[
+\boxed{
+|a_{j,0}(x)|_{\rm norm}\ge c_*/2.
+}
+\tag{HX15}
+\]
+
+Under the exact source graph dilation, this normalized ball has physical volume bounded below by
+
+\[
+\boxed{
+|B_j^{\rm phys}|
+\ge
+c S_j^{-A_0} q_j^{3/2-h}
+}
+\tag{HX16}
+\]
+
+for one fixed finite \(A_0\).  The factor \(q_j^{3/2-h}\) is the intrinsic packet-volume scale; all loss from shrinking the central normalized ball is only polynomial in \(S_j\).
+
+On \(B_j^{\rm phys}\), the principal physical oscillatory derivative has size
+
+\[
+\asymp
+U_{{\rm pkt},j}\Omega_j
+\asymp
+q_j^{-2\gamma},
+\]
+
+while amplitude/cutoff/curl derivatives are lower by the already-audited source powers and fixed polynomial factors.  Increasing the starting level once, the principal derivative dominates those remainders on a smaller concentric ball.  Hence
 
 \[
 \boxed{
 \|\nabla W_{j,0}\|_2^2
 \ge
-c\,
-q_j^{3/2-h}\,
-q_j^{-2\gamma}\,
+c S_j^{-A_0}
+q_j^{3/2-h}
+q_j^{-2\gamma}
 q_j^{-2\gamma}.
 }
-\tag{HX13}
+\tag{HX17}
 \]
 
 Since \(4\gamma=2+2h\),
@@ -206,23 +275,23 @@ Since \(4\gamma=2+2h\),
 \boxed{
 \|\nabla W_{j,0}\|_2^2
 \ge
-c q_j^{-1/2-3h},
+c S_j^{-A_0}q_j^{-1/2-3h},
 }
-\tag{HX14}
+\tag{HX18}
 \]
 
-and hence
+and therefore
 
 \[
 \boxed{
 \|\nabla W_{j,0}\|_2
 \ge
-c q_j^{-1/4-3h/2}.
+c S_j^{-A_0/2}q_j^{-1/4-3h/2}.
 }
-\tag{HX15}
+\tag{HX19}
 \]
 
-The same scaling is obtained by pulling the fixed normalized \(H^1\) packet norm through the exact source graph dilation and phase modulation.
+This polynomial-loss lower bound is the form used below.  It avoids any unsupported claim of a band-uniform positive amplitude on the full packet support.
 
 ---
 
@@ -270,7 +339,7 @@ C_N S_j^{B_N}
 \frac{\sqrt{\varepsilon_j}S_j}{|r-s|}
 \right)^N.
 }
-\tag{HX16}
+\tag{HX20}
 \]
 
 This is the physical \(H^1\) version of the nonstationary-phase estimate anticipated in the root-phase theorem.
@@ -303,7 +372,7 @@ For \(N>1\),
 C_N S_j^{B_N}
 (\sqrt{\varepsilon_j}S_j)^N
 \sum_{d\ne0}|d|^{-N}.
-\tag{HX17}
+\tag{HX21}
 \]
 
 The constant-fast schedule gives
@@ -321,7 +390,7 @@ S_j^{B_N}(\sqrt{\varepsilon_j}S_j)^N
 \asymp
 (\log j)^{2B_N+2N}j^{-N/2}
 \longrightarrow0.
-\tag{HX18}
+\tag{HX22}
 \]
 
 Therefore
@@ -331,7 +400,7 @@ Therefore
 \sup_r\sum_{s\ne r}|K_{rs}|
 =o(1).
 }
-\tag{HX19}
+\tag{HX23}
 \]
 
 This bound is independent of the number of orbit indices.  The \(O(S_j)\) cardinality does not appear as a dangerous factor because the summable \(|r-s|^{-N}\) kernel is handled by Schur's test.
@@ -348,7 +417,7 @@ For all sufficiently late stages, the Gram matrix is therefore coercive:
 \sum_r
 \|\nabla W_{j,r}\|_2^2.
 }
-\tag{HX20}
+\tag{HX24}
 \]
 
 In particular,
@@ -357,9 +426,11 @@ In particular,
 \boxed{
 \|\nabla V_j\|_2
 \ge
-2^{-1/2}\|\nabla W_{j,0}\|_2.
+2^{-1/2}\|\nabla W_{j,0}\|_2
+\ge
+cS_j^{-A_0/2}q_j^{-1/4-3h/2}.
 }
-\tag{HX21}
+\tag{HX25}
 \]
 
 ---
@@ -372,7 +443,7 @@ The exact Gate 1 state is not only the compact central orbit.  In the beta-one a
 \Pi_{\theta,m_C}U_j^*
 =
 V_j+T_j+Z_j,
-\tag{HX22}
+\tag{HX26}
 \]
 
 where
@@ -386,10 +457,10 @@ The tail is generated by an exponentially small compact-core boundary defect and
 \boxed{
 \|T_j\|_{H^1}
 \le
-S_j^A e^{-cS_j}\,
+S_j^{A} e^{-cS_j}\,
 q_j^{-1/4-3h/2}.
 }
-\tag{HX23}
+\tag{HX27}
 \]
 
 The coupled correction radius carries a positive source power:
@@ -406,7 +477,7 @@ S_j^A
 q_j^{-1/4-3h/2},
 \qquad a_*>0.
 }
-\tag{HX24}
+\tag{HX28}
 \]
 
 The equality between the coefficient covariant \(H^1\) norm and the reconstructed physical \(H^1\) norm is exact modewise by
@@ -418,7 +489,7 @@ Using the schedule,
 S_j^A\varepsilon_j^{a_*}\to0,
 \qquad
 S_j^Ae^{-cS_j}\to0.
-\tag{HX25}
+\tag{HX29}
 \]
 
 Thus
@@ -427,20 +498,22 @@ Thus
 \boxed{
 \|T_j+Z_j\|_{H^1}
 =
-o\!\left(q_j^{-1/4-3h/2}\right).
+o\!\left(
+S_j^{-A_0/2}q_j^{-1/4-3h/2}
+\right).
 }
-\tag{HX26}
+\tag{HX30}
 \]
 
-Combining (HX15), (HX21), and (HX26),
+Combining (HX15), (HX25), and (HX30),
 
 \[
 \boxed{
 \|\Pi_{\theta,m_C}U_j^*\|_{H^1}
 \ge
-c q_j^{-1/4-3h/2}
+cS_j^{-A_0/2}q_j^{-1/4-3h/2}
 }
-\tag{HX27}
+\tag{HX31}
 \]
 
 for all sufficiently late \(j\).
@@ -451,12 +524,12 @@ Finally (HX3) gives
 \boxed{
 \|U_j^*\|_{H^1}
 \ge
-c q_j^{-1/4-3h/2}.
+cS_j^{-A_0/2}q_j^{-1/4-3h/2}.
 }
-\tag{HX28}
+\tag{HX32}
 \]
 
-A harmless fixed polynomial \(S_j^{-A}\) may be inserted in (HX28) if one uses a weaker finite-order source norm conversion; the conclusion below is unchanged.
+The polynomial factor in (HX32) is intentional: it is the price of deriving the lower bound from a central nonzero point and polynomial jet control rather than assuming a uniform lower bound on the entire source support.
 
 ---
 
@@ -468,16 +541,17 @@ Since
 q_j\asymp j^{-1/h},
 \]
 
-(HX28) implies
+(HX32) implies
 
 \[
 \boxed{
 \|U_j^*\|_{H^1}
 \gtrsim
+(\log j)^{-A_0}
 j^{(1/4+3h/2)/h}
 \longrightarrow\infty.
 }
-\tag{HX29}
+\tag{HX33}
 \]
 
 The section times satisfy
@@ -495,7 +569,7 @@ Therefore the exact Gate 2 forward solution obeys
 \qquad
 (t_j\uparrow1).
 }
-\tag{HX30}
+\tag{HX34}
 \]
 
 This is compatible with the finite integrated enstrophy from the energy identity because the high-\(H^1\) states occur on shrinking time scales.
@@ -510,7 +584,7 @@ Within the current Gate 1--2 theorem chain, the last singular-observable extract
 \boxed{
 \text{Gate 3 physical characteristic }H^1\text{ extraction: CLOSED.}
 }
-\tag{HX31}
+\tag{HX35}
 \]
 
 Together with
@@ -525,15 +599,15 @@ Together with
 
 ## 10. Publication / claim discipline
 
-The conclusion (HX31) is mathematically much stronger than the earlier local papers and sits at the level of the global unforced singularity question.
+The conclusion (HX35) is mathematically much stronger than the earlier local papers and sits at the level of the global unforced singularity question.
 
 For that reason this file **does not itself promote a Clay-prize or final blow-up claim**.
 
 Before any such promotion, the complete dependency chain must be audited adversarially, in particular:
 
-1. verify the exact source-to-physical lower bound (HX13) from the literal realized primary-wave/curl formulas rather than only the existing scale ledger;
-2. verify the relative-jet form needed for the normalized Gram estimate (HX16) uniformly over the exact central profile;
-3. verify (HX23)--(HX24) in the same physical \(H^1\) norm with no hidden inverse factor;
+1. verify the repaired center-point/jet-ball lower bound (HX13)--(HX19) against the literal realized primary-wave/curl formulas and exact graph dilation;
+2. verify the relative-jet form needed for the normalized Gram estimate (HX20) uniformly over the exact central profile;
+3. verify (HX27)--(HX28) in the same physical \(H^1\) norm with no hidden inverse factor;
 4. re-audit the Gate 2 one-Cauchy-state interpretation and finite-prefix exact concatenation;
 5. check every theorem used above against the pinned OpenAI source ref and mark any derived extension not literally formalized there.
 
